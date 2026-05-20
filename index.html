@@ -99,12 +99,8 @@
     .sum-row  { display:flex; gap:8px; }
     .sbox.lg .sbox-val { font-size:40px; }
 
-    /* speed chart */
-    .chart-wrap { position:relative; background:var(--bgcard); border:1px solid var(--grey); border-top:2px solid var(--ac); padding:12px 10px 8px; margin-bottom:16px; }
-    .chart-title { color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:3px; margin-bottom:8px; }
-
     /* route map in summary */
-    #sum-map { width:100%; height:160px; margin-bottom:16px; border:1px solid var(--grey); border-top:2px solid var(--ac); position:relative; }
+    #sum-map { width:100%; height:220px; margin-bottom:16px; border:1px solid var(--grey); border-top:2px solid var(--ac); position:relative; }
 
     /* gpx btn */
     .btn-gpx { width:100%; background:transparent; border:1px solid var(--ac); color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:3px; padding:12px; cursor:pointer; margin-bottom:12px; -webkit-appearance:none; }
@@ -221,12 +217,6 @@
       <div class="sbox"><div class="sbox-lbl">Desnivel ↑</div><div class="sbox-val" id="sum-elev">0</div><div class="sbox-unit">m</div></div>
       <div class="sbox"><div class="sbox-lbl">Alt. máxima</div><div class="sbox-val" id="sum-altmax">0</div><div class="sbox-unit">m</div></div>
     </div>
-  </div>
-
-  <!-- speed chart -->
-  <div class="chart-wrap">
-    <div class="chart-title">VELOCIDAD A LO LARGO DE LA RUTA</div>
-    <canvas id="spd-chart" height="80"></canvas>
   </div>
 
   <!-- export GPX -->
@@ -446,7 +436,6 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   document.getElementById("sum-elev").textContent=s.elevGain;
   document.getElementById("sum-altmax").textContent=s.maxAlt;
 
-  buildSpdChart(s.speeds);
   setTimeout(()=>initSumMap(s.coords),300);
 
   // GPX button for current session
