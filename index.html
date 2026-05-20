@@ -132,9 +132,16 @@
     .rec-card-lbl { color:var(--greytext); font-family:var(--hud); font-size:7px; letter-spacing:2px; margin-bottom:4px; position:relative; }
     .rec-card-val { color:var(--ac); font-size:20px; font-weight:700; position:relative; }
     .rec-card-unit{ color:var(--greytext); font-family:var(--hud); font-size:8px; position:relative; }
-    /* weekly chart */
-    .week-wrap { background:var(--bgcard); border:1px solid var(--grey); border-top:2px solid var(--ac); padding:12px 10px 8px; margin-bottom:16px; }
-    .week-title{ color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:3px; margin-bottom:8px; }
+    /* weekly grid */
+    .week-wrap  { background:var(--bgcard); border:1px solid var(--grey); border-top:2px solid var(--ac); padding:12px 10px 10px; margin-bottom:16px; }
+    .week-title { color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:3px; margin-bottom:10px; }
+    .week-grid  { display:flex; gap:5px; }
+    .week-day   { flex:1; background:var(--bgpanel); border:1px solid var(--grey); padding:8px 2px; text-align:center; }
+    .week-day.has { border-color:var(--ac); background:var(--acfaint); }
+    .week-day-lbl { color:var(--greytext); font-family:var(--hud); font-size:7px; margin-bottom:4px; }
+    .week-day-val { color:var(--whitedim); font-size:13px; font-weight:700; line-height:1; }
+    .week-day.has .week-day-val { color:var(--ac); }
+    .week-day-unit{ color:var(--greytext); font-family:var(--hud); font-size:6px; }
 
     .empty { color:var(--greytext); font-family:var(--hud); font-size:11px; letter-spacing:3px; text-align:center; margin-top:80px; }
     .gps-warn { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,122,112,.15); border:1px solid var(--ac); color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:2px; padding:8px 16px; pointer-events:none; z-index:999; animation:blink 1.5s infinite; display:none; }
@@ -466,22 +473,25 @@ function getRecords(){
   };
 }
 
-/* ── Weekly chart ── */
-function buildWeekChart(canvasId){
-  const ctx=document.getElementById(canvasId)?.getContext("2d");
-  if(!ctx)return;
-  const days=["L","M","X","J","V","S","D"];
-  const now=new Date(),week=new Array(7).fill(0);
+/* ── Weekly numeric grid ── */
+function buildWeekGrid(containerId){
+  const el=document.getElementById(containerId);
+  if(!el)return;
+  const days=["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
+  const now=new Date(), week=new Array(7).fill(0);
   history.forEach(s=>{
     const d=new Date(s.id);
     const diff=Math.floor((now-d)/(1000*60*60*24));
-    if(diff<7){const dow=(d.getDay()+6)%7;week[dow]+=(s.distance/1000);}
+    if(diff<7){const dow=(d.getDay()+6)%7; week[dow]+=(s.distance/1000);}
   });
-  new Chart(ctx,{
-    type:"bar",
-    data:{labels:days,datasets:[{data:week,backgroundColor:"rgba(0,122,112,.6)",borderColor:"#007a70",borderWidth:1,borderRadius:2}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#555",font:{size:8}},grid:{display:false},border:{color:"rgba(255,255,255,.05)"}},y:{ticks:{color:"#555",font:{size:8},maxTicksLimit:4},grid:{color:"rgba(255,255,255,.05)"},border:{color:"rgba(255,255,255,.05)"}}}}
-  });
+  el.innerHTML=days.map((d,i)=>{
+    const km=week[i], has=km>0;
+    return `<div class="week-day${has?" has":""}">
+      <div class="week-day-lbl">${d}</div>
+      <div class="week-day-val">${has?km.toFixed(1):"—"}</div>
+      <div class="week-day-unit">${has?"km":""}</div>
+    </div>`;
+  }).join("");
 }
 
 /* ── History ── */
@@ -506,7 +516,7 @@ function renderHist(){
     </div>`;
   }
   // Weekly km chart
-  html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA</div><canvas id="week-chart" height="70"></canvas></div>`;
+  html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA</div><div class="week-grid" id="week-grid"></div></div>`;
   // Route list
   html+=history.map((s,i)=>`
     <div class="h-item" style="animation-delay:${i*.04}s">
@@ -519,7 +529,7 @@ function renderHist(){
       </div>
     </div>`).join("");
   el.innerHTML=html;
-  setTimeout(()=>buildWeekChart("week-chart"),100);
+  setTimeout(()=>buildWeekGrid("week-grid"),100);
 }
 
 updateHistBtn();
