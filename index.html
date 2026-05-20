@@ -448,17 +448,8 @@ function initMap(center){
   gmap = new google.maps.Map(document.getElementById("map-el"),{
     center, zoom:16, disableDefaultUI:true,
     styles:[
-      {elementType:"geometry",           stylers:[{color:"#0a0a0a"}]},
-      {elementType:"labels.text.fill",   stylers:[{color:"#444"}]},
-      {elementType:"labels.text.stroke", stylers:[{color:"#0a0a0a"}]},
-      {featureType:"road",         elementType:"geometry",        stylers:[{color:"#1c1c1c"}]},
-      {featureType:"road.arterial",elementType:"geometry",        stylers:[{color:"#242424"}]},
-      {featureType:"road.highway", elementType:"geometry",        stylers:[{color:"#2a0002"}]},
-      {featureType:"road.highway", elementType:"geometry.stroke", stylers:[{color:"#007a70"}]},
-      {featureType:"water",        elementType:"geometry",        stylers:[{color:"#050510"}]},
-      {featureType:"poi",          stylers:[{visibility:"off"}]},
-      {featureType:"transit",      stylers:[{visibility:"off"}]},
-      {featureType:"landscape",    elementType:"geometry",        stylers:[{color:"#0d0d0d"}]},
+      {featureType:"poi",     stylers:[{visibility:"off"}]},
+      {featureType:"transit", stylers:[{visibility:"off"}]},
     ]
   });
   poly = new google.maps.Polyline({
