@@ -481,8 +481,8 @@ function startGPS(){
     document.getElementById("gps-warn").style.display="none";
     const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
 
-    // Filter bad readings: ignore if accuracy worse than 50m or same timestamp
-    if(acc>50||ts===lastTimestamp) return;
+    // Filter bad readings: ignore only very bad accuracy (>100m)
+    if(acc>100) return;
     lastAccuracy=acc; lastTimestamp=ts;
 
     currentPos={lat:la,lng:lo};
@@ -491,14 +491,14 @@ function startGPS(){
       if(coords.length){
         const l=coords[coords.length-1];
         const d=haversine(l.lat,l.lng,la,lo);
-        // Only add distance if moved more than 3m and less than 100m (filter GPS jumps)
-        if(d>3&&d<100) distance+=d;
+        // Only add distance if moved more than 1m and less than 150m (filter GPS jumps)
+        if(d>1&&d<150) distance+=d;
       }
       coords.push({lat:la,lng:lo});
 
       // Speed: prefer GPS speed if available and > 0.5 m/s, else calculate from position
       let kmh=0;
-      if(sp!=null&&sp>0.5){
+      if(sp!=null&&sp>0.2){
         kmh=sp*3.6;
       } else if(coords.length>=2){
         const l=coords[coords.length-2];
