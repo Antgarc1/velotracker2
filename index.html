@@ -11,194 +11,217 @@
   <title>VeloTracker</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    :root {
-      --bg:      #080808; --bgcard:  #0f0f0f; --bgpanel: #111111;
-      --ac:      #007a70; --acfaint: rgba(0,122,112,.08); --acglow: rgba(0,122,112,.25);
-      --white:   #ffffff; --whitedim:#c0c0c0;
-      --grey:    #2a2a2a; --greylo:  #1a1a1a; --greytext:#555555;
-      --hud: 'Share Tech Mono', monospace; --num: 'Rajdhani', sans-serif;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#080808;--bgcard:#0f0f0f;--bgpanel:#111111;
+      --ac:#007a70;--acf:rgba(0,122,112,.08);--acg:rgba(0,122,112,.25);
+      --wh:#ffffff;--wd:#c0c0c0;--gr:#2a2a2a;--grl:#1a1a1a;--gt:#555555;
+      --hud:'Share Tech Mono',monospace;--num:'Rajdhani',sans-serif;
     }
-    html,body { height:100%; width:100%; background:var(--bg); color:var(--white); font-family:var(--num); overflow:hidden; -webkit-tap-highlight-color:transparent; user-select:none; }
-    .screen { display:none; flex-direction:column; height:100dvh; width:100vw; position:absolute; inset:0; }
-    .screen.active { display:flex; }
+    html,body{height:100%;width:100%;background:var(--bg);color:var(--wh);font-family:var(--num);overflow:hidden;-webkit-tap-highlight-color:transparent;user-select:none}
+    .screen{display:none;flex-direction:column;height:100dvh;width:100vw;position:absolute;inset:0}
+    .screen.active{display:flex}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    @keyframes scan{0%{top:-2px}100%{top:100%}}
+    @keyframes gp{0%,100%{opacity:.5}50%{opacity:.8}}
 
-    @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:.15} }
-    @keyframes fadeUp     { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
-    @keyframes scan       { 0%{top:-2px} 100%{top:100%} }
-    @keyframes glow-pulse { 0%,100%{opacity:.5} 50%{opacity:.8} }
+    /* HOME */
+    #s-home{align-items:center;justify-content:center;padding:32px 28px;overflow:hidden}
+    #s-home::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grl) 1px,transparent 1px),linear-gradient(90deg,var(--grl) 1px,transparent 1px);background-size:42px 42px;opacity:.7}
+    .hglow{position:absolute;top:28%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:var(--acg);filter:blur(72px);pointer-events:none;animation:gp 3s ease-in-out infinite}
+    .hscan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ac),transparent);opacity:.35;pointer-events:none;animation:scan 6s linear infinite}
+    .logo{text-align:center;margin-bottom:36px;position:relative;z-index:1;animation:fadeUp .6s ease both}
+    .lbrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px}
+    .lbrow-ln{width:28px;height:1.5px;background:var(--ac)}
+    .lbrow-tx{color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:5px}
+    .lv{color:var(--wh);font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1}
+    .lt{color:var(--ac);font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1;margin-top:-8px}
+    .ltag{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:4px;margin-top:10px}
+    .btnhex{background:var(--ac);border:none;color:var(--wh);font-family:var(--num);font-size:18px;font-weight:700;letter-spacing:4px;padding:18px 52px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);box-shadow:0 0 40px var(--acg);position:relative;z-index:1;margin-bottom:16px;-webkit-appearance:none;animation:fadeUp .6s .2s ease both;transition:opacity .15s}
+    .btnhex:active{opacity:.75}
+    .btnghost{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;cursor:pointer;position:relative;z-index:1;animation:fadeUp .6s .3s ease both}
 
-    /* ── HOME ── */
-    #s-home { align-items:center; justify-content:center; padding:32px 28px; overflow:hidden; }
-    #s-home::before { content:''; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(var(--greylo) 1px,transparent 1px),linear-gradient(90deg,var(--greylo) 1px,transparent 1px); background-size:42px 42px; opacity:.7; }
-    .home-glow { position:absolute; top:28%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; background:var(--acglow); filter:blur(72px); pointer-events:none; animation:glow-pulse 3s ease-in-out infinite; }
-    .home-scan { position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--ac),transparent); opacity:.35; pointer-events:none; animation:scan 6s linear infinite; }
-    .logo { text-align:center; margin-bottom:40px; position:relative; z-index:1; animation:fadeUp .6s ease both; }
-    .logo-brow { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:4px; }
-    .logo-brow-line { width:28px; height:1.5px; background:var(--ac); }
-    .logo-brow-txt  { color:var(--ac); font-family:var(--hud); font-size:9px; letter-spacing:5px; }
-    .logo-v  { color:var(--white); font-size:64px; font-weight:700; letter-spacing:-2px; line-height:1; }
-    .logo-t  { color:var(--ac);    font-size:64px; font-weight:700; letter-spacing:-2px; line-height:1; margin-top:-8px; }
-    .logo-tag{ color:var(--greytext); font-family:var(--hud); font-size:9px; letter-spacing:4px; margin-top:10px; }
-    .btn-hex { background:var(--ac); border:none; color:var(--white); font-family:var(--num); font-size:18px; font-weight:700; letter-spacing:4px; padding:18px 52px; cursor:pointer; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); box-shadow:0 0 40px var(--acglow); position:relative; z-index:1; margin-bottom:20px; -webkit-appearance:none; animation:fadeUp .6s .2s ease both; transition:opacity .15s; }
-    .btn-hex:active { opacity:.75; }
-    .btn-ghost { background:none; border:none; color:var(--greytext); font-family:var(--hud); font-size:10px; letter-spacing:3px; cursor:pointer; position:relative; z-index:1; animation:fadeUp .6s .3s ease both; }
+    /* TRACKING */
+    #s-track{background:var(--bg)}
+    #map-wrap{flex:1;position:relative;overflow:hidden}
+    #map-el{width:100%;height:100%}
+    .mscan{position:absolute;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(0,122,112,.5),transparent);animation:scan 5s linear infinite}
 
-    /* ── TRACKING ── */
-    #s-track { background:var(--bg); }
-    #map-wrap { flex:1; position:relative; overflow:hidden; }
-    #map-el   { width:100%; height:100%; }
-    .map-scan { position:absolute; left:0; right:0; height:1px; z-index:5; pointer-events:none; background:linear-gradient(90deg,transparent,rgba(0,122,112,.5),transparent); animation:scan 5s linear infinite; }
-    .t-top { position:absolute; top:0; left:0; right:0; z-index:10; padding:calc(env(safe-area-inset-top,44px) + 0px) 14px 10px; background:linear-gradient(to bottom,rgba(8,8,8,.94) 55%,transparent); display:flex; justify-content:space-between; align-items:center; }
-    .t-top-logo { color:var(--ac); font-size:15px; font-weight:700; letter-spacing:3px; }
-    .rec-pill { display:flex; align-items:center; gap:7px; background:var(--acfaint); border:1px solid var(--ac); padding:5px 11px; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
-    .rec-pill.paused { background:rgba(255,255,255,.04); border-color:var(--grey); }
-    .rec-dot  { width:6px; height:6px; border-radius:50%; background:var(--ac); box-shadow:0 0 6px var(--ac); animation:blink 1.2s infinite; }
-    .rec-dot.paused { background:var(--greytext); box-shadow:none; animation:none; }
-    .rec-lbl  { font-family:var(--hud); font-size:9px; letter-spacing:3px; color:var(--white); }
-    .rec-lbl.paused { color:var(--greytext); }
-    .t-timer  { font-family:var(--hud); font-size:15px; font-weight:700; color:var(--whitedim); }
-    .t-bot { position:absolute; bottom:0; left:0; right:0; z-index:10; padding:24px 16px 10px; background:linear-gradient(to top,rgba(8,8,8,.88) 50%,transparent); display:flex; justify-content:space-between; align-items:flex-end; }
-    .spd-lbl { color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:3px; margin-bottom:2px; }
-    .spd-row { display:flex; align-items:flex-end; gap:5px; }
-    .spd-num { color:var(--white); font-size:66px; font-weight:700; line-height:1; }
-    .spd-unit{ color:var(--ac); font-family:var(--hud); font-size:13px; margin-bottom:8px; }
-    .dist-lbl{ color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:2px; margin-bottom:2px; text-align:right; }
-    .dist-val{ color:var(--whitedim); font-size:22px; font-weight:700; text-align:right; }
-    /* altitude badge top-right of map */
-    .alt-badge { position:absolute; bottom:80px; right:14px; z-index:10; background:rgba(8,8,8,.8); border:1px solid var(--ac); padding:6px 10px; text-align:center; }
-    .alt-lbl { color:var(--greytext); font-family:var(--hud); font-size:7px; letter-spacing:2px; }
-    .alt-val { color:var(--ac); font-size:18px; font-weight:700; line-height:1.2; }
-    .alt-unit{ color:var(--greytext); font-family:var(--hud); font-size:8px; }
+    /* destination search bar */
+    .dest-bar{position:absolute;top:calc(env(safe-area-inset-top,44px) + 56px);left:10px;right:10px;z-index:20;display:flex;gap:6px}
+    .dest-input{flex:1;background:rgba(8,8,8,.92);border:1px solid var(--ac);color:var(--wh);font-family:var(--hud);font-size:12px;letter-spacing:1px;padding:9px 12px;outline:none;-webkit-appearance:none}
+    .dest-input::placeholder{color:var(--gt)}
+    .dest-btn{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:1px;padding:9px 12px;cursor:pointer;-webkit-appearance:none;white-space:nowrap}
+    .dest-btn:active{opacity:.7}
+    .dest-clear{background:rgba(8,8,8,.92);border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:10px;padding:9px 10px;cursor:pointer;-webkit-appearance:none}
 
-    .s-panel { background:var(--bgpanel); border-top:2px solid var(--ac); padding:10px 8px; padding-bottom:calc(10px + env(safe-area-inset-bottom,0px)); flex-shrink:0; }
-    .s-row { display:flex; gap:6px; margin-bottom:6px; }
-    .sbox { flex:1; background:var(--bgcard); border:1px solid var(--grey); border-top:2px solid var(--grey); padding:10px 6px; text-align:center; position:relative; overflow:hidden; }
-    .sbox.ac { border-color:var(--ac); border-top-color:var(--ac); box-shadow:0 0 18px var(--acglow); }
-    .sbox.ac::before { content:''; position:absolute; inset:0; background:var(--acfaint); }
-    .sbox-lbl { color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; position:relative; }
-    .sbox-val { color:var(--whitedim); font-size:24px; font-weight:700; line-height:1; position:relative; }
-    .sbox.ac .sbox-val { color:var(--white); }
-    .sbox-unit{ color:var(--greytext); font-family:var(--hud); font-size:9px; position:relative; }
-    .sbox.ac .sbox-unit { color:var(--ac); }
-    .c-row { display:flex; gap:8px; }
-    .cbtn { flex:1; border:1px solid var(--grey); background:transparent; color:var(--whitedim); font-family:var(--num); font-size:14px; font-weight:700; letter-spacing:2px; padding:15px 10px; cursor:pointer; -webkit-appearance:none; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); transition:opacity .15s; }
-    .cbtn:active { opacity:.7; }
-    .cbtn.ac  { background:var(--ac); border-color:var(--ac); color:var(--white); box-shadow:0 0 20px var(--acglow); }
-    .cbtn.act { background:var(--acfaint); border-color:var(--ac); color:var(--white); }
+    /* nav info bar */
+    .nav-bar{position:absolute;bottom:calc(100% + 6px);left:0;right:0;background:rgba(8,8,8,.95);border-top:1px solid var(--ac);padding:8px 14px;display:none;align-items:center;justify-content:space-between;z-index:15}
+    .nav-bar.show{display:flex}
+    .nav-dist-rem{color:var(--ac);font-family:var(--hud);font-size:11px;letter-spacing:2px}
+    .nav-dest{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:1px;flex:1;margin:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-cancel{background:none;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:1px;padding:4px 8px;cursor:pointer;-webkit-appearance:none}
 
-    /* ── SUMMARY ── */
-    #s-sum { justify-content:center; overflow-y:auto; padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px)); }
-    .sum-glow { position:absolute; top:18%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; background:var(--acglow); filter:blur(72px); pointer-events:none; animation:glow-pulse 3s ease-in-out infinite; }
-    .sum-eye  { color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:5px; text-align:center; margin-bottom:8px; position:relative; }
-    .sum-t1   { color:var(--white); font-size:44px; font-weight:700; text-align:center; line-height:1; position:relative; }
-    .sum-t2   { color:var(--ac);    font-size:44px; font-weight:700; text-align:center; line-height:1; position:relative; }
-    .sum-date { color:var(--greytext); font-family:var(--hud); font-size:10px; letter-spacing:3px; text-align:center; margin-top:10px; margin-bottom:20px; position:relative; }
-    .sum-grid { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; position:relative; }
-    .sum-row  { display:flex; gap:8px; }
-    .sbox.lg .sbox-val { font-size:40px; }
+    .t-top{position:absolute;top:0;left:0;right:0;z-index:10;padding:calc(env(safe-area-inset-top,44px) + 0px) 14px 10px;background:linear-gradient(to bottom,rgba(8,8,8,.94) 55%,transparent);display:flex;justify-content:space-between;align-items:center}
+    .t-logo{color:var(--ac);font-size:15px;font-weight:700;letter-spacing:3px}
+    .rec-pill{display:flex;align-items:center;gap:7px;background:var(--acf);border:1px solid var(--ac);padding:5px 11px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
+    .rec-pill.paused{background:rgba(255,255,255,.04);border-color:var(--gr)}
+    .rdot{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac);animation:blink 1.2s infinite}
+    .rdot.paused{background:var(--gt);box-shadow:none;animation:none}
+    .rlbl{font-family:var(--hud);font-size:9px;letter-spacing:3px;color:var(--wh)}
+    .rlbl.paused{color:var(--gt)}
+    .ttimer{font-family:var(--hud);font-size:15px;font-weight:700;color:var(--wd)}
+    .t-bot{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:24px 16px 10px;background:linear-gradient(to top,rgba(8,8,8,.88) 50%,transparent);display:flex;justify-content:space-between;align-items:flex-end}
+    .sl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:2px}
+    .sr{display:flex;align-items:flex-end;gap:5px}
+    .sn{color:var(--wh);font-size:66px;font-weight:700;line-height:1}
+    .su{color:var(--ac);font-family:var(--hud);font-size:13px;margin-bottom:8px}
+    .dl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-bottom:2px;text-align:right}
+    .dv{color:var(--wd);font-size:22px;font-weight:700;text-align:right}
+    .alt-badge{position:absolute;bottom:80px;right:14px;z-index:10;background:rgba(8,8,8,.8);border:1px solid var(--ac);padding:6px 10px;text-align:center}
+    .al{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:2px}
+    .av{color:var(--ac);font-size:18px;font-weight:700;line-height:1.2}
+    .au{color:var(--gt);font-family:var(--hud);font-size:8px}
 
-    /* route map in summary */
-    #sum-map { width:100%; height:220px; margin-bottom:16px; border:1px solid var(--grey); border-top:2px solid var(--ac); position:relative; }
+    .s-panel{background:var(--bgpanel);border-top:2px solid var(--ac);padding:10px 8px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));flex-shrink:0;position:relative}
+    .s-row{display:flex;gap:6px;margin-bottom:6px}
+    .sbox{flex:1;background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid var(--gr);padding:10px 6px;text-align:center;position:relative;overflow:hidden}
+    .sbox.ac{border-color:var(--ac);border-top-color:var(--ac);box-shadow:0 0 18px var(--acg)}
+    .sbox.ac::before{content:'';position:absolute;inset:0;background:var(--acf)}
+    .sbox-lbl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;position:relative}
+    .sbox-val{color:var(--wd);font-size:24px;font-weight:700;line-height:1;position:relative}
+    .sbox.ac .sbox-val{color:var(--wh)}
+    .sbox-unit{color:var(--gt);font-family:var(--hud);font-size:9px;position:relative}
+    .sbox.ac .sbox-unit{color:var(--ac)}
+    .c-row{display:flex;gap:8px}
+    .cbtn{flex:1;border:1px solid var(--gr);background:transparent;color:var(--wd);font-family:var(--num);font-size:14px;font-weight:700;letter-spacing:2px;padding:15px 10px;cursor:pointer;-webkit-appearance:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:opacity .15s}
+    .cbtn:active{opacity:.7}
+    .cbtn.ac{background:var(--ac);border-color:var(--ac);color:var(--wh);box-shadow:0 0 20px var(--acg)}
+    .cbtn.act{background:var(--acf);border-color:var(--ac);color:var(--wh)}
 
-    /* gpx btn */
-    .btn-gpx { width:100%; background:transparent; border:1px solid var(--ac); color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:3px; padding:12px; cursor:pointer; margin-bottom:12px; -webkit-appearance:none; }
-    .btn-gpx:active { opacity:.7; }
+    /* SUMMARY */
+    #s-sum{justify-content:center;overflow-y:auto;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px))}
+    .sglow{position:absolute;top:18%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:var(--acg);filter:blur(72px);pointer-events:none;animation:gp 3s ease-in-out infinite}
+    .seye{color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:5px;text-align:center;margin-bottom:8px;position:relative}
+    .st1{color:var(--wh);font-size:44px;font-weight:700;text-align:center;line-height:1;position:relative}
+    .st2{color:var(--ac);font-size:44px;font-weight:700;text-align:center;line-height:1;position:relative}
+    .sdate{color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;text-align:center;margin-top:10px;margin-bottom:20px;position:relative}
+    .sgrid{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;position:relative}
+    .srow{display:flex;gap:8px}
+    .sbox.lg .sbox-val{font-size:40px}
+    #sum-map{width:100%;height:220px;margin-bottom:16px;border:1px solid var(--gr);border-top:2px solid var(--ac);position:relative}
+    .btn-gpx{width:100%;background:transparent;border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:3px;padding:12px;cursor:pointer;margin-bottom:12px;-webkit-appearance:none}
+    .btn-gpx:active{opacity:.7}
 
-    /* ── DETAIL ── */
-    #s-detail { overflow:hidden; }
-    .d-head { display:flex; align-items:center; gap:14px; padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px; border-bottom:1px solid var(--grey); background:var(--bgpanel); flex-shrink:0; }
-    .d-title { font-size:18px; font-weight:700; letter-spacing:2px; }
-    .d-sub   { color:var(--greytext); font-family:var(--hud); font-size:9px; letter-spacing:3px; }
-    .d-body  { flex:1; overflow-y:auto; padding:16px; padding-bottom:calc(16px + env(safe-area-inset-bottom,0px)); -webkit-overflow-scrolling:touch; }
-    #d-map   { width:100%; height:220px; margin-bottom:14px; border:1px solid var(--grey); border-top:2px solid var(--ac); }
-    .d-grid  { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
-    .d-row   { display:flex; gap:8px; }
-    .d-btns  { display:flex; gap:8px; margin-bottom:10px; }
-    .btn-del-one { flex:1; background:transparent; border:1px solid #8b0000; color:#cc0000; font-family:var(--hud); font-size:10px; letter-spacing:2px; padding:12px; cursor:pointer; -webkit-appearance:none; }
-    .btn-del-one:active { opacity:.7; }
+    /* DETAIL */
+    #s-detail{overflow:hidden}
+    .d-head{display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
+    .d-title{font-size:18px;font-weight:700;letter-spacing:2px}
+    .d-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
+    .d-body{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
+    #d-map{width:100%;height:220px;margin-bottom:14px;border:1px solid var(--gr);border-top:2px solid var(--ac)}
+    .d-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .d-row{display:flex;gap:8px}
+    .d-btns{display:flex;gap:8px;margin-bottom:10px}
+    .btn-del-one{flex:1;background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:12px;cursor:pointer;-webkit-appearance:none}
+    .btn-del-one:active{opacity:.7}
 
-    /* delete buttons in history */
-    .h-item { cursor:pointer; position:relative; }
-    .h-item-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-    .btn-del-item { background:transparent; border:none; color:#cc0000; font-size:16px; padding:4px 8px; cursor:pointer; flex-shrink:0; }
-    .h-head-actions { display:flex; align-items:center; gap:10px; margin-left:auto; }
-    .btn-del-all { background:transparent; border:1px solid #8b0000; color:#cc0000; font-family:var(--hud); font-size:9px; letter-spacing:2px; padding:6px 10px; cursor:pointer; -webkit-appearance:none; }
-    .btn-del-all:active { opacity:.7; }
-    #s-hist { overflow:hidden; }
-    .h-head { display:flex; align-items:center; gap:14px; padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px; border-bottom:1px solid var(--grey); background:var(--bgpanel); flex-shrink:0; }
-    .h-back { width:32px; height:32px; border:1px solid var(--ac); background:none; color:var(--ac); font-size:16px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; -webkit-appearance:none; clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%); }
-    .h-title{ font-size:20px; font-weight:700; letter-spacing:2px; }
-    .h-sub  { color:var(--greytext); font-family:var(--hud); font-size:9px; letter-spacing:3px; }
-    .h-list { flex:1; overflow-y:auto; padding:16px; padding-bottom:calc(16px + env(safe-area-inset-bottom,0px)); -webkit-overflow-scrolling:touch; }
-    .h-item { background:var(--bgcard); border:1px solid var(--grey); border-left:3px solid var(--ac); padding:16px; margin-bottom:10px; animation:fadeUp .3s ease both; }
-    .h-item-top { display:flex; justify-content:space-between; margin-bottom:10px; }
-    .h-date { font-size:15px; font-weight:700; letter-spacing:1px; }
-    .h-time { color:var(--greytext); font-family:var(--hud); font-size:10px; }
-    .h-stats{ display:flex; gap:6px; }
-    .h-stat { flex:1; background:var(--bgpanel); padding:8px 4px; text-align:center; }
-    .h-sval { font-size:14px; font-weight:700; }
-    .h-slbl { color:var(--greytext); font-family:var(--hud); font-size:7px; letter-spacing:1px; }
-    /* records bar */
-    .records { display:flex; gap:6px; margin-bottom:16px; }
-    .rec-card { flex:1; background:var(--bgcard); border:1px solid var(--ac); border-top:2px solid var(--ac); padding:10px 6px; text-align:center; position:relative; overflow:hidden; }
-    .rec-card::before { content:''; position:absolute; inset:0; background:var(--acfaint); }
-    .rec-card-lbl { color:var(--greytext); font-family:var(--hud); font-size:7px; letter-spacing:2px; margin-bottom:4px; position:relative; }
-    .rec-card-val { color:var(--ac); font-size:20px; font-weight:700; position:relative; }
-    .rec-card-unit{ color:var(--greytext); font-family:var(--hud); font-size:8px; position:relative; }
-    /* weekly grid */
-    .week-wrap  { background:var(--bgcard); border:1px solid var(--grey); border-top:2px solid var(--ac); padding:12px 10px 10px; margin-bottom:16px; }
-    .week-title { color:var(--greytext); font-family:var(--hud); font-size:8px; letter-spacing:3px; margin-bottom:10px; }
-    .week-grid  { display:flex; gap:5px; }
-    .week-day   { flex:1; background:var(--bgpanel); border:1px solid var(--grey); padding:8px 2px; text-align:center; }
-    .week-day.has { border-color:var(--ac); background:var(--acfaint); }
-    .week-day-lbl { color:var(--greytext); font-family:var(--hud); font-size:7px; margin-bottom:4px; }
-    .week-day-val { color:var(--whitedim); font-size:13px; font-weight:700; line-height:1; }
-    .week-day.has .week-day-val { color:var(--ac); }
-    .week-day-unit{ color:var(--greytext); font-family:var(--hud); font-size:6px; }
-
-    .empty { color:var(--greytext); font-family:var(--hud); font-size:11px; letter-spacing:3px; text-align:center; margin-top:80px; }
-    .gps-warn { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,122,112,.15); border:1px solid var(--ac); color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:2px; padding:8px 16px; pointer-events:none; z-index:999; animation:blink 1.5s infinite; display:none; }
+    /* HISTORY */
+    #s-hist{overflow:hidden}
+    .h-head{display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
+    .hback{width:32px;height:32px;border:1px solid var(--ac);background:none;color:var(--ac);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-appearance:none;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
+    .h-title{font-size:20px;font-weight:700;letter-spacing:2px}
+    .h-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
+    .h-head-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+    .btn-del-all{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;letter-spacing:2px;padding:6px 10px;cursor:pointer;-webkit-appearance:none}
+    .btn-del-all:active{opacity:.7}
+    .h-list{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
+    .h-item{cursor:pointer;background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid var(--ac);padding:16px;margin-bottom:10px;animation:fadeUp .3s ease both}
+    .h-item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .h-date{font-size:15px;font-weight:700;letter-spacing:1px}
+    .h-time{color:var(--gt);font-family:var(--hud);font-size:10px}
+    .h-stats{display:flex;gap:6px}
+    .h-stat{flex:1;background:var(--bgpanel);padding:8px 4px;text-align:center}
+    .h-sval{font-size:14px;font-weight:700}
+    .h-slbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:1px}
+    .records{display:flex;gap:6px;margin-bottom:16px}
+    .rec-card{flex:1;background:var(--bgcard);border:1px solid var(--ac);border-top:2px solid var(--ac);padding:10px 6px;text-align:center;position:relative;overflow:hidden}
+    .rec-card::before{content:'';position:absolute;inset:0;background:var(--acf)}
+    .rec-card-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:2px;margin-bottom:4px;position:relative}
+    .rec-card-val{color:var(--ac);font-size:20px;font-weight:700;position:relative}
+    .rec-card-unit{color:var(--gt);font-family:var(--hud);font-size:8px;position:relative}
+    .week-wrap{background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid var(--ac);padding:12px 10px 10px;margin-bottom:16px}
+    .week-title{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:10px}
+    .week-grid{display:flex;gap:5px}
+    .week-day{flex:1;background:var(--bgpanel);border:1px solid var(--gr);padding:8px 2px;text-align:center}
+    .week-day.has{border-color:var(--ac);background:var(--acf)}
+    .week-day-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;margin-bottom:4px}
+    .week-day-val{color:var(--wd);font-size:13px;font-weight:700;line-height:1}
+    .week-day.has .week-day-val{color:var(--ac)}
+    .week-day-unit{color:var(--gt);font-family:var(--hud);font-size:6px}
+    .empty{color:var(--gt);font-family:var(--hud);font-size:11px;letter-spacing:3px;text-align:center;margin-top:80px}
+    .gps-warn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,122,112,.15);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:8px 16px;pointer-events:none;z-index:999;animation:blink 1.5s infinite;display:none}
   </style>
 </head>
 <body>
 
-<!-- ════ HOME ════ -->
+<!-- HOME -->
 <div id="s-home" class="screen active">
-  <div class="home-glow"></div>
-  <div class="home-scan"></div>
+  <div class="hglow"></div>
+  <div class="hscan"></div>
   <div class="logo">
-    <div class="logo-brow"><div class="logo-brow-line"></div><span class="logo-brow-txt">TELEMETRÍA GPS</span><div class="logo-brow-line"></div></div>
-    <div class="logo-v">VELO</div>
-    <div class="logo-t">TRACKER</div>
-    <div class="logo-tag">GPS · ALTITUD · RUTA</div>
+    <div class="lbrow"><div class="lbrow-ln"></div><span class="lbrow-tx">TELEMETRÍA GPS</span><div class="lbrow-ln"></div></div>
+    <div class="lv">VELO</div>
+    <div class="lt">TRACKER</div>
+    <div class="ltag">GPS · ALTITUD · RUTA</div>
   </div>
-  <button class="btn-hex" id="btn-start">▶&nbsp; INICIAR RUTA</button>
-  <button class="btn-ghost" id="btn-hist" style="display:none">HISTORIAL (<span id="hist-n">0</span> RUTAS)</button>
+  <button class="btnhex" id="btn-start">▶&nbsp; INICIAR RUTA</button>
+  <button class="btnghost" id="btn-hist" style="display:none">HISTORIAL (<span id="hist-n">0</span> RUTAS)</button>
 </div>
 
-<!-- ════ TRACKING ════ -->
+<!-- TRACKING -->
 <div id="s-track" class="screen">
   <div id="map-wrap">
     <div id="map-el"></div>
-    <div class="map-scan"></div>
+    <div class="mscan"></div>
+
+    <!-- top HUD -->
     <div class="t-top">
-      <span class="t-top-logo">VELO</span>
-      <div class="rec-pill" id="rec-pill"><div class="rec-dot" id="rec-dot"></div><span class="rec-lbl" id="rec-lbl">REC</span></div>
-      <span class="t-timer" id="t-timer">00:00</span>
+      <span class="t-logo">VELO</span>
+      <div class="rec-pill" id="rec-pill"><div class="rdot" id="rdot"></div><span class="rlbl" id="rlbl">REC</span></div>
+      <span class="ttimer" id="t-timer">00:00</span>
     </div>
-    <!-- altitude badge -->
+
+    <!-- destination search -->
+    <div class="dest-bar">
+      <input class="dest-input" id="dest-input" type="text" placeholder="Buscar destino..." autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="dest-btn" id="dest-go">IR</button>
+      <button class="dest-clear" id="dest-clear" style="display:none">✕</button>
+    </div>
+
+    <!-- altitude -->
     <div class="alt-badge">
-      <div class="alt-lbl">ALTITUD</div>
-      <div class="alt-val" id="alt-val">--</div>
-      <div class="alt-unit">m</div>
+      <div class="al">ALTITUD</div>
+      <div class="av" id="alt-val">--</div>
+      <div class="au">m</div>
     </div>
+
+    <!-- speed + distance overlay -->
     <div class="t-bot">
-      <div><div class="spd-lbl">VELOCIDAD</div><div class="spd-row"><span class="spd-num" id="spd-num">0.0</span><span class="spd-unit">km/h</span></div></div>
-      <div><div class="dist-lbl">DISTANCIA</div><div class="dist-val" id="dist-val">0 m</div></div>
+      <div><div class="sl">VELOCIDAD</div><div class="sr"><span class="sn" id="spd-num">0.0</span><span class="su">km/h</span></div></div>
+      <div><div class="dl">DISTANCIA</div><div class="dv" id="dist-val">0 m</div></div>
     </div>
   </div>
+
+  <!-- stats + controls -->
   <div class="s-panel">
+    <!-- nav info bar (shown when destination active) -->
+    <div class="nav-bar" id="nav-bar">
+      <span class="nav-dist-rem" id="nav-dist-rem">-- km</span>
+      <span class="nav-dest" id="nav-dest-name"></span>
+      <button class="nav-cancel" id="nav-cancel">✕ CANCELAR</button>
+    </div>
     <div class="s-row">
       <div class="sbox"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="s-avg">0.0</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox ac"><div class="sbox-lbl">Vel. máx</div><div class="sbox-val" id="s-max">0.0</div><div class="sbox-unit">km/h</div></div>
@@ -211,62 +234,44 @@
   </div>
 </div>
 
-<!-- ════ SUMMARY ════ -->
+<!-- SUMMARY -->
 <div id="s-sum" class="screen">
-  <div class="sum-glow"></div>
-  <div class="sum-eye">SESIÓN COMPLETADA</div>
-  <div class="sum-t1">RUTA</div>
-  <div class="sum-t2">FINALIZADA</div>
-  <div class="sum-date" id="sum-date"></div>
-
-  <!-- mini map of route -->
+  <div class="sglow"></div>
+  <div class="seye">SESIÓN COMPLETADA</div>
+  <div class="st1">RUTA</div>
+  <div class="st2">FINALIZADA</div>
+  <div class="sdate" id="sum-date"></div>
   <div id="sum-map"></div>
-
-  <div class="sum-grid">
-    <div class="sum-row">
+  <div class="sgrid">
+    <div class="srow">
       <div class="sbox ac lg"><div class="sbox-lbl">Distancia</div><div class="sbox-val" id="sum-dist">0.00</div><div class="sbox-unit">km</div></div>
       <div class="sbox lg"><div class="sbox-lbl">Tiempo</div><div class="sbox-val" id="sum-time">00:00</div></div>
     </div>
-    <div class="sum-row">
+    <div class="srow">
       <div class="sbox"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="sum-avg">0.0</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox ac"><div class="sbox-lbl">Vel. máxima</div><div class="sbox-val" id="sum-max">0.0</div><div class="sbox-unit">km/h</div></div>
     </div>
-    <div class="sum-row">
+    <div class="srow">
       <div class="sbox"><div class="sbox-lbl">Desnivel ↑</div><div class="sbox-val" id="sum-elev">0</div><div class="sbox-unit">m</div></div>
       <div class="sbox"><div class="sbox-lbl">Alt. máxima</div><div class="sbox-val" id="sum-altmax">0</div><div class="sbox-unit">m</div></div>
     </div>
-    <div class="sum-row">
+    <div class="srow">
       <div class="sbox"><div class="sbox-lbl">Vel. mínima</div><div class="sbox-val" id="sum-spd-min">--</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox ac"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="sum-spd-avg">--</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox"><div class="sbox-lbl">Vel. máxima</div><div class="sbox-val" id="sum-spd-max">--</div><div class="sbox-unit">km/h</div></div>
     </div>
   </div>
-
-  <!-- export GPX -->
   <button class="btn-gpx" id="btn-gpx">⬇&nbsp; EXPORTAR GPX</button>
-
   <div class="c-row">
     <button class="cbtn" id="btn-sum-home">INICIO</button>
     <button class="cbtn ac" id="btn-sum-new">▶&nbsp; NUEVA RUTA</button>
   </div>
 </div>
 
-<!-- ════ HISTORY ════ -->
-<div id="s-hist" class="screen">
-  <div class="h-head">
-    <button class="h-back" id="btn-back">←</button>
-    <div><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
-    <div class="h-head-actions">
-      <button class="btn-del-all" id="btn-del-all">🗑 BORRAR TODO</button>
-    </div>
-  </div>
-  <div class="h-list" id="h-list"></div>
-</div>
-
-<!-- ════ DETAIL ════ -->
+<!-- DETAIL -->
 <div id="s-detail" class="screen">
   <div class="d-head">
-    <button class="h-back" id="btn-back-detail">←</button>
+    <button class="hback" id="btn-back-detail">←</button>
     <div><div class="d-title" id="d-title">RUTA</div><div class="d-sub" id="d-sub"></div></div>
   </div>
   <div class="d-body">
@@ -287,76 +292,167 @@
     </div>
     <div class="d-btns">
       <button class="btn-gpx" id="d-btn-gpx" style="flex:1;margin-bottom:0">⬇ EXPORTAR GPX</button>
-      <button class="btn-del-one" id="d-btn-del">🗑 BORRAR RUTA</button>
+      <button class="btn-del-one" id="d-btn-del">🗑 BORRAR</button>
     </div>
   </div>
+</div>
+
+<!-- HISTORY -->
+<div id="s-hist" class="screen">
+  <div class="h-head">
+    <button class="hback" id="btn-back">←</button>
+    <div><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
+    <div class="h-head-actions"><button class="btn-del-all" id="btn-del-all">🗑 BORRAR TODO</button></div>
+  </div>
+  <div class="h-list" id="h-list"></div>
 </div>
 
 <div class="gps-warn" id="gps-warn">⚡ BUSCANDO GPS…</div>
 
 <script>
-/* ── Google Maps ── */
 const GKEY="AIzaSyDr5_Nl94pu5E7jm3zl3h9Psad3N8DcZN8";
 let gmap=null,poly=null,dotM=null,mReady=false,pendingInit=null;
 let sumMap=null,sumPoly=null,detailMap=null,detailPoly=null;
+let directionsService=null,directionsRenderer=null,geocoder=null,autocomplete=null;
+let destActive=false,destName="",routePolyline=null,distToDestKm=null;
 
 (function(){
   const s=document.createElement("script");
-  s.src=`https://maps.googleapis.com/maps/api/js?key=${GKEY}&callback=_mapReady`;
+  s.src=`https://maps.googleapis.com/maps/api/js?key=${GKEY}&libraries=places&callback=_mapReady`;
   s.async=true; document.head.appendChild(s);
 })();
-window._mapReady=()=>{ mReady=true; if(pendingInit){initMap(pendingInit);pendingInit=null;} };
+
+window._mapReady=()=>{
+  mReady=true;
+  directionsService=new google.maps.DirectionsService();
+  geocoder=new google.maps.Geocoder();
+  if(pendingInit){initMap(pendingInit);pendingInit=null;}
+};
+
+const MAP_STYLES=[
+  {featureType:"poi",stylers:[{visibility:"off"}]},
+  {featureType:"transit",stylers:[{visibility:"off"}]},
+];
 
 function initMap(center){
   if(!mReady){pendingInit=center;return;}
   if(gmap){gmap.panTo(center);return;}
-  gmap=new google.maps.Map(document.getElementById("map-el"),{
-    center,zoom:16,disableDefaultUI:true,
-    styles:[
-      {featureType:"poi",    stylers:[{visibility:"off"}]},
-      {featureType:"transit",stylers:[{visibility:"off"}]},
-    ]
-  });
+  gmap=new google.maps.Map(document.getElementById("map-el"),{center,zoom:16,disableDefaultUI:true,styles:MAP_STYLES});
   poly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:gmap});
-  dotM=new google.maps.Marker({map:gmap,icon:{path:google.maps.SymbolPath.CIRCLE,scale:9,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
+  dotM=new google.maps.Marker({map:gmap,zIndex:10,icon:{path:google.maps.SymbolPath.CIRCLE,scale:10,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
+
+  // directions renderer for destination route
+  directionsRenderer=new google.maps.DirectionsRenderer({
+    map:gmap,
+    suppressMarkers:false,
+    polylineOptions:{strokeColor:"#4a90e2",strokeWeight:4,strokeOpacity:.7},
+  });
+
+  // setup autocomplete on input
+  const input=document.getElementById("dest-input");
+  autocomplete=new google.maps.places.Autocomplete(input,{fields:["geometry","name"]});
+  autocomplete.addListener("place_changed",()=>{
+    const place=autocomplete.getPlace();
+    if(place.geometry) routeToPlace(place.geometry.location,place.name||input.value);
+  });
 }
 
 function initSumMap(coords){
-  if(!mReady||!coords.length) return;
+  if(!mReady||!coords||!coords.length)return;
   if(!sumMap){
-    sumMap=new google.maps.Map(document.getElementById("sum-map"),{
-      zoom:13,disableDefaultUI:true,
-      styles:[{featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}]
-    });
+    sumMap=new google.maps.Map(document.getElementById("sum-map"),{zoom:13,disableDefaultUI:true,styles:MAP_STYLES});
     sumPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:sumMap});
   }
   sumPoly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
-  const bounds=new google.maps.LatLngBounds();
-  coords.forEach(c=>bounds.extend({lat:c.lat,lng:c.lng}));
-  sumMap.fitBounds(bounds,{top:10,right:10,bottom:10,left:10});
+  const b=new google.maps.LatLngBounds();
+  coords.forEach(c=>b.extend({lat:c.lat,lng:c.lng}));
+  sumMap.fitBounds(b,10);
 }
 
 function initDetailMap(coords){
-  if(!mReady||!coords||!coords.length) return;
-  if(!detailMap){
-    detailMap=new google.maps.Map(document.getElementById("d-map"),{
-      zoom:13,disableDefaultUI:true,
-      styles:[{featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}]
-    });
-    detailPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:detailMap});
-  }
+  if(!mReady||!coords||!coords.length)return;
+  const el=document.getElementById("d-map");
+  detailMap=new google.maps.Map(el,{zoom:13,disableDefaultUI:true,styles:MAP_STYLES});
+  detailPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:detailMap});
   detailPoly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
-  const bounds=new google.maps.LatLngBounds();
-  coords.forEach(c=>bounds.extend({lat:c.lat,lng:c.lng}));
-  detailMap.fitBounds(bounds,{top:10,right:10,bottom:10,left:10});
-  // start/end markers
-  new google.maps.Marker({map:detailMap,position:{lat:coords[0].lat,lng:coords[0].lng},label:{text:"A",color:"#fff",fontSize:"10px"},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
-  new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},label:{text:"B",color:"#fff",fontSize:"10px"},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
+  const b=new google.maps.LatLngBounds();
+  coords.forEach(c=>b.extend({lat:c.lat,lng:c.lng}));
+  detailMap.fitBounds(b,10);
+  new google.maps.Marker({map:detailMap,position:{lat:coords[0].lat,lng:coords[0].lng},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
+  new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
 }
+
+/* ── Route to destination ── */
+function routeToPlace(destLatLng,name){
+  if(!gmap||!currentPos)return;
+  destName=name;
+  directionsService.route({
+    origin:{lat:currentPos.lat,lng:currentPos.lng},
+    destination:destLatLng,
+    travelMode:google.maps.TravelMode.BICYCLING,
+  },(result,status)=>{
+    if(status==="OK"){
+      directionsRenderer.setDirections(result);
+      destActive=true;
+      const leg=result.routes[0].legs[0];
+      distToDestKm=(leg.distance.value/1000).toFixed(1);
+      document.getElementById("nav-dest-name").textContent=name;
+      document.getElementById("nav-dist-rem").textContent=`${distToDestKm} km`;
+      document.getElementById("nav-bar").classList.add("show");
+      document.getElementById("dest-clear").style.display="block";
+      document.getElementById("dest-input").blur();
+    } else {
+      // fallback: try geocoding if place not found
+      alert("No se pudo trazar la ruta. Intenta con una dirección más específica.");
+    }
+  });
+}
+
+function cancelDest(){
+  destActive=false; destName=""; distToDestKm=null;
+  if(directionsRenderer) directionsRenderer.setDirections({routes:[]});
+  document.getElementById("nav-bar").classList.remove("show");
+  document.getElementById("dest-clear").style.display="none";
+  document.getElementById("dest-input").value="";
+}
+
+// Manual search (when pressing IR button)
+document.getElementById("dest-go").addEventListener("click",()=>{
+  const q=document.getElementById("dest-input").value.trim();
+  if(!q||!gmap)return;
+  geocoder.geocode({address:q},(results,status)=>{
+    if(status==="OK"&&results[0]){
+      routeToPlace(results[0].geometry.location,results[0].formatted_address);
+    } else {
+      alert("Dirección no encontrada. Prueba a ser más específico.");
+    }
+  });
+});
+
+document.getElementById("dest-clear").addEventListener("click",cancelDest);
+document.getElementById("nav-cancel").addEventListener("click",cancelDest);
+
+// Update remaining distance periodically
+function updateNavDistance(){
+  if(!destActive||!currentPos||!directionsRenderer)return;
+  const dir=directionsRenderer.getDirections();
+  if(!dir||!dir.routes[0])return;
+  const dest=dir.routes[0].legs[0].end_location;
+  const rem=haversine(currentPos.lat,currentPos.lng,dest.lat(),dest.lng());
+  distToDestKm=(rem/1000).toFixed(1);
+  document.getElementById("nav-dist-rem").textContent=`${distToDestKm} km`;
+  // arrived?
+  if(rem<50){
+    document.getElementById("nav-dist-rem").textContent="¡LLEGASTE!";
+  }
+}
+
+/* ── State ── */
 let tracking=false,paused=false;
 let coords=[],speeds=[],alts=[];
 let speed=0,maxSpeed=0,distance=0,elapsed=0;
 let altitude=null,elevGain=0,lastAlt=null,maxAlt=0;
+let currentPos=null;
 let watchId=null,timer=null,wakeLock=null;
 let history=(()=>{try{return JSON.parse(localStorage.getItem("vh2")||"[]");}catch{return[];}})();
 
@@ -364,47 +460,87 @@ let history=(()=>{try{return JSON.parse(localStorage.getItem("vh2")||"[]");}catc
 const ft=s=>{const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;return h>0?`${h}:${pad(m)}:${pad(ss)}`:`${pad(m)}:${pad(ss)}`;};
 const pad=n=>String(n).padStart(2,"0");
 const fdist=m=>m<1000?`${Math.round(m)} m`:`${(m/1000).toFixed(2)} km`;
-const haversine=(la1,lo1,la2,lo2)=>{const R=6371000,r=x=>x*Math.PI/180;const a=Math.sin(r(la2-la1)/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(r(lo2-lo1)/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));};
+
+// Improved haversine with minimum movement threshold
+function haversine(la1,lo1,la2,lo2){
+  const R=6371000,r=x=>x*Math.PI/180;
+  const a=Math.sin(r(la2-la1)/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(r(lo2-lo1)/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
 const show=id=>{document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");};
 
-/* ── GPS ── */
+/* ── GPS with improved accuracy filtering ── */
+// Kalman-like position smoothing
+let lastAccuracy=999,lastTimestamp=0;
+
 function startGPS(){
   if(!navigator.geolocation){alert("GPS no disponible.");return;}
   document.getElementById("gps-warn").style.display="block";
   watchId=navigator.geolocation.watchPosition(pos=>{
     document.getElementById("gps-warn").style.display="none";
-    const{latitude:la,longitude:lo,speed:sp,altitude:al}=pos.coords;
+    const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
+
+    // Filter bad readings: ignore if accuracy worse than 50m or same timestamp
+    if(acc>50||ts===lastTimestamp) return;
+    lastAccuracy=acc; lastTimestamp=ts;
+
+    currentPos={lat:la,lng:lo};
+
     if(!paused){
       if(coords.length){
         const l=coords[coords.length-1];
         const d=haversine(l.lat,l.lng,la,lo);
-        if(d<200) distance+=d;
+        // Only add distance if moved more than 3m and less than 100m (filter GPS jumps)
+        if(d>3&&d<100) distance+=d;
       }
       coords.push({lat:la,lng:lo});
-      speed=sp!=null&&sp>=0?Math.round(sp*36)/10:0;
+
+      // Speed: prefer GPS speed if available and > 0.5 m/s, else calculate from position
+      let kmh=0;
+      if(sp!=null&&sp>0.5){
+        kmh=sp*3.6;
+      } else if(coords.length>=2){
+        const l=coords[coords.length-2];
+        const dt=(ts-lastTimestamp+1)/1000; // seconds
+        const d=haversine(l.lat,l.lng,la,lo);
+        kmh=dt>0?(d/dt)*3.6:0;
+      }
+      speed=Math.round(kmh*10)/10;
       maxSpeed=Math.max(maxSpeed,speed);
       speeds.push(speed);
-      // altitude
+
+      // Altitude
       if(al!=null){
         altitude=Math.round(al);
         alts.push(altitude);
         maxAlt=Math.max(maxAlt,altitude);
-        if(lastAlt!==null){const diff=altitude-lastAlt;if(diff>0)elevGain+=diff;}
+        if(lastAlt!==null){const diff=altitude-lastAlt;if(diff>0.5)elevGain+=diff;}
         lastAlt=altitude;
       }
     }
+
+    // Update map
     if(mReady){
       const p={lat:la,lng:lo};
-      if(!gmap)initMap(p);
-      else{gmap.panTo(p);dotM&&dotM.setPosition(p);}
+      if(!gmap) initMap(p);
+      else{ gmap.panTo(p); dotM&&dotM.setPosition(p); }
       poly&&poly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
     }
-    renderTrack();
-  },err=>{if(err.code===1)alert("Activa la ubicación en Ajustes.");},{enableHighAccuracy:true,maximumAge:1000,timeout:10000});
-}
-function stopGPS(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}document.getElementById("gps-warn").style.display="none";}
 
-/* ── Render tracking ── */
+    updateNavDistance();
+    renderTrack();
+  },
+  err=>{if(err.code===1)alert("Activa la ubicación en Ajustes.");},
+  {enableHighAccuracy:true,maximumAge:0,timeout:10000});
+}
+
+function stopGPS(){
+  if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+  document.getElementById("gps-warn").style.display="none";
+}
+
+/* ── Render ── */
 function renderTrack(){
   document.getElementById("spd-num").textContent=speed.toFixed(1);
   document.getElementById("dist-val").textContent=fdist(distance);
@@ -416,32 +552,22 @@ function renderTrack(){
   document.getElementById("alt-val").textContent=altitude!=null?altitude:"--";
 }
 
-/* ── Speed summary (números, sin gráfica) ── */
-function buildSpdSummary(speeds){
-  if(!speeds||!speeds.length) return;
-  const filtered=speeds.filter(s=>s>0);
-  if(!filtered.length) return;
-  const avg=(filtered.reduce((a,b)=>a+b,0)/filtered.length).toFixed(1);
-  const max=Math.max(...filtered).toFixed(1);
-  const min=Math.min(...filtered).toFixed(1);
-  document.getElementById("sum-spd-avg").textContent=avg;
-  document.getElementById("sum-spd-max").textContent=max;
-  document.getElementById("sum-spd-min").textContent=min;
+/* ── Speed summary ── */
+function buildSpdSummary(spds){
+  const f=spds.filter(s=>s>0);
+  if(!f.length)return;
+  document.getElementById("sum-spd-avg").textContent=(f.reduce((a,b)=>a+b,0)/f.length).toFixed(1);
+  document.getElementById("sum-spd-max").textContent=Math.max(...f).toFixed(1);
+  document.getElementById("sum-spd-min").textContent=Math.min(...f).toFixed(1);
 }
 
 /* ── GPX export ── */
 function exportGPX(session){
-  if(!session.coords||!session.coords.length){alert("Sin puntos de ruta para exportar.");return;}
-  const pts=session.coords.map(c=>`    <trkpt lat="${c.lat}" lon="${c.lng}">${c.alt!=null?`<ele>${c.alt}</ele>`:""}</trkpt>`).join("\n");
-  const gpx=`<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="VeloTracker">
-  <trk><name>Ruta ${session.date}</name><trkseg>
-${pts}
-  </trkseg></trk>
-</gpx>`;
-  const blob=new Blob([gpx],{type:"application/gpx+xml"});
+  if(!session.coords||!session.coords.length){alert("Sin puntos de ruta.");return;}
+  const pts=session.coords.map(c=>`    <trkpt lat="${c.lat}" lon="${c.lng}"></trkpt>`).join("\n");
+  const gpx=`<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="VeloTracker">\n  <trk><name>Ruta ${session.date}</name><trkseg>\n${pts}\n  </trkseg></trk>\n</gpx>`;
   const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
+  a.href=URL.createObjectURL(new Blob([gpx],{type:"application/gpx+xml"}));
   a.download=`velotracker_${session.id}.gpx`;
   a.click();
 }
@@ -449,15 +575,21 @@ ${pts}
 /* ── Start ── */
 function startTracking(){
   coords=[];speeds=[];alts=[];distance=0;elapsed=0;speed=0;maxSpeed=0;
-  altitude=null;elevGain=0;lastAlt=null;maxAlt=0;
+  altitude=null;elevGain=0;lastAlt=null;maxAlt=0;currentPos=null;
+  lastAccuracy=999;lastTimestamp=0;
   tracking=true;paused=false;
+  cancelDest();
   const pb=document.getElementById("btn-pause");
   pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");
-  document.getElementById("rec-dot").classList.remove("paused");
-  document.getElementById("rec-lbl").textContent="REC";document.getElementById("rec-lbl").classList.remove("paused");
+  document.getElementById("rdot").classList.remove("paused");
+  document.getElementById("rlbl").textContent="REC";document.getElementById("rlbl").classList.remove("paused");
   document.getElementById("rec-pill").classList.remove("paused");
   show("s-track");
-  navigator.geolocation.getCurrentPosition(p=>initMap({lat:p.coords.latitude,lng:p.coords.longitude}),()=>initMap({lat:59.9139,lng:10.7522}),{enableHighAccuracy:true,timeout:5000});
+  navigator.geolocation.getCurrentPosition(
+    p=>initMap({lat:p.coords.latitude,lng:p.coords.longitude}),
+    ()=>initMap({lat:59.9139,lng:10.7522}),
+    {enableHighAccuracy:true,timeout:5000}
+  );
   startGPS();
   timer=setInterval(()=>{if(!paused){elapsed++;renderTrack();}},1000);
   if(navigator.wakeLock)navigator.wakeLock.request("screen").then(wl=>{wakeLock=wl;}).catch(()=>{});
@@ -466,7 +598,7 @@ function startTracking(){
 /* ── Pause ── */
 document.getElementById("btn-pause").addEventListener("click",()=>{
   paused=!paused;
-  const pb=document.getElementById("btn-pause"),rd=document.getElementById("rec-dot"),rl=document.getElementById("rec-lbl"),rp=document.getElementById("rec-pill");
+  const pb=document.getElementById("btn-pause"),rd=document.getElementById("rdot"),rl=document.getElementById("rlbl"),rp=document.getElementById("rec-pill");
   if(paused){pb.textContent="▶\u00A0 CONTINUAR";pb.classList.add("act");rd.classList.add("paused");rl.classList.add("paused");rl.textContent="PAUSADO";rp.classList.add("paused");speed=0;document.getElementById("spd-num").textContent="0.0";}
   else{pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");rd.classList.remove("paused");rl.classList.remove("paused");rl.textContent="REC";rp.classList.remove("paused");}
 });
@@ -474,7 +606,7 @@ document.getElementById("btn-pause").addEventListener("click",()=>{
 /* ── Stop ── */
 document.getElementById("btn-stop").addEventListener("click",()=>{
   stopGPS();clearInterval(timer);wakeLock?.release();
-  tracking=false;paused=false;speed=0;
+  tracking=false;paused=false;speed=0;cancelDest();
   const avg=elapsed>0?(distance/1000)/(elapsed/3600):0;
   const s={
     id:Date.now(),
@@ -485,7 +617,6 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   };
   history.unshift(s);if(history.length>100)history.pop();
   saveHistory();
-
   document.getElementById("sum-date").textContent=s.date;
   document.getElementById("sum-dist").textContent=(s.distance/1000).toFixed(2);
   document.getElementById("sum-time").textContent=ft(s.elapsed);
@@ -493,13 +624,9 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   document.getElementById("sum-max").textContent=s.maxSpeed.toFixed(1);
   document.getElementById("sum-elev").textContent=s.elevGain;
   document.getElementById("sum-altmax").textContent=s.maxAlt;
-
-  setTimeout(()=>initSumMap(s.coords),300);
   buildSpdSummary(s.speeds);
-
-  // GPX button for current session
+  setTimeout(()=>initSumMap(s.coords),300);
   document.getElementById("btn-gpx").onclick=()=>exportGPX(s);
-
   show("s-sum");updateHistBtn();
 });
 
@@ -508,46 +635,38 @@ document.getElementById("btn-start").addEventListener("click",startTracking);
 document.getElementById("btn-sum-home").addEventListener("click",()=>show("s-home"));
 document.getElementById("btn-sum-new").addEventListener("click",startTracking);
 document.getElementById("btn-hist").addEventListener("click",()=>{renderHist();show("s-hist");});
-document.getElementById("btn-back-detail").addEventListener("click",()=>{show("s-hist");renderHist();});
 document.getElementById("btn-back").addEventListener("click",()=>show("s-home"));
+document.getElementById("btn-back-detail").addEventListener("click",()=>{show("s-hist");renderHist();});
 
 /* ── Records ── */
 function getRecords(){
-  if(!history.length) return null;
-  return {
-    bestDist: Math.max(...history.map(s=>s.distance)),
+  if(!history.length)return null;
+  return{
+    bestDist:Math.max(...history.map(s=>s.distance)),
     bestSpeed:Math.max(...history.map(s=>s.maxSpeed)),
-    bestElev: Math.max(...history.map(s=>s.elevGain||0)),
-    totalKm:  history.reduce((a,s)=>a+s.distance,0),
+    totalKm:history.reduce((a,s)=>a+s.distance,0),
   };
 }
 
-/* ── Weekly numeric grid ── */
-function buildWeekGrid(containerId){
-  const el=document.getElementById(containerId);
-  if(!el)return;
+/* ── Weekly grid ── */
+function buildWeekGrid(id){
+  const el=document.getElementById(id);if(!el)return;
   const days=["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
-  const now=new Date(), week=new Array(7).fill(0);
+  const now=new Date(),week=new Array(7).fill(0);
   history.forEach(s=>{
-    const d=new Date(s.id);
-    const diff=Math.floor((now-d)/(1000*60*60*24));
-    if(diff<7){const dow=(d.getDay()+6)%7; week[dow]+=(s.distance/1000);}
+    const d=new Date(s.id),diff=Math.floor((now-d)/(86400000));
+    if(diff<7){const dow=(d.getDay()+6)%7;week[dow]+=(s.distance/1000);}
   });
   el.innerHTML=days.map((d,i)=>{
-    const km=week[i], has=km>0;
-    return `<div class="week-day${has?" has":""}">
-      <div class="week-day-lbl">${d}</div>
-      <div class="week-day-val">${has?km.toFixed(1):"—"}</div>
-      <div class="week-day-unit">${has?"km":""}</div>
-    </div>`;
+    const km=week[i],has=km>0;
+    return`<div class="week-day${has?" has":""}"><div class="week-day-lbl">${d}</div><div class="week-day-val">${has?km.toFixed(1):"—"}</div><div class="week-day-unit">${has?"km":""}</div></div>`;
   }).join("");
 }
 
-/* ── Open detail ── */
-let currentDetailId = null;
+/* ── Detail ── */
+let currentDetailId=null;
 function openDetail(id){
-  const s=history.find(h=>h.id===id);
-  if(!s) return;
+  const s=history.find(h=>h.id===id);if(!s)return;
   currentDetailId=id;
   document.getElementById("d-title").textContent=s.date;
   document.getElementById("d-sub").textContent=ft(s.elapsed);
@@ -558,31 +677,24 @@ function openDetail(id){
   document.getElementById("d-elev").textContent=s.elevGain||0;
   document.getElementById("d-altmax").textContent=s.maxAlt||0;
   document.getElementById("d-btn-gpx").onclick=()=>exportGPX(s);
-  detailMap=null; detailPoly=null;
   document.getElementById("d-map").innerHTML="";
+  detailMap=null;detailPoly=null;
   show("s-detail");
   setTimeout(()=>initDetailMap(s.coords),300);
 }
 
-/* ── Delete one ── */
+/* ── Delete ── */
 document.getElementById("d-btn-del").addEventListener("click",()=>{
-  if(!currentDetailId) return;
-  if(!confirm("¿Borrar esta ruta?")) return;
+  if(!currentDetailId)return;
+  if(!confirm("¿Borrar esta ruta?"))return;
   history=history.filter(h=>h.id!==currentDetailId);
-  saveHistory();
-  updateHistBtn();
-  show("s-hist");
-  renderHist();
+  saveHistory();updateHistBtn();show("s-hist");renderHist();
 });
 
-/* ── Delete all ── */
 document.getElementById("btn-del-all").addEventListener("click",()=>{
-  if(!history.length) return;
-  if(!confirm("¿Borrar todas las rutas? Esta acción no se puede deshacer.")) return;
-  history=[];
-  saveHistory();
-  updateHistBtn();
-  renderHist();
+  if(!history.length)return;
+  if(!confirm("¿Borrar todas las rutas? No se puede deshacer."))return;
+  history=[];saveHistory();updateHistBtn();renderHist();
 });
 
 function saveHistory(){
@@ -607,23 +719,20 @@ function renderHist(){
     html+=`<div class="records">
       <div class="rec-card"><div class="rec-card-lbl">MEJOR DIST</div><div class="rec-card-val">${(rec.bestDist/1000).toFixed(1)}</div><div class="rec-card-unit">km</div></div>
       <div class="rec-card"><div class="rec-card-lbl">VEL. MÁX</div><div class="rec-card-val">${rec.bestSpeed.toFixed(0)}</div><div class="rec-card-unit">km/h</div></div>
-      <div class="rec-card"><div class="rec-card-lbl">TOTAL</div><div class="rec-card-val">${(rec.totalKm/1000).toFixed(0)}</div><div class="rec-card-unit">km</div></div>
+      <div class="rec-card"><div class="rec-card-lbl">TOTAL KM</div><div class="rec-card-val">${(rec.totalKm/1000).toFixed(0)}</div><div class="rec-card-unit">km</div></div>
     </div>`;
   }
   html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA</div><div class="week-grid" id="week-grid"></div></div>`;
   html+=history.map((s,i)=>`
     <div class="h-item" onclick="openDetail(${s.id})" style="animation-delay:${i*.04}s">
-      <div class="h-item-top">
-        <span class="h-date">${s.date}</span>
-        <span class="h-time">${ft(s.elapsed)}</span>
-      </div>
+      <div class="h-item-top"><span class="h-date">${s.date}</span><span class="h-time">${ft(s.elapsed)}</span></div>
       <div class="h-stats">
         <div class="h-stat"><div class="h-sval">${(s.distance/1000).toFixed(2)}</div><div class="h-slbl">km</div></div>
         <div class="h-stat"><div class="h-sval">${s.avgSpeed.toFixed(1)}</div><div class="h-slbl">km/h med</div></div>
         <div class="h-stat"><div class="h-sval">${s.maxSpeed.toFixed(1)}</div><div class="h-slbl">km/h máx</div></div>
         <div class="h-stat"><div class="h-sval">${s.elevGain||0}</div><div class="h-slbl">m ↑</div></div>
       </div>
-      <div style="color:var(--greytext);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-top:8px;text-align:right">VER DETALLE →</div>
+      <div style="color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-top:8px;text-align:right">VER DETALLE →</div>
     </div>`).join("");
   el.innerHTML=html;
   setTimeout(()=>buildWeekGrid("week-grid"),100);
