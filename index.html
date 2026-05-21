@@ -40,7 +40,11 @@
     .ltag{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:4px;margin-top:10px}
     .btnhex{background:var(--ac);border:none;color:var(--wh);font-family:var(--num);font-size:18px;font-weight:700;letter-spacing:4px;padding:18px 52px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);box-shadow:0 0 40px var(--acg);position:relative;z-index:1;margin-bottom:16px;-webkit-appearance:none;animation:fadeUp .6s .2s ease both;transition:opacity .15s}
     .btnhex:active{opacity:.75}
-    .btnghost{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;cursor:pointer;position:relative;z-index:1;animation:fadeUp .6s .3s ease both}
+    .btnghost{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;cursor:pointer;position:relative;z-index:1;animation:fadeUp .6s .3s ease both;display:block;margin-bottom:10px}
+
+    /* GPX import button on home */
+    .btn-import-home{background:transparent;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:10px 24px;cursor:pointer;-webkit-appearance:none;position:relative;z-index:1;animation:fadeUp .6s .4s ease both;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
+    .btn-import-home:active{opacity:.7}
 
     /* TRACKING */
     #s-track{background:var(--bg)}
@@ -55,6 +59,12 @@
     .dest-btn{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:1px;padding:9px 12px;cursor:pointer;-webkit-appearance:none;white-space:nowrap}
     .dest-btn:active{opacity:.7}
     .dest-clear{background:rgba(8,8,8,.92);border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:10px;padding:9px 10px;cursor:pointer;-webkit-appearance:none}
+
+    /* template route bar (repeat route) */
+    .tmpl-bar{position:absolute;top:calc(env(safe-area-inset-top,44px) + 106px);left:10px;right:10px;z-index:19;background:rgba(8,8,8,.88);border:1px solid rgba(255,200,0,.4);padding:6px 12px;display:none;align-items:center;justify-content:space-between}
+    .tmpl-bar.show{display:flex}
+    .tmpl-lbl{color:rgba(255,200,0,.9);font-family:var(--hud);font-size:9px;letter-spacing:2px}
+    .tmpl-cancel{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;cursor:pointer;padding:0 4px}
 
     /* nav info bar */
     .nav-bar{position:absolute;bottom:calc(100% + 6px);left:0;right:0;background:rgba(8,8,8,.95);border-top:1px solid var(--ac);padding:8px 14px;display:none;align-items:center;justify-content:space-between;z-index:15}
@@ -106,13 +116,29 @@
     .seye{color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:5px;text-align:center;margin-bottom:8px;position:relative}
     .st1{color:var(--wh);font-size:44px;font-weight:700;text-align:center;line-height:1;position:relative}
     .st2{color:var(--ac);font-size:44px;font-weight:700;text-align:center;line-height:1;position:relative}
-    .sdate{color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;text-align:center;margin-top:10px;margin-bottom:20px;position:relative}
+    .sdate{color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;text-align:center;margin-top:10px;margin-bottom:8px;position:relative}
+    /* route name input in summary */
+    .route-name-wrap{display:flex;gap:8px;margin-bottom:16px;position:relative}
+    .route-name-input{flex:1;background:var(--bgcard);border:1px solid var(--gr);border-bottom:2px solid var(--ac);color:var(--wh);font-family:var(--num);font-size:16px;font-weight:600;padding:10px 12px;outline:none;-webkit-appearance:none}
+    .route-name-input::placeholder{color:var(--gt)}
+    .route-name-save{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:10px 14px;cursor:pointer;-webkit-appearance:none}
     .sgrid{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;position:relative}
     .srow{display:flex;gap:8px}
     .sbox.lg .sbox-val{font-size:40px}
-    #sum-map{width:100%;height:220px;margin-bottom:16px;border:1px solid var(--gr);border-top:2px solid var(--ac);position:relative}
-    .btn-gpx{width:100%;background:transparent;border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:3px;padding:12px;cursor:pointer;margin-bottom:12px;-webkit-appearance:none}
+    #sum-map{width:100%;height:200px;margin-bottom:16px;border:1px solid var(--gr);border-top:2px solid var(--ac);position:relative}
+    .btn-gpx{width:100%;background:transparent;border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:3px;padding:12px;cursor:pointer;margin-bottom:8px;-webkit-appearance:none}
     .btn-gpx:active{opacity:.7}
+
+    /* compare box in summary */
+    .compare-box{background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid rgba(255,200,0,.6);padding:12px;margin-bottom:12px;position:relative}
+    .compare-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:8px}
+    .compare-row{display:flex;gap:6px}
+    .compare-stat{flex:1;text-align:center}
+    .compare-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:1px;margin-bottom:2px}
+    .compare-val{font-size:16px;font-weight:700}
+    .compare-val.better{color:#4caf50}
+    .compare-val.worse{color:#f44336}
+    .compare-val.same{color:var(--wd)}
 
     /* DETAIL */
     #s-detail{overflow:hidden}
@@ -120,26 +146,29 @@
     .d-title{font-size:18px;font-weight:700;letter-spacing:2px}
     .d-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
     .d-body{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
-    #d-map{width:100%;height:220px;margin-bottom:14px;border:1px solid var(--gr);border-top:2px solid var(--ac)}
+    #d-map{width:100%;height:200px;margin-bottom:14px;border:1px solid var(--gr);border-top:2px solid var(--ac)}
     .d-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
     .d-row{display:flex;gap:8px}
-    .d-btns{display:flex;gap:8px;margin-bottom:10px}
+    .d-btns{display:flex;gap:8px;margin-bottom:8px}
+    .btn-repeat{flex:1;background:var(--acf);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:12px;cursor:pointer;-webkit-appearance:none}
+    .btn-repeat:active{opacity:.7}
     .btn-del-one{flex:1;background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:12px;cursor:pointer;-webkit-appearance:none}
     .btn-del-one:active{opacity:.7}
 
     /* HISTORY */
     #s-hist{overflow:hidden}
-    .h-head{display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
+    .h-head{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,44px)) 14px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
     .hback{width:32px;height:32px;border:1px solid var(--ac);background:none;color:var(--ac);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-appearance:none;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%)}
-    .h-title{font-size:20px;font-weight:700;letter-spacing:2px}
+    .h-title{font-size:20px;font-weight:700;letter-spacing:2px;flex:1}
     .h-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
-    .h-head-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
-    .btn-del-all{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;letter-spacing:2px;padding:6px 10px;cursor:pointer;-webkit-appearance:none}
-    .btn-del-all:active{opacity:.7}
+    .h-head-actions{display:flex;gap:8px;flex-shrink:0}
+    .btn-import-hist{background:transparent;border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:1px;padding:6px 8px;cursor:pointer;-webkit-appearance:none}
+    .btn-del-all{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;letter-spacing:1px;padding:6px 8px;cursor:pointer;-webkit-appearance:none}
     .h-list{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
     .h-item{cursor:pointer;background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid var(--ac);padding:16px;margin-bottom:10px;animation:fadeUp .3s ease both}
-    .h-item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .h-item-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
     .h-date{font-size:15px;font-weight:700;letter-spacing:1px}
+    .h-name{color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:1px;margin-bottom:6px}
     .h-time{color:var(--gt);font-family:var(--hud);font-size:10px}
     .h-stats{display:flex;gap:6px}
     .h-stat{flex:1;background:var(--bgpanel);padding:8px 4px;text-align:center}
@@ -162,6 +191,7 @@
     .week-day-unit{color:var(--gt);font-family:var(--hud);font-size:6px}
     .empty{color:var(--gt);font-family:var(--hud);font-size:11px;letter-spacing:3px;text-align:center;margin-top:80px}
     .gps-warn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,122,112,.15);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:8px 16px;pointer-events:none;z-index:999;animation:blink 1.5s infinite;display:none}
+    input[type=file]{display:none}
   </style>
 </head>
 <body>
@@ -178,6 +208,8 @@
   </div>
   <button class="btnhex" id="btn-start">▶&nbsp; INICIAR RUTA</button>
   <button class="btnghost" id="btn-hist" style="display:none">HISTORIAL (<span id="hist-n">0</span> RUTAS)</button>
+  <button class="btn-import-home" id="btn-import-home">⬆ IMPORTAR RUTA GPX</button>
+  <input type="file" id="gpx-file-input" accept=".gpx">
 </div>
 
 <!-- TRACKING -->
@@ -185,38 +217,32 @@
   <div id="map-wrap">
     <div id="map-el"></div>
     <div class="mscan"></div>
-
-    <!-- top HUD -->
     <div class="t-top">
       <span class="t-logo">VELO</span>
       <div class="rec-pill" id="rec-pill"><div class="rdot" id="rdot"></div><span class="rlbl" id="rlbl">REC</span></div>
       <span class="ttimer" id="t-timer">00:00</span>
     </div>
-
-    <!-- destination search -->
     <div class="dest-bar">
       <input class="dest-input" id="dest-input" type="text" placeholder="Buscar destino..." autocomplete="off" autocorrect="off" spellcheck="false">
       <button class="dest-btn" id="dest-go">IR</button>
       <button class="dest-clear" id="dest-clear" style="display:none">✕</button>
     </div>
-
-    <!-- altitude -->
+    <!-- template route bar -->
+    <div class="tmpl-bar" id="tmpl-bar">
+      <span class="tmpl-lbl" id="tmpl-lbl">📍 RUTA PLANTILLA ACTIVA</span>
+      <button class="tmpl-cancel" id="tmpl-cancel">✕</button>
+    </div>
     <div class="alt-badge">
       <div class="al">ALTITUD</div>
       <div class="av" id="alt-val">--</div>
       <div class="au">m</div>
     </div>
-
-    <!-- speed + distance overlay -->
     <div class="t-bot">
       <div><div class="sl">VELOCIDAD</div><div class="sr"><span class="sn" id="spd-num">0.0</span><span class="su">km/h</span></div></div>
       <div><div class="dl">DISTANCIA</div><div class="dv" id="dist-val">0 m</div></div>
     </div>
   </div>
-
-  <!-- stats + controls -->
   <div class="s-panel">
-    <!-- nav info bar (shown when destination active) -->
     <div class="nav-bar" id="nav-bar">
       <span class="nav-dist-rem" id="nav-dist-rem">-- km</span>
       <span class="nav-dest" id="nav-dest-name"></span>
@@ -241,7 +267,17 @@
   <div class="st1">RUTA</div>
   <div class="st2">FINALIZADA</div>
   <div class="sdate" id="sum-date"></div>
+  <!-- route name -->
+  <div class="route-name-wrap">
+    <input class="route-name-input" id="route-name-input" type="text" placeholder="Nombre de la ruta (opcional)" maxlength="40">
+    <button class="route-name-save" id="route-name-save">OK</button>
+  </div>
   <div id="sum-map"></div>
+  <!-- compare with previous same route -->
+  <div class="compare-box" id="compare-box" style="display:none">
+    <div class="compare-title">VS ÚLTIMA VEZ EN ESTA RUTA</div>
+    <div class="compare-row" id="compare-row"></div>
+  </div>
   <div class="sgrid">
     <div class="srow">
       <div class="sbox ac lg"><div class="sbox-lbl">Distancia</div><div class="sbox-val" id="sum-dist">0.00</div><div class="sbox-unit">km</div></div>
@@ -257,7 +293,7 @@
     </div>
     <div class="srow">
       <div class="sbox"><div class="sbox-lbl">Vel. mínima</div><div class="sbox-val" id="sum-spd-min">--</div><div class="sbox-unit">km/h</div></div>
-      <div class="sbox ac"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="sum-spd-avg">--</div><div class="sbox-unit">km/h</div></div>
+      <div class="sbox ac"><div class="sbox-lbl">Vel. media mvto</div><div class="sbox-val" id="sum-spd-avg">--</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox"><div class="sbox-lbl">Vel. máxima</div><div class="sbox-val" id="sum-spd-max">--</div><div class="sbox-unit">km/h</div></div>
     </div>
   </div>
@@ -272,7 +308,10 @@
 <div id="s-detail" class="screen">
   <div class="d-head">
     <button class="hback" id="btn-back-detail">←</button>
-    <div><div class="d-title" id="d-title">RUTA</div><div class="d-sub" id="d-sub"></div></div>
+    <div style="flex:1">
+      <div class="d-title" id="d-title">RUTA</div>
+      <div class="d-sub" id="d-sub"></div>
+    </div>
   </div>
   <div class="d-body">
     <div id="d-map"></div>
@@ -291,8 +330,9 @@
       </div>
     </div>
     <div class="d-btns">
-      <button class="btn-gpx" id="d-btn-gpx" style="flex:1;margin-bottom:0">⬇ EXPORTAR GPX</button>
-      <button class="btn-del-one" id="d-btn-del">🗑 BORRAR</button>
+      <button class="btn-repeat" id="d-btn-repeat">🔁 REPETIR RUTA</button>
+      <button class="btn-gpx" id="d-btn-gpx" style="flex:1;margin-bottom:0">⬇ GPX</button>
+      <button class="btn-del-one" id="d-btn-del">🗑</button>
     </div>
   </div>
 </div>
@@ -301,10 +341,14 @@
 <div id="s-hist" class="screen">
   <div class="h-head">
     <button class="hback" id="btn-back">←</button>
-    <div><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
-    <div class="h-head-actions"><button class="btn-del-all" id="btn-del-all">🗑 BORRAR TODO</button></div>
+    <div style="flex:1"><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
+    <div class="h-head-actions">
+      <button class="btn-import-hist" id="btn-import-hist">⬆ GPX</button>
+      <button class="btn-del-all" id="btn-del-all">🗑 TODO</button>
+    </div>
   </div>
   <div class="h-list" id="h-list"></div>
+  <input type="file" id="gpx-file-input-hist" accept=".gpx">
 </div>
 
 <div class="gps-warn" id="gps-warn">⚡ BUSCANDO GPS…</div>
@@ -314,7 +358,9 @@ const GKEY="AIzaSyDr5_Nl94pu5E7jm3zl3h9Psad3N8DcZN8";
 let gmap=null,poly=null,dotM=null,mReady=false,pendingInit=null;
 let sumMap=null,sumPoly=null,detailMap=null,detailPoly=null;
 let directionsService=null,directionsRenderer=null,geocoder=null,autocomplete=null;
-let destActive=false,destName="",routePolyline=null,distToDestKm=null;
+let destActive=false,destName="";
+// Template route (repeat route / imported GPX)
+let templatePoly=null,templateCoords=null;
 
 (function(){
   const s=document.createElement("script");
@@ -340,21 +386,15 @@ function initMap(center){
   gmap=new google.maps.Map(document.getElementById("map-el"),{center,zoom:16,disableDefaultUI:true,styles:MAP_STYLES});
   poly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:gmap});
   dotM=new google.maps.Marker({map:gmap,zIndex:10,icon:{path:google.maps.SymbolPath.CIRCLE,scale:10,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
-
-  // directions renderer for destination route
-  directionsRenderer=new google.maps.DirectionsRenderer({
-    map:gmap,
-    suppressMarkers:false,
-    polylineOptions:{strokeColor:"#4a90e2",strokeWeight:4,strokeOpacity:.7},
-  });
-
-  // setup autocomplete on input
+  directionsRenderer=new google.maps.DirectionsRenderer({map:gmap,suppressMarkers:false,polylineOptions:{strokeColor:"#4a90e2",strokeWeight:4,strokeOpacity:.7}});
   const input=document.getElementById("dest-input");
   autocomplete=new google.maps.places.Autocomplete(input,{fields:["geometry","name"]});
   autocomplete.addListener("place_changed",()=>{
     const place=autocomplete.getPlace();
     if(place.geometry) routeToPlace(place.geometry.location,place.name||input.value);
   });
+  // draw template if already set
+  if(templateCoords&&templateCoords.length) drawTemplate();
 }
 
 function initSumMap(coords){
@@ -382,7 +422,35 @@ function initDetailMap(coords){
   new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
 }
 
-/* ── Route to destination ── */
+/* ── Template route (grey overlay) ── */
+function drawTemplate(){
+  if(!gmap||!templateCoords||!templateCoords.length)return;
+  if(templatePoly) templatePoly.setMap(null);
+  templatePoly=new google.maps.Polyline({
+    path:templateCoords.map(c=>({lat:c.lat,lng:c.lng})),
+    geodesic:true,strokeColor:"#aaaaaa",strokeOpacity:.5,strokeWeight:3,
+    map:gmap
+  });
+  // Add start marker
+  new google.maps.Marker({
+    map:gmap,
+    position:{lat:templateCoords[0].lat,lng:templateCoords[0].lng},
+    icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#aaa",fillOpacity:1,strokeColor:"#fff",strokeWeight:2},
+    zIndex:5
+  });
+  // Fit map to template
+  const b=new google.maps.LatLngBounds();
+  templateCoords.forEach(c=>b.extend({lat:c.lat,lng:c.lng}));
+  gmap.fitBounds(b,20);
+}
+
+function clearTemplate(){
+  if(templatePoly){templatePoly.setMap(null);templatePoly=null;}
+  templateCoords=null;
+  document.getElementById("tmpl-bar").classList.remove("show");
+}
+
+/* ── Destination routing ── */
 function routeToPlace(destLatLng,name){
   if(!gmap||!currentPos)return;
   destName=name;
@@ -395,57 +463,109 @@ function routeToPlace(destLatLng,name){
       directionsRenderer.setDirections(result);
       destActive=true;
       const leg=result.routes[0].legs[0];
-      distToDestKm=(leg.distance.value/1000).toFixed(1);
       document.getElementById("nav-dest-name").textContent=name;
-      document.getElementById("nav-dist-rem").textContent=`${distToDestKm} km`;
+      document.getElementById("nav-dist-rem").textContent=`${(leg.distance.value/1000).toFixed(1)} km`;
       document.getElementById("nav-bar").classList.add("show");
       document.getElementById("dest-clear").style.display="block";
       document.getElementById("dest-input").blur();
     } else {
-      // fallback: try geocoding if place not found
       alert("No se pudo trazar la ruta. Intenta con una dirección más específica.");
     }
   });
 }
 
 function cancelDest(){
-  destActive=false; destName=""; distToDestKm=null;
-  if(directionsRenderer) directionsRenderer.setDirections({routes:[]});
+  destActive=false;destName="";
+  if(directionsRenderer)directionsRenderer.setDirections({routes:[]});
   document.getElementById("nav-bar").classList.remove("show");
   document.getElementById("dest-clear").style.display="none";
   document.getElementById("dest-input").value="";
 }
 
-// Manual search (when pressing IR button)
-document.getElementById("dest-go").addEventListener("click",()=>{
-  const q=document.getElementById("dest-input").value.trim();
-  if(!q||!gmap)return;
-  geocoder.geocode({address:q},(results,status)=>{
-    if(status==="OK"&&results[0]){
-      routeToPlace(results[0].geometry.location,results[0].formatted_address);
-    } else {
-      alert("Dirección no encontrada. Prueba a ser más específico.");
-    }
-  });
-});
-
-document.getElementById("dest-clear").addEventListener("click",cancelDest);
-document.getElementById("nav-cancel").addEventListener("click",cancelDest);
-
-// Update remaining distance periodically
 function updateNavDistance(){
   if(!destActive||!currentPos||!directionsRenderer)return;
   const dir=directionsRenderer.getDirections();
   if(!dir||!dir.routes[0])return;
   const dest=dir.routes[0].legs[0].end_location;
   const rem=haversine(currentPos.lat,currentPos.lng,dest.lat(),dest.lng());
-  distToDestKm=(rem/1000).toFixed(1);
-  document.getElementById("nav-dist-rem").textContent=`${distToDestKm} km`;
-  // arrived?
-  if(rem<50){
-    document.getElementById("nav-dist-rem").textContent="¡LLEGASTE!";
-  }
+  document.getElementById("nav-dist-rem").textContent=rem<50?"¡LLEGASTE!":`${(rem/1000).toFixed(1)} km`;
 }
+
+document.getElementById("dest-go").addEventListener("click",()=>{
+  const q=document.getElementById("dest-input").value.trim();
+  if(!q||!gmap)return;
+  geocoder.geocode({address:q},(results,status)=>{
+    if(status==="OK"&&results[0]) routeToPlace(results[0].geometry.location,results[0].formatted_address);
+    else alert("Dirección no encontrada.");
+  });
+});
+document.getElementById("dest-clear").addEventListener("click",cancelDest);
+document.getElementById("nav-cancel").addEventListener("click",cancelDest);
+document.getElementById("tmpl-cancel").addEventListener("click",clearTemplate);
+
+/* ── GPX Parser ── */
+function parseGPX(text){
+  const parser=new DOMParser();
+  const doc=parser.parseFromString(text,"text/xml");
+  const pts=[...doc.querySelectorAll("trkpt,rtept,wpt")];
+  if(!pts.length) return null;
+  return pts.map(p=>({
+    lat:parseFloat(p.getAttribute("lat")),
+    lng:parseFloat(p.getAttribute("lon")),
+  })).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
+}
+
+function handleGPXFile(file,mode){
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const coords=parseGPX(e.target.result);
+    if(!coords||!coords.length){alert("No se pudo leer el archivo GPX.");return;}
+    if(mode==="template"){
+      // Load as template for tracking
+      templateCoords=coords;
+      document.getElementById("tmpl-lbl").textContent=`📍 ${file.name.replace(".gpx","")} (${coords.length} pts)`;
+      document.getElementById("tmpl-bar").classList.add("show");
+      if(gmap) drawTemplate();
+      show("s-track");
+      // start tracking with template loaded
+      if(!tracking) startTracking(true);
+    } else {
+      // Save as history route
+      const s={
+        id:Date.now(),
+        date:new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}),
+        name:file.name.replace(".gpx",""),
+        distance:calcTotalDistance(coords),
+        elapsed:0,maxSpeed:0,avgSpeed:0,elevGain:0,maxAlt:0,
+        coords,speeds:[],alts:[],
+        imported:true
+      };
+      history.unshift(s);if(history.length>100)history.pop();
+      saveHistory();updateHistBtn();renderHist();
+      alert(`Ruta "${s.name}" importada con ${coords.length} puntos.`);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function calcTotalDistance(coords){
+  let d=0;
+  for(let i=1;i<coords.length;i++) d+=haversine(coords[i-1].lat,coords[i-1].lng,coords[i].lat,coords[i].lng);
+  return d;
+}
+
+// File input handlers
+document.getElementById("gpx-file-input").addEventListener("change",e=>{
+  handleGPXFile(e.target.files[0],"template");
+  e.target.value="";
+});
+document.getElementById("gpx-file-input-hist").addEventListener("change",e=>{
+  handleGPXFile(e.target.files[0],"import");
+  e.target.value="";
+});
+document.getElementById("btn-import-home").addEventListener("click",()=>document.getElementById("gpx-file-input").click());
+document.getElementById("btn-import-hist").addEventListener("click",()=>document.getElementById("gpx-file-input-hist").click());
 
 /* ── State ── */
 let tracking=false,paused=false;
@@ -454,93 +574,60 @@ let speed=0,maxSpeed=0,distance=0,elapsed=0;
 let altitude=null,elevGain=0,lastAlt=null,maxAlt=0;
 let currentPos=null;
 let watchId=null,timer=null,wakeLock=null;
-let history=(()=>{try{return JSON.parse(localStorage.getItem("vh2")||"[]");}catch{return[];}})();
+let lastTimestamp=0;
+let currentSessionId=null;
+let history=(()=>{try{return JSON.parse(localStorage.getItem("vh3")||"[]");}catch{return[];}})();
 
 /* ── Helpers ── */
 const ft=s=>{const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;return h>0?`${h}:${pad(m)}:${pad(ss)}`:`${pad(m)}:${pad(ss)}`;};
 const pad=n=>String(n).padStart(2,"0");
 const fdist=m=>m<1000?`${Math.round(m)} m`:`${(m/1000).toFixed(2)} km`;
-
-// Improved haversine with minimum movement threshold
 function haversine(la1,lo1,la2,lo2){
   const R=6371000,r=x=>x*Math.PI/180;
   const a=Math.sin(r(la2-la1)/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(r(lo2-lo1)/2)**2;
   return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
-
 const show=id=>{document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");};
 
-/* ── GPS with improved accuracy filtering ── */
-// Kalman-like position smoothing
-let lastAccuracy=999,lastTimestamp=0;
-
+/* ── GPS ── */
 function startGPS(){
   if(!navigator.geolocation){alert("GPS no disponible.");return;}
   document.getElementById("gps-warn").style.display="block";
   watchId=navigator.geolocation.watchPosition(pos=>{
     document.getElementById("gps-warn").style.display="none";
     const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
-
-    // Filter bad readings: ignore only very bad accuracy (>100m)
-    if(acc>100) return;
-    lastAccuracy=acc; lastTimestamp=ts;
-
+    if(acc>100||ts===lastTimestamp)return;
+    lastTimestamp=ts;
     currentPos={lat:la,lng:lo};
-
     if(!paused){
       if(coords.length){
         const l=coords[coords.length-1];
         const d=haversine(l.lat,l.lng,la,lo);
-        // Only add distance if moved more than 1m and less than 150m (filter GPS jumps)
-        if(d>1&&d<150) distance+=d;
+        if(d>1&&d<150)distance+=d;
       }
       coords.push({lat:la,lng:lo});
-
-      // Speed: prefer GPS speed if available and > 0.5 m/s, else calculate from position
       let kmh=0;
-      if(sp!=null&&sp>0.2){
-        kmh=sp*3.6;
-      } else if(coords.length>=2){
-        const l=coords[coords.length-2];
-        const dt=(ts-lastTimestamp+1)/1000; // seconds
-        const d=haversine(l.lat,l.lng,la,lo);
-        kmh=dt>0?(d/dt)*3.6:0;
-      }
+      if(sp!=null&&sp>0.2)kmh=sp*3.6;
       speed=Math.round(kmh*10)/10;
       maxSpeed=Math.max(maxSpeed,speed);
       speeds.push(speed);
-
-      // Altitude
       if(al!=null){
-        altitude=Math.round(al);
-        alts.push(altitude);
-        maxAlt=Math.max(maxAlt,altitude);
+        altitude=Math.round(al);alts.push(altitude);maxAlt=Math.max(maxAlt,altitude);
         if(lastAlt!==null){const diff=altitude-lastAlt;if(diff>0.5)elevGain+=diff;}
         lastAlt=altitude;
       }
     }
-
-    // Update map
     if(mReady){
       const p={lat:la,lng:lo};
-      if(!gmap) initMap(p);
-      else{ gmap.panTo(p); dotM&&dotM.setPosition(p); }
+      if(!gmap)initMap(p); else{gmap.panTo(p);dotM&&dotM.setPosition(p);}
       poly&&poly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
     }
-
     updateNavDistance();
     renderTrack();
-  },
-  err=>{if(err.code===1)alert("Activa la ubicación en Ajustes.");},
-  {enableHighAccuracy:true,maximumAge:0,timeout:10000});
+  },err=>{if(err.code===1)alert("Activa la ubicación en Ajustes.");},{enableHighAccuracy:true,maximumAge:0,timeout:10000});
 }
+function stopGPS(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}document.getElementById("gps-warn").style.display="none";}
 
-function stopGPS(){
-  if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}
-  document.getElementById("gps-warn").style.display="none";
-}
-
-/* ── Render ── */
 function renderTrack(){
   document.getElementById("spd-num").textContent=speed.toFixed(1);
   document.getElementById("dist-val").textContent=fdist(distance);
@@ -552,32 +639,13 @@ function renderTrack(){
   document.getElementById("alt-val").textContent=altitude!=null?altitude:"--";
 }
 
-/* ── Speed summary ── */
-function buildSpdSummary(spds){
-  const f=spds.filter(s=>s>0);
-  if(!f.length)return;
-  document.getElementById("sum-spd-avg").textContent=(f.reduce((a,b)=>a+b,0)/f.length).toFixed(1);
-  document.getElementById("sum-spd-max").textContent=Math.max(...f).toFixed(1);
-  document.getElementById("sum-spd-min").textContent=Math.min(...f).toFixed(1);
-}
-
-/* ── GPX export ── */
-function exportGPX(session){
-  if(!session.coords||!session.coords.length){alert("Sin puntos de ruta.");return;}
-  const pts=session.coords.map(c=>`    <trkpt lat="${c.lat}" lon="${c.lng}"></trkpt>`).join("\n");
-  const gpx=`<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="VeloTracker">\n  <trk><name>Ruta ${session.date}</name><trkseg>\n${pts}\n  </trkseg></trk>\n</gpx>`;
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([gpx],{type:"application/gpx+xml"}));
-  a.download=`velotracker_${session.id}.gpx`;
-  a.click();
-}
-
 /* ── Start ── */
-function startTracking(){
+function startTracking(keepTemplate){
   coords=[];speeds=[];alts=[];distance=0;elapsed=0;speed=0;maxSpeed=0;
-  altitude=null;elevGain=0;lastAlt=null;maxAlt=0;currentPos=null;
-  lastAccuracy=999;lastTimestamp=0;
+  altitude=null;elevGain=0;lastAlt=null;maxAlt=0;currentPos=null;lastTimestamp=0;
   tracking=true;paused=false;
+  currentSessionId=Date.now();
+  if(!keepTemplate)clearTemplate();
   cancelDest();
   const pb=document.getElementById("btn-pause");
   pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");
@@ -609,15 +677,20 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   tracking=false;paused=false;speed=0;cancelDest();
   const avg=elapsed>0?(distance/1000)/(elapsed/3600):0;
   const s={
-    id:Date.now(),
+    id:currentSessionId||Date.now(),
     date:new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}),
+    name:"",
     distance,elapsed,maxSpeed,avgSpeed:avg,
     elevGain:Math.round(elevGain),maxAlt,
-    coords:[...coords],speeds:[...speeds],alts:[...alts]
+    coords:[...coords],speeds:[...speeds],alts:[...alts],
+    templateId:templateCoords?currentSessionId:null
   };
   history.unshift(s);if(history.length>100)history.pop();
   saveHistory();
+
+  // Fill summary
   document.getElementById("sum-date").textContent=s.date;
+  document.getElementById("route-name-input").value="";
   document.getElementById("sum-dist").textContent=(s.distance/1000).toFixed(2);
   document.getElementById("sum-time").textContent=ft(s.elapsed);
   document.getElementById("sum-avg").textContent=s.avgSpeed.toFixed(1);
@@ -627,13 +700,73 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   buildSpdSummary(s.speeds);
   setTimeout(()=>initSumMap(s.coords),300);
   document.getElementById("btn-gpx").onclick=()=>exportGPX(s);
+
+  // Compare with similar route (same template or similar distance)
+  showCompare(s);
+
   show("s-sum");updateHistBtn();
 });
 
-/* ── Nav ── */
-document.getElementById("btn-start").addEventListener("click",startTracking);
+/* ── Route name save ── */
+document.getElementById("route-name-save").addEventListener("click",()=>{
+  const name=document.getElementById("route-name-input").value.trim();
+  if(!name)return;
+  const s=history.find(h=>h.id===currentSessionId);
+  if(s){s.name=name;saveHistory();}
+  document.getElementById("route-name-input").blur();
+  document.getElementById("route-name-save").textContent="✓";
+  setTimeout(()=>document.getElementById("route-name-save").textContent="OK",1500);
+});
+
+/* ── Compare ── */
+function showCompare(current){
+  // Find a previous route with similar distance (within 20%)
+  const similar=history.slice(1).find(s=>{
+    const ratio=Math.abs(s.distance-current.distance)/Math.max(current.distance,1);
+    return ratio<0.2&&s.distance>500; // within 20% and at least 500m
+  });
+  if(!similar){document.getElementById("compare-box").style.display="none";return;}
+  const timeDiff=current.elapsed-similar.elapsed;
+  const avgDiff=current.avgSpeed-similar.avgSpeed;
+  document.getElementById("compare-box").style.display="block";
+  document.getElementById("compare-row").innerHTML=`
+    <div class="compare-stat">
+      <div class="compare-lbl">TIEMPO</div>
+      <div class="compare-val ${timeDiff<0?"better":timeDiff>0?"worse":"same"}">${timeDiff<0?"▲":"▼"} ${ft(Math.abs(timeDiff))}</div>
+    </div>
+    <div class="compare-stat">
+      <div class="compare-lbl">VEL. MEDIA</div>
+      <div class="compare-val ${avgDiff>0?"better":avgDiff<0?"worse":"same"}">${avgDiff>0?"+":""}${avgDiff.toFixed(1)} km/h</div>
+    </div>
+    <div class="compare-stat">
+      <div class="compare-lbl">VS</div>
+      <div class="compare-val same" style="font-size:11px">${similar.name||similar.date}</div>
+    </div>`;
+}
+
+/* ── Speed summary ── */
+function buildSpdSummary(spds){
+  const f=spds.filter(s=>s>0);if(!f.length)return;
+  document.getElementById("sum-spd-avg").textContent=(f.reduce((a,b)=>a+b,0)/f.length).toFixed(1);
+  document.getElementById("sum-spd-max").textContent=Math.max(...f).toFixed(1);
+  document.getElementById("sum-spd-min").textContent=Math.min(...f).toFixed(1);
+}
+
+/* ── GPX export ── */
+function exportGPX(session){
+  if(!session.coords||!session.coords.length){alert("Sin puntos de ruta.");return;}
+  const pts=session.coords.map(c=>`    <trkpt lat="${c.lat}" lon="${c.lng}"></trkpt>`).join("\n");
+  const gpx=`<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="VeloTracker">\n  <trk><name>${session.name||session.date}</name><trkseg>\n${pts}\n  </trkseg></trk>\n</gpx>`;
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([gpx],{type:"application/gpx+xml"}));
+  a.download=`velotracker_${session.name||session.id}.gpx`;
+  a.click();
+}
+
+/* ── Nav buttons ── */
+document.getElementById("btn-start").addEventListener("click",()=>startTracking(false));
 document.getElementById("btn-sum-home").addEventListener("click",()=>show("s-home"));
-document.getElementById("btn-sum-new").addEventListener("click",startTracking);
+document.getElementById("btn-sum-new").addEventListener("click",()=>startTracking(false));
 document.getElementById("btn-hist").addEventListener("click",()=>{renderHist();show("s-hist");});
 document.getElementById("btn-back").addEventListener("click",()=>show("s-home"));
 document.getElementById("btn-back-detail").addEventListener("click",()=>{show("s-hist");renderHist();});
@@ -654,7 +787,7 @@ function buildWeekGrid(id){
   const days=["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
   const now=new Date(),week=new Array(7).fill(0);
   history.forEach(s=>{
-    const d=new Date(s.id),diff=Math.floor((now-d)/(86400000));
+    const d=new Date(s.id),diff=Math.floor((now-d)/86400000);
     if(diff<7){const dow=(d.getDay()+6)%7;week[dow]+=(s.distance/1000);}
   });
   el.innerHTML=days.map((d,i)=>{
@@ -668,8 +801,8 @@ let currentDetailId=null;
 function openDetail(id){
   const s=history.find(h=>h.id===id);if(!s)return;
   currentDetailId=id;
-  document.getElementById("d-title").textContent=s.date;
-  document.getElementById("d-sub").textContent=ft(s.elapsed);
+  document.getElementById("d-title").textContent=s.name||s.date;
+  document.getElementById("d-sub").textContent=s.name?s.date+" · "+ft(s.elapsed):ft(s.elapsed);
   document.getElementById("d-dist").textContent=(s.distance/1000).toFixed(2);
   document.getElementById("d-time").textContent=ft(s.elapsed);
   document.getElementById("d-avg").textContent=s.avgSpeed.toFixed(1);
@@ -683,6 +816,16 @@ function openDetail(id){
   setTimeout(()=>initDetailMap(s.coords),300);
 }
 
+/* ── Repeat route ── */
+document.getElementById("d-btn-repeat").addEventListener("click",()=>{
+  const s=history.find(h=>h.id===currentDetailId);
+  if(!s||!s.coords||!s.coords.length){alert("Esta ruta no tiene datos de coordenadas para repetir.");return;}
+  templateCoords=[...s.coords];
+  document.getElementById("tmpl-lbl").textContent=`📍 ${s.name||s.date} (${s.coords.length} pts)`;
+  document.getElementById("tmpl-bar").classList.add("show");
+  startTracking(true);
+});
+
 /* ── Delete ── */
 document.getElementById("d-btn-del").addEventListener("click",()=>{
   if(!currentDetailId)return;
@@ -690,7 +833,6 @@ document.getElementById("d-btn-del").addEventListener("click",()=>{
   history=history.filter(h=>h.id!==currentDetailId);
   saveHistory();updateHistBtn();show("s-hist");renderHist();
 });
-
 document.getElementById("btn-del-all").addEventListener("click",()=>{
   if(!history.length)return;
   if(!confirm("¿Borrar todas las rutas? No se puede deshacer."))return;
@@ -699,10 +841,10 @@ document.getElementById("btn-del-all").addEventListener("click",()=>{
 
 function saveHistory(){
   const toSave=history.map(h=>({...h,coords:h.coords?.slice(0,500)||[]}));
-  localStorage.setItem("vh2",JSON.stringify(toSave));
+  localStorage.setItem("vh3",JSON.stringify(toSave));
 }
 
-/* ── History ── */
+/* ── History list ── */
 function updateHistBtn(){
   const n=history.length;
   document.getElementById("hist-n").textContent=n;
@@ -726,6 +868,8 @@ function renderHist(){
   html+=history.map((s,i)=>`
     <div class="h-item" onclick="openDetail(${s.id})" style="animation-delay:${i*.04}s">
       <div class="h-item-top"><span class="h-date">${s.date}</span><span class="h-time">${ft(s.elapsed)}</span></div>
+      ${s.name?`<div class="h-name">${s.name}</div>`:""}
+      ${s.imported?`<div style="color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-bottom:6px">⬆ IMPORTADA</div>`:""}
       <div class="h-stats">
         <div class="h-stat"><div class="h-sval">${(s.distance/1000).toFixed(2)}</div><div class="h-slbl">km</div></div>
         <div class="h-stat"><div class="h-sval">${s.avgSpeed.toFixed(1)}</div><div class="h-slbl">km/h med</div></div>
