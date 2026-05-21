@@ -105,7 +105,26 @@
     .btn-gpx { width:100%; background:transparent; border:1px solid var(--ac); color:var(--ac); font-family:var(--hud); font-size:10px; letter-spacing:3px; padding:12px; cursor:pointer; margin-bottom:12px; -webkit-appearance:none; }
     .btn-gpx:active { opacity:.7; }
 
-    /* ── HISTORY ── */
+    /* ── DETAIL ── */
+    #s-detail { overflow:hidden; }
+    .d-head { display:flex; align-items:center; gap:14px; padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px; border-bottom:1px solid var(--grey); background:var(--bgpanel); flex-shrink:0; }
+    .d-title { font-size:18px; font-weight:700; letter-spacing:2px; }
+    .d-sub   { color:var(--greytext); font-family:var(--hud); font-size:9px; letter-spacing:3px; }
+    .d-body  { flex:1; overflow-y:auto; padding:16px; padding-bottom:calc(16px + env(safe-area-inset-bottom,0px)); -webkit-overflow-scrolling:touch; }
+    #d-map   { width:100%; height:220px; margin-bottom:14px; border:1px solid var(--grey); border-top:2px solid var(--ac); }
+    .d-grid  { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+    .d-row   { display:flex; gap:8px; }
+    .d-btns  { display:flex; gap:8px; margin-bottom:10px; }
+    .btn-del-one { flex:1; background:transparent; border:1px solid #8b0000; color:#cc0000; font-family:var(--hud); font-size:10px; letter-spacing:2px; padding:12px; cursor:pointer; -webkit-appearance:none; }
+    .btn-del-one:active { opacity:.7; }
+
+    /* delete buttons in history */
+    .h-item { cursor:pointer; position:relative; }
+    .h-item-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .btn-del-item { background:transparent; border:none; color:#cc0000; font-size:16px; padding:4px 8px; cursor:pointer; flex-shrink:0; }
+    .h-head-actions { display:flex; align-items:center; gap:10px; margin-left:auto; }
+    .btn-del-all { background:transparent; border:1px solid #8b0000; color:#cc0000; font-family:var(--hud); font-size:9px; letter-spacing:2px; padding:6px 10px; cursor:pointer; -webkit-appearance:none; }
+    .btn-del-all:active { opacity:.7; }
     #s-hist { overflow:hidden; }
     .h-head { display:flex; align-items:center; gap:14px; padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px; border-bottom:1px solid var(--grey); background:var(--bgpanel); flex-shrink:0; }
     .h-back { width:32px; height:32px; border:1px solid var(--ac); background:none; color:var(--ac); font-size:16px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; -webkit-appearance:none; clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%); }
@@ -237,8 +256,40 @@
   <div class="h-head">
     <button class="h-back" id="btn-back">←</button>
     <div><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
+    <div class="h-head-actions">
+      <button class="btn-del-all" id="btn-del-all">🗑 BORRAR TODO</button>
+    </div>
   </div>
   <div class="h-list" id="h-list"></div>
+</div>
+
+<!-- ════ DETAIL ════ -->
+<div id="s-detail" class="screen">
+  <div class="d-head">
+    <button class="h-back" id="btn-back-detail">←</button>
+    <div><div class="d-title" id="d-title">RUTA</div><div class="d-sub" id="d-sub"></div></div>
+  </div>
+  <div class="d-body">
+    <div id="d-map"></div>
+    <div class="d-grid">
+      <div class="d-row">
+        <div class="sbox ac lg"><div class="sbox-lbl">Distancia</div><div class="sbox-val" id="d-dist">--</div><div class="sbox-unit">km</div></div>
+        <div class="sbox lg"><div class="sbox-lbl">Tiempo</div><div class="sbox-val" id="d-time">--</div></div>
+      </div>
+      <div class="d-row">
+        <div class="sbox"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="d-avg">--</div><div class="sbox-unit">km/h</div></div>
+        <div class="sbox ac"><div class="sbox-lbl">Vel. máxima</div><div class="sbox-val" id="d-max">--</div><div class="sbox-unit">km/h</div></div>
+      </div>
+      <div class="d-row">
+        <div class="sbox"><div class="sbox-lbl">Desnivel ↑</div><div class="sbox-val" id="d-elev">--</div><div class="sbox-unit">m</div></div>
+        <div class="sbox"><div class="sbox-lbl">Alt. máxima</div><div class="sbox-val" id="d-altmax">--</div><div class="sbox-unit">m</div></div>
+      </div>
+    </div>
+    <div class="d-btns">
+      <button class="btn-gpx" id="d-btn-gpx" style="flex:1;margin-bottom:0">⬇ EXPORTAR GPX</button>
+      <button class="btn-del-one" id="d-btn-del">🗑 BORRAR RUTA</button>
+    </div>
+  </div>
 </div>
 
 <div class="gps-warn" id="gps-warn">⚡ BUSCANDO GPS…</div>
@@ -247,7 +298,7 @@
 /* ── Google Maps ── */
 const GKEY="AIzaSyDr5_Nl94pu5E7jm3zl3h9Psad3N8DcZN8";
 let gmap=null,poly=null,dotM=null,mReady=false,pendingInit=null;
-let sumMap=null,sumPoly=null;
+let sumMap=null,sumPoly=null,detailMap=null,detailPoly=null;
 
 (function(){
   const s=document.createElement("script");
@@ -285,7 +336,23 @@ function initSumMap(coords){
   sumMap.fitBounds(bounds,{top:10,right:10,bottom:10,left:10});
 }
 
-/* ── State ── */
+function initDetailMap(coords){
+  if(!mReady||!coords||!coords.length) return;
+  if(!detailMap){
+    detailMap=new google.maps.Map(document.getElementById("d-map"),{
+      zoom:13,disableDefaultUI:true,
+      styles:[{featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}]
+    });
+    detailPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:detailMap});
+  }
+  detailPoly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
+  const bounds=new google.maps.LatLngBounds();
+  coords.forEach(c=>bounds.extend({lat:c.lat,lng:c.lng}));
+  detailMap.fitBounds(bounds,{top:10,right:10,bottom:10,left:10});
+  // start/end markers
+  new google.maps.Marker({map:detailMap,position:{lat:coords[0].lat,lng:coords[0].lng},label:{text:"A",color:"#fff",fontSize:"10px"},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
+  new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},label:{text:"B",color:"#fff",fontSize:"10px"},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
+}
 let tracking=false,paused=false;
 let coords=[],speeds=[],alts=[];
 let speed=0,maxSpeed=0,distance=0,elapsed=0;
@@ -417,9 +484,7 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
     coords:[...coords],speeds:[...speeds],alts:[...alts]
   };
   history.unshift(s);if(history.length>100)history.pop();
-  // save without coords to keep localStorage light (coords only in memory for GPX)
-  const toSave=history.map(h=>({...h,coords:h.coords?.slice(0,500)||[]}));
-  localStorage.setItem("vh2",JSON.stringify(toSave));
+  saveHistory();
 
   document.getElementById("sum-date").textContent=s.date;
   document.getElementById("sum-dist").textContent=(s.distance/1000).toFixed(2);
@@ -443,6 +508,7 @@ document.getElementById("btn-start").addEventListener("click",startTracking);
 document.getElementById("btn-sum-home").addEventListener("click",()=>show("s-home"));
 document.getElementById("btn-sum-new").addEventListener("click",startTracking);
 document.getElementById("btn-hist").addEventListener("click",()=>{renderHist();show("s-hist");});
+document.getElementById("btn-back-detail").addEventListener("click",()=>{show("s-hist");renderHist();});
 document.getElementById("btn-back").addEventListener("click",()=>show("s-home"));
 
 /* ── Records ── */
@@ -477,6 +543,53 @@ function buildWeekGrid(containerId){
   }).join("");
 }
 
+/* ── Open detail ── */
+let currentDetailId = null;
+function openDetail(id){
+  const s=history.find(h=>h.id===id);
+  if(!s) return;
+  currentDetailId=id;
+  document.getElementById("d-title").textContent=s.date;
+  document.getElementById("d-sub").textContent=ft(s.elapsed);
+  document.getElementById("d-dist").textContent=(s.distance/1000).toFixed(2);
+  document.getElementById("d-time").textContent=ft(s.elapsed);
+  document.getElementById("d-avg").textContent=s.avgSpeed.toFixed(1);
+  document.getElementById("d-max").textContent=s.maxSpeed.toFixed(1);
+  document.getElementById("d-elev").textContent=s.elevGain||0;
+  document.getElementById("d-altmax").textContent=s.maxAlt||0;
+  document.getElementById("d-btn-gpx").onclick=()=>exportGPX(s);
+  detailMap=null; detailPoly=null;
+  document.getElementById("d-map").innerHTML="";
+  show("s-detail");
+  setTimeout(()=>initDetailMap(s.coords),300);
+}
+
+/* ── Delete one ── */
+document.getElementById("d-btn-del").addEventListener("click",()=>{
+  if(!currentDetailId) return;
+  if(!confirm("¿Borrar esta ruta?")) return;
+  history=history.filter(h=>h.id!==currentDetailId);
+  saveHistory();
+  updateHistBtn();
+  show("s-hist");
+  renderHist();
+});
+
+/* ── Delete all ── */
+document.getElementById("btn-del-all").addEventListener("click",()=>{
+  if(!history.length) return;
+  if(!confirm("¿Borrar todas las rutas? Esta acción no se puede deshacer.")) return;
+  history=[];
+  saveHistory();
+  updateHistBtn();
+  renderHist();
+});
+
+function saveHistory(){
+  const toSave=history.map(h=>({...h,coords:h.coords?.slice(0,500)||[]}));
+  localStorage.setItem("vh2",JSON.stringify(toSave));
+}
+
 /* ── History ── */
 function updateHistBtn(){
   const n=history.length;
@@ -490,7 +603,6 @@ function renderHist(){
   if(!history.length){el.innerHTML='<div class="empty">SIN RUTAS TODAVÍA</div>';return;}
   const rec=getRecords();
   let html="";
-  // Records cards
   if(rec){
     html+=`<div class="records">
       <div class="rec-card"><div class="rec-card-lbl">MEJOR DIST</div><div class="rec-card-val">${(rec.bestDist/1000).toFixed(1)}</div><div class="rec-card-unit">km</div></div>
@@ -498,18 +610,20 @@ function renderHist(){
       <div class="rec-card"><div class="rec-card-lbl">TOTAL</div><div class="rec-card-val">${(rec.totalKm/1000).toFixed(0)}</div><div class="rec-card-unit">km</div></div>
     </div>`;
   }
-  // Weekly km chart
   html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA</div><div class="week-grid" id="week-grid"></div></div>`;
-  // Route list
   html+=history.map((s,i)=>`
-    <div class="h-item" style="animation-delay:${i*.04}s">
-      <div class="h-item-top"><span class="h-date">${s.date}</span><span class="h-time">${ft(s.elapsed)}</span></div>
+    <div class="h-item" onclick="openDetail(${s.id})" style="animation-delay:${i*.04}s">
+      <div class="h-item-top">
+        <span class="h-date">${s.date}</span>
+        <span class="h-time">${ft(s.elapsed)}</span>
+      </div>
       <div class="h-stats">
         <div class="h-stat"><div class="h-sval">${(s.distance/1000).toFixed(2)}</div><div class="h-slbl">km</div></div>
         <div class="h-stat"><div class="h-sval">${s.avgSpeed.toFixed(1)}</div><div class="h-slbl">km/h med</div></div>
         <div class="h-stat"><div class="h-sval">${s.maxSpeed.toFixed(1)}</div><div class="h-slbl">km/h máx</div></div>
         <div class="h-stat"><div class="h-sval">${s.elevGain||0}</div><div class="h-slbl">m ↑</div></div>
       </div>
+      <div style="color:var(--greytext);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-top:8px;text-align:right">VER DETALLE →</div>
     </div>`).join("");
   el.innerHTML=html;
   setTimeout(()=>buildWeekGrid("week-grid"),100);
