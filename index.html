@@ -596,7 +596,8 @@ function startGPS(){
   watchId=navigator.geolocation.watchPosition(pos=>{
     document.getElementById("gps-warn").style.display="none";
     const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
-    if(acc>100||ts===lastTimestamp)return;
+    if(acc>100)return;
+    if(ts<=lastTimestamp)return;
     lastTimestamp=ts;
     currentPos={lat:la,lng:lo};
     if(!paused){
