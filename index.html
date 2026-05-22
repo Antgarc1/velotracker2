@@ -25,65 +25,64 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
     @keyframes scan{0%{top:-2px}100%{top:100%}}
     @keyframes gp{0%,100%{opacity:.5}50%{opacity:.8}}
-    @keyframes slideIn{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+    @keyframes slideIn{from{transform:translateY(-20px);opacity:0}to{transform:none;opacity:1}}
 
-    /* ── HOME ── */
+    /* HOME */
     #s-home{align-items:center;justify-content:center;padding:28px;overflow:hidden}
     #s-home::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grl) 1px,transparent 1px),linear-gradient(90deg,var(--grl) 1px,transparent 1px);background-size:42px 42px;opacity:.7}
     .hglow{position:absolute;top:28%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:var(--acg);filter:blur(72px);pointer-events:none;animation:gp 3s ease-in-out infinite}
     .hscan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ac),transparent);opacity:.35;pointer-events:none;animation:scan 6s linear infinite}
-    .logo{text-align:center;margin-bottom:28px;position:relative;z-index:1;animation:fadeUp .6s ease both}
+    .logo{text-align:center;margin-bottom:32px;position:relative;z-index:1;animation:fadeUp .6s ease both}
     .lbrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px}
     .lbrow-ln{width:28px;height:1.5px;background:var(--ac)}
     .lbrow-tx{color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:5px}
-    .lv{color:var(--wh);font-size:60px;font-weight:700;letter-spacing:-2px;line-height:1}
-    .lt{color:var(--ac);font-size:60px;font-weight:700;letter-spacing:-2px;line-height:1;margin-top:-6px}
+    .lv{color:var(--wh);font-size:62px;font-weight:700;letter-spacing:-2px;line-height:1}
+    .lt{color:var(--ac);font-size:62px;font-weight:700;letter-spacing:-2px;line-height:1;margin-top:-6px}
     .ltag{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:4px;margin-top:8px}
-    .btnhex{background:var(--ac);border:none;color:var(--wh);font-family:var(--num);font-size:18px;font-weight:700;letter-spacing:4px;padding:16px 52px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);box-shadow:0 0 40px var(--acg);position:relative;z-index:1;margin-bottom:20px;-webkit-appearance:none;animation:fadeUp .6s .1s ease both;transition:opacity .15s}
+    .btnhex{background:var(--ac);border:none;color:var(--wh);font-family:var(--num);font-size:18px;font-weight:700;letter-spacing:4px;padding:18px 56px;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);box-shadow:0 0 40px var(--acg);position:relative;z-index:1;margin-bottom:20px;-webkit-appearance:none;animation:fadeUp .6s .1s ease both;transition:opacity .15s}
     .btnhex:active{opacity:.75}
-    .home-row{display:flex;gap:8px;position:relative;z-index:1;width:100%;max-width:320px;animation:fadeUp .6s .3s ease both}
-    .btn-sm{flex:1;background:transparent;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:2px;padding:10px 8px;cursor:pointer;-webkit-appearance:none;transition:opacity .15s}
+    .home-row{display:flex;gap:8px;position:relative;z-index:1;width:100%;max-width:320px;animation:fadeUp .6s .2s ease both}
+    .btn-sm{flex:1;background:transparent;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:2px;padding:11px 8px;cursor:pointer;-webkit-appearance:none;transition:opacity .15s;text-align:center}
     .btn-sm:active{opacity:.7}
     .btn-sm.ac{border-color:var(--ac);color:var(--ac)}
-    .btnghost{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;cursor:pointer;position:relative;z-index:1;animation:fadeUp .6s .4s ease both;display:block;margin-top:10px}
 
-    /* ── TRACKING ── */
+    /* TRACKING */
     #s-track{background:var(--bg)}
     #map-wrap{flex:1;position:relative;overflow:hidden}
     #map-el{width:100%;height:100%}
     .mscan{position:absolute;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(0,122,112,.5),transparent);animation:scan 5s linear infinite}
+    /* destination search */
     .dest-bar{position:absolute;top:calc(env(safe-area-inset-top,44px) + 56px);left:10px;right:10px;z-index:20;display:flex;gap:6px}
-    .dest-input{flex:1;background:rgba(8,8,8,.92);border:1px solid var(--ac);color:var(--wh);font-family:var(--hud);font-size:12px;letter-spacing:1px;padding:9px 12px;outline:none;-webkit-appearance:none}
+    .dest-input{flex:1;background:rgba(8,8,8,.92);border:1px solid var(--ac);color:var(--wh);font-family:var(--hud);font-size:12px;padding:9px 12px;outline:none;-webkit-appearance:none}
     .dest-input::placeholder{color:var(--gt)}
-    .dest-btn{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;padding:9px 12px;cursor:pointer;-webkit-appearance:none}
+    .dest-btn{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;padding:9px 14px;cursor:pointer;-webkit-appearance:none}
     .dest-btn:active{opacity:.7}
     .dest-clear{background:rgba(8,8,8,.92);border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:10px;padding:9px 10px;cursor:pointer;-webkit-appearance:none}
-    .tmpl-bar{position:absolute;top:calc(env(safe-area-inset-top,44px) + 106px);left:10px;right:10px;z-index:19;background:rgba(8,8,8,.88);border:1px solid rgba(255,200,0,.4);padding:6px 12px;display:none;align-items:center;justify-content:space-between}
+    /* template bar */
+    .tmpl-bar{position:absolute;top:calc(env(safe-area-inset-top,44px) + 106px);left:10px;right:10px;z-index:19;background:rgba(8,8,8,.9);border:1px solid rgba(255,200,0,.5);padding:7px 12px;display:none;align-items:center;justify-content:space-between}
     .tmpl-bar.show{display:flex}
     .tmpl-lbl{color:rgba(255,200,0,.9);font-family:var(--hud);font-size:9px;letter-spacing:2px}
-    .tmpl-cancel{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:10px;cursor:pointer}
+    .tmpl-cancel{background:none;border:none;color:var(--gt);font-family:var(--hud);font-size:12px;cursor:pointer;padding:0 4px}
     /* objective alert */
     .obj-alert{position:absolute;top:calc(env(safe-area-inset-top,44px) + 152px);left:10px;right:10px;z-index:18;background:rgba(244,67,54,.12);border:1px solid #f44336;padding:6px 12px;display:none;align-items:center;justify-content:center}
     .obj-alert.show{display:flex}
-    .obj-alert-txt{color:#f44336;font-family:var(--hud);font-size:9px;letter-spacing:2px;text-align:center}
-    /* distance to start badge */
-    .dist-home-badge{position:absolute;bottom:80px;left:14px;z-index:10;background:rgba(8,8,8,.8);border:1px solid var(--gr);padding:6px 10px;text-align:center}
+    .obj-alert-txt{color:#f44336;font-family:var(--hud);font-size:9px;letter-spacing:2px}
+    /* badges on map */
+    .dist-home-badge{position:absolute;bottom:82px;left:14px;z-index:10;background:rgba(8,8,8,.82);border:1px solid var(--gr);padding:6px 10px;text-align:center}
     .dh-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:2px}
     .dh-val{color:var(--wd);font-size:16px;font-weight:700;line-height:1.2}
-    .dh-unit{color:var(--gt);font-family:var(--hud);font-size:8px}
-    .alt-badge{position:absolute;bottom:80px;right:14px;z-index:10;background:rgba(8,8,8,.8);border:1px solid var(--ac);padding:6px 10px;text-align:center}
+    .dh-unit{color:var(--gt);font-family:var(--hud);font-size:7px}
+    .alt-badge{position:absolute;bottom:82px;right:14px;z-index:10;background:rgba(8,8,8,.82);border:1px solid var(--ac);padding:6px 10px;text-align:center}
     .al{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:2px}
     .av{color:var(--ac);font-size:18px;font-weight:700;line-height:1.2}
-    .au{color:var(--gt);font-family:var(--hud);font-size:8px}
-    /* battery warn */
-    .bat-warn{position:absolute;top:calc(env(safe-area-inset-top,44px) + 46px);right:14px;z-index:20;background:rgba(255,152,0,.15);border:1px solid orange;padding:4px 8px;display:none}
-    .bat-warn.show{display:block}
-    .bat-txt{color:orange;font-family:var(--hud);font-size:8px;letter-spacing:2px}
-    .nav-bar{position:absolute;bottom:calc(100% + 2px);left:0;right:0;background:rgba(8,8,8,.95);border-top:1px solid var(--ac);padding:8px 14px;display:none;align-items:center;justify-content:space-between;z-index:15}
+    .au{color:var(--gt);font-family:var(--hud);font-size:7px}
+    /* nav bar */
+    .nav-bar{position:absolute;bottom:calc(100% + 2px);left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid var(--ac);padding:8px 14px;display:none;align-items:center;justify-content:space-between;z-index:15}
     .nav-bar.show{display:flex}
-    .nav-dist-rem{color:var(--ac);font-family:var(--hud);font-size:11px;letter-spacing:2px}
+    .nav-dist-rem{color:var(--ac);font-family:var(--hud);font-size:11px;letter-spacing:2px;flex-shrink:0}
     .nav-dest{color:var(--gt);font-family:var(--hud);font-size:9px;flex:1;margin:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .nav-cancel{background:none;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;padding:4px 8px;cursor:pointer;-webkit-appearance:none}
+    .nav-cancel{background:none;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;padding:4px 8px;cursor:pointer;-webkit-appearance:none;flex-shrink:0}
+    /* top HUD */
     .t-top{position:absolute;top:0;left:0;right:0;z-index:10;padding:calc(env(safe-area-inset-top,44px)) 14px 10px;background:linear-gradient(to bottom,rgba(8,8,8,.94) 55%,transparent);display:flex;justify-content:space-between;align-items:center}
     .t-logo{color:var(--ac);font-size:15px;font-weight:700;letter-spacing:3px}
     .rec-pill{display:flex;align-items:center;gap:7px;background:var(--acf);border:1px solid var(--ac);padding:5px 11px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
@@ -93,13 +92,15 @@
     .rlbl{font-family:var(--hud);font-size:9px;letter-spacing:3px;color:var(--wh)}
     .rlbl.paused{color:var(--gt)}
     .ttimer{font-family:var(--hud);font-size:15px;font-weight:700;color:var(--wd)}
-    .t-bot{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:24px 16px 10px;background:linear-gradient(to top,rgba(8,8,8,.88) 50%,transparent);display:flex;justify-content:space-between;align-items:flex-end}
+    /* bottom speed overlay */
+    .t-bot{position:absolute;bottom:0;left:0;right:0;z-index:10;padding:24px 16px 10px;background:linear-gradient(to top,rgba(8,8,8,.9) 50%,transparent);display:flex;justify-content:space-between;align-items:flex-end}
     .sl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:2px}
     .sr{display:flex;align-items:flex-end;gap:5px}
-    .sn{color:var(--wh);font-size:62px;font-weight:700;line-height:1}
+    .sn{color:var(--wh);font-size:64px;font-weight:700;line-height:1}
     .su{color:var(--ac);font-family:var(--hud);font-size:13px;margin-bottom:8px}
     .dl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px;margin-bottom:2px;text-align:right}
-    .dv{color:var(--wd);font-size:20px;font-weight:700;text-align:right}
+    .dv{color:var(--wd);font-size:22px;font-weight:700;text-align:right}
+    /* stats panel */
     .s-panel{background:var(--bgpanel);border-top:2px solid var(--ac);padding:10px 8px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));flex-shrink:0;position:relative}
     .s-row{display:flex;gap:6px;margin-bottom:6px}
     .sbox{flex:1;background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid var(--gr);padding:10px 6px;text-align:center;position:relative;overflow:hidden}
@@ -110,59 +111,54 @@
     .sbox.ac .sbox-val{color:var(--wh)}
     .sbox-unit{color:var(--gt);font-family:var(--hud);font-size:9px;position:relative}
     .sbox.ac .sbox-unit{color:var(--ac)}
+    /* segments mini panel */
+    .seg-panel{position:absolute;bottom:calc(100% + 2px);left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid rgba(255,200,0,.4);padding:8px 14px;display:none;z-index:14}
+    .seg-panel.show{display:block}
+    .seg-panel-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:6px}
+    .seg-list-mini{display:flex;gap:6px;overflow-x:auto}
+    .seg-chip{background:var(--bgcard);border:1px solid rgba(255,200,0,.3);padding:6px 10px;white-space:nowrap;flex-shrink:0}
+    .seg-chip-name{color:var(--wd);font-family:var(--hud);font-size:9px}
+    .seg-chip-best{color:rgba(255,200,0,.7);font-family:var(--hud);font-size:8px}
+    .seg-chip.active{border-color:rgba(255,200,0,.9);background:rgba(255,200,0,.08)}
     .c-row{display:flex;gap:8px}
     .cbtn{flex:1;border:1px solid var(--gr);background:transparent;color:var(--wd);font-family:var(--num);font-size:14px;font-weight:700;letter-spacing:2px;padding:14px 10px;cursor:pointer;-webkit-appearance:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:opacity .15s}
     .cbtn:active{opacity:.7}
     .cbtn.ac{background:var(--ac);border-color:var(--ac);color:var(--wh);box-shadow:0 0 20px var(--acg)}
     .cbtn.act{background:var(--acf);border-color:var(--ac);color:var(--wh)}
 
-    /* ── SEGMENTS panel in tracking ── */
-    .seg-panel{position:absolute;bottom:calc(100% + 2px);left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid rgba(255,200,0,.4);padding:8px 14px;display:none;z-index:14}
-    .seg-panel.show{display:block}
-    .seg-panel-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:6px}
-    .seg-list-mini{display:flex;gap:6px;overflow-x:auto}
-    .seg-chip{background:var(--bgcard);border:1px solid rgba(255,200,0,.3);padding:6px 10px;white-space:nowrap;cursor:pointer;flex-shrink:0}
-    .seg-chip-name{color:var(--wd);font-family:var(--hud);font-size:9px;letter-spacing:1px}
-    .seg-chip-best{color:rgba(255,200,0,.7);font-family:var(--hud);font-size:8px}
-    .seg-chip.active{border-color:rgba(255,200,0,.8);background:rgba(255,200,0,.08)}
-    .seg-timer{color:rgba(255,200,0,1);font-family:var(--hud);font-size:11px}
-
-    /* ── SUMMARY ── */
-    #s-sum{justify-content:flex-start;overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
-    .sglow{position:absolute;top:18%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:var(--acg);filter:blur(72px);pointer-events:none;animation:gp 3s ease-in-out infinite}
-    .seye{color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:5px;text-align:center;margin-bottom:8px;position:relative}
-    .st1{color:var(--wh);font-size:40px;font-weight:700;text-align:center;line-height:1;position:relative}
-    .st2{color:var(--ac);font-size:40px;font-weight:700;text-align:center;line-height:1;position:relative}
-    .sdate{color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;text-align:center;margin-top:8px;margin-bottom:10px;position:relative}
+    /* SUMMARY */
+    #s-sum{overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+    .sglow{position:absolute;top:15%;left:50%;transform:translate(-50%,-50%);width:280px;height:280px;border-radius:50%;background:var(--acg);filter:blur(72px);pointer-events:none;animation:gp 3s ease-in-out infinite}
+    .seye{color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:5px;text-align:center;margin-bottom:6px;position:relative}
+    .st1{color:var(--wh);font-size:42px;font-weight:700;text-align:center;line-height:1;position:relative}
+    .st2{color:var(--ac);font-size:42px;font-weight:700;text-align:center;line-height:1;position:relative}
+    .sdate{color:var(--gt);font-family:var(--hud);font-size:10px;letter-spacing:3px;text-align:center;margin-top:8px;margin-bottom:12px;position:relative}
     .route-name-wrap{display:flex;gap:8px;margin-bottom:12px;position:relative}
     .route-name-input{flex:1;background:var(--bgcard);border:1px solid var(--gr);border-bottom:2px solid var(--ac);color:var(--wh);font-family:var(--num);font-size:16px;font-weight:600;padding:10px 12px;outline:none;-webkit-appearance:none}
     .route-name-input::placeholder{color:var(--gt)}
     .route-name-save{background:var(--ac);border:none;color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:10px 14px;cursor:pointer;-webkit-appearance:none}
-    #sum-map{width:100%;height:180px;margin-bottom:12px;border:1px solid var(--gr);border-top:2px solid var(--ac);position:relative}
-    /* share card (hidden canvas) */
+    #sum-map{width:100%;height:190px;margin-bottom:12px;border:1px solid var(--gr);border-top:2px solid var(--ac)}
     #share-canvas{display:none}
     .sgrid{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;position:relative}
     .srow{display:flex;gap:6px}
-    .sbox.lg .sbox-val{font-size:36px}
-    /* calories row */
-    .cal-box{background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid rgba(255,152,0,.6);padding:10px;display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+    .sbox.lg .sbox-val{font-size:38px}
+    .cal-box{background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid rgba(255,152,0,.6);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
     .cal-lbl{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:2px}
+    .cal-sub{color:var(--gt);font-family:var(--hud);font-size:7px;margin-top:2px}
     .cal-val{color:orange;font-size:28px;font-weight:700}
     .cal-unit{color:var(--gt);font-family:var(--hud);font-size:9px}
-    /* compare */
-    .compare-box{background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid rgba(255,200,0,.6);padding:12px;margin-bottom:10px;position:relative}
+    .compare-box{background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid rgba(255,200,0,.6);padding:12px;margin-bottom:10px}
     .compare-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:8px}
     .compare-row{display:flex;gap:6px}
     .compare-stat{flex:1;text-align:center}
-    .compare-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:1px;margin-bottom:2px}
+    .compare-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;margin-bottom:2px}
     .compare-val{font-size:16px;font-weight:700}
     .compare-val.better{color:#4caf50}
     .compare-val.worse{color:#f44336}
     .compare-val.same{color:var(--wd)}
-    /* segments summary */
     .seg-sum{background:var(--bgcard);border:1px solid rgba(255,200,0,.3);border-top:2px solid rgba(255,200,0,.5);padding:12px;margin-bottom:10px}
     .seg-sum-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:8px}
-    .seg-sum-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--gr)}
+    .seg-sum-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gr)}
     .seg-sum-name{color:var(--wd);font-family:var(--hud);font-size:10px}
     .seg-sum-time{color:rgba(255,200,0,.9);font-family:var(--hud);font-size:10px}
     .seg-sum-best{color:#4caf50;font-family:var(--hud);font-size:8px}
@@ -171,11 +167,11 @@
     .btn-share{width:100%;background:transparent;border:1px solid rgba(255,200,0,.5);color:rgba(255,200,0,.9);font-family:var(--hud);font-size:10px;letter-spacing:3px;padding:11px;cursor:pointer;margin-bottom:8px;-webkit-appearance:none}
     .btn-share:active{opacity:.7}
 
-    /* ── SETTINGS ── */
-    #s-settings{overflow-y:auto}
+    /* SETTINGS */
+    #s-settings{overflow:hidden}
     .set-head{display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
     .set-title{font-size:20px;font-weight:700;letter-spacing:2px}
-    .set-body{padding:20px 16px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+    .set-body{flex:1;overflow-y:auto;padding:20px 16px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
     .set-section{margin-bottom:24px}
     .set-section-title{color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:4px;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--gr)}
     .set-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(42,42,42,.5)}
@@ -183,67 +179,62 @@
     .set-sub{color:var(--gt);font-family:var(--hud);font-size:9px;margin-top:2px}
     .set-input{background:var(--bgcard);border:1px solid var(--gr);border-bottom:2px solid var(--ac);color:var(--wh);font-family:var(--num);font-size:16px;font-weight:600;padding:8px 10px;outline:none;-webkit-appearance:none;width:100px;text-align:right}
     .set-unit{color:var(--gt);font-family:var(--hud);font-size:10px;margin-left:6px}
-    /* segments management */
     .seg-item{background:var(--bgcard);border:1px solid rgba(255,200,0,.3);border-left:3px solid rgba(255,200,0,.6);padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
     .seg-name{color:var(--wd);font-size:15px;font-weight:700}
     .seg-info{color:var(--gt);font-family:var(--hud);font-size:9px;margin-top:2px}
-    .seg-best{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:9px}
-    .btn-seg-del{background:none;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;padding:4px 8px;cursor:pointer;-webkit-appearance:none}
+    .seg-best{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:9px;margin-top:2px}
+    .btn-seg-del{background:none;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;padding:6px 10px;cursor:pointer;-webkit-appearance:none}
     .btn-add-seg{width:100%;background:transparent;border:1px dashed rgba(255,200,0,.4);color:rgba(255,200,0,.7);font-family:var(--hud);font-size:10px;letter-spacing:3px;padding:12px;cursor:pointer;-webkit-appearance:none;margin-top:8px}
-    /* weekly plan */
     .plan-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(42,42,42,.5)}
     .plan-day{color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;width:36px;flex-shrink:0}
     .plan-input{flex:1;background:var(--bgcard);border:1px solid var(--gr);color:var(--wh);font-family:var(--num);font-size:14px;padding:6px 10px;outline:none;-webkit-appearance:none}
     .plan-unit{color:var(--gt);font-family:var(--hud);font-size:9px}
-    /* fatigue meter */
     .fatigue-bar-wrap{margin-top:8px}
-    .fatigue-bar-bg{height:8px;background:var(--gr);border-radius:4px;overflow:hidden;margin-bottom:4px}
+    .fatigue-bar-bg{height:8px;background:var(--gr);border-radius:4px;overflow:hidden;margin-bottom:6px}
     .fatigue-bar-fill{height:100%;border-radius:4px;transition:width .5s}
     .fatigue-label{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:2px}
 
-    /* ── DETAIL ── */
+    /* DETAIL */
     #s-detail{overflow:hidden}
     .d-head{display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,44px)) 20px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
     .d-title{font-size:18px;font-weight:700;letter-spacing:2px}
-    .d-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
+    .d-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:2px}
     .d-body{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
     #d-map{width:100%;height:200px;margin-bottom:14px;border:1px solid var(--gr);border-top:2px solid var(--ac)}
     .d-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
     .d-row{display:flex;gap:8px}
-    .d-btns{display:flex;gap:8px;margin-bottom:8px}
+    .d-btns{display:flex;gap:8px;margin-bottom:10px}
     .btn-repeat{flex:1;background:var(--acf);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:12px;cursor:pointer;-webkit-appearance:none}
     .btn-repeat:active{opacity:.7}
-    .btn-del-one{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:12px;cursor:pointer;-webkit-appearance:none}
+    .btn-del-one{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:10px;padding:12px 16px;cursor:pointer;-webkit-appearance:none}
     .btn-del-one:active{opacity:.7}
-    /* segment results in detail */
-    .d-segs{margin-top:12px}
-    .d-segs-title{color:rgba(255,200,0,.8);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:8px}
 
-    /* ── HISTORY ── */
+    /* HISTORY */
     #s-hist{overflow:hidden}
     .h-head{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top,44px)) 14px 14px;border-bottom:1px solid var(--gr);background:var(--bgpanel);flex-shrink:0}
     .hback{width:32px;height:32px;border:1px solid var(--ac);background:none;color:var(--ac);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-appearance:none}
     .h-title{font-size:20px;font-weight:700;letter-spacing:2px;flex:1}
     .h-sub{color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:3px}
-    .h-head-actions{display:flex;gap:8px;flex-shrink:0}
-    .btn-import-hist{background:transparent;border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:9px;padding:6px 8px;cursor:pointer;-webkit-appearance:none}
-    .btn-del-all{background:transparent;border:1px solid #8b0000;color:#cc0000;font-family:var(--hud);font-size:9px;padding:6px 8px;cursor:pointer;-webkit-appearance:none}
+    .h-head-right{display:flex;gap:8px;flex-shrink:0}
+    .btn-sm-head{background:transparent;border:1px solid var(--gr);color:var(--gt);font-family:var(--hud);font-size:9px;padding:6px 10px;cursor:pointer;-webkit-appearance:none}
+    .btn-sm-head.ac{border-color:var(--ac);color:var(--ac)}
+    .btn-sm-head.red{border-color:#8b0000;color:#cc0000}
     .h-list{flex:1;overflow-y:auto;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
     .h-item{cursor:pointer;background:var(--bgcard);border:1px solid var(--gr);border-left:3px solid var(--ac);padding:14px;margin-bottom:10px;animation:fadeUp .3s ease both}
     .h-item-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
     .h-date{font-size:15px;font-weight:700;letter-spacing:1px}
-    .h-name{color:var(--ac);font-family:var(--hud);font-size:9px;letter-spacing:1px;margin-bottom:6px}
+    .h-name{color:var(--ac);font-family:var(--hud);font-size:9px;margin-bottom:6px}
     .h-time{color:var(--gt);font-family:var(--hud);font-size:10px}
-    .h-stats{display:flex;gap:6px}
-    .h-stat{flex:1;background:var(--bgpanel);padding:8px 4px;text-align:center}
-    .h-sval{font-size:14px;font-weight:700}
-    .h-slbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:1px}
+    .h-stats{display:flex;gap:5px}
+    .h-stat{flex:1;background:var(--bgpanel);padding:7px 3px;text-align:center}
+    .h-sval{font-size:13px;font-weight:700}
+    .h-slbl{color:var(--gt);font-family:var(--hud);font-size:7px}
     .records{display:flex;gap:6px;margin-bottom:16px}
-    .rec-card{flex:1;background:var(--bgcard);border:1px solid var(--ac);border-top:2px solid var(--ac);padding:10px 6px;text-align:center;position:relative;overflow:hidden}
+    .rec-card{flex:1;background:var(--bgcard);border:1px solid var(--ac);border-top:2px solid var(--ac);padding:10px 4px;text-align:center;position:relative;overflow:hidden}
     .rec-card::before{content:'';position:absolute;inset:0;background:var(--acf)}
-    .rec-card-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:2px;margin-bottom:4px;position:relative}
-    .rec-card-val{color:var(--ac);font-size:20px;font-weight:700;position:relative}
-    .rec-card-unit{color:var(--gt);font-family:var(--hud);font-size:8px;position:relative}
+    .rec-card-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;letter-spacing:1px;margin-bottom:4px;position:relative}
+    .rec-card-val{color:var(--ac);font-size:18px;font-weight:700;position:relative}
+    .rec-card-unit{color:var(--gt);font-family:var(--hud);font-size:7px;position:relative}
     .week-wrap{background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid var(--ac);padding:12px 10px 10px;margin-bottom:16px}
     .week-title{color:var(--gt);font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:10px}
     .week-grid{display:flex;gap:5px}
@@ -252,22 +243,22 @@
     .week-day.goal{border-color:#4caf50;background:rgba(76,175,80,.08)}
     .week-day-lbl{color:var(--gt);font-family:var(--hud);font-size:7px;margin-bottom:4px}
     .week-day-val{color:var(--wd);font-size:12px;font-weight:700;line-height:1}
-    .week-day.has .week-day-val{color:var(--ac)}
+    .week-day.has .week-day-val,.week-day.goal .week-day-val{color:var(--ac)}
     .week-day.goal .week-day-val{color:#4caf50}
     .week-day-unit{color:var(--gt);font-family:var(--hud);font-size:6px}
-    /* fatigue in history */
     .fatigue-row{background:var(--bgcard);border:1px solid var(--gr);border-top:2px solid rgba(255,152,0,.5);padding:12px;margin-bottom:16px}
     .fatigue-title{color:orange;font-family:var(--hud);font-size:8px;letter-spacing:3px;margin-bottom:10px}
     .empty{color:var(--gt);font-family:var(--hud);font-size:11px;letter-spacing:3px;text-align:center;margin-top:80px}
-    .gps-warn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,122,112,.15);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:8px 16px;pointer-events:none;z-index:999;animation:blink 1.5s infinite;display:none}
+
+    /* shared */
+    .gps-warn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,122,112,.15);border:1px solid var(--ac);color:var(--ac);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:8px 16px;pointer-events:none;z-index:999;animation:blink 1.5s infinite;display:none;white-space:nowrap}
+    .toast{position:fixed;top:calc(env(safe-area-inset-top,44px) + 10px);left:50%;transform:translateX(-50%);background:rgba(0,122,112,.96);border:1px solid var(--ac);color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:10px 20px;z-index:9999;pointer-events:none;animation:slideIn .3s ease;display:none;white-space:nowrap}
     input[type=file]{display:none}
-    /* toast */
-    .toast{position:fixed;top:calc(env(safe-area-inset-top,44px) + 10px);left:50%;transform:translateX(-50%);background:rgba(0,122,112,.95);border:1px solid var(--ac);color:var(--wh);font-family:var(--hud);font-size:10px;letter-spacing:2px;padding:10px 20px;z-index:9999;pointer-events:none;animation:slideIn .3s ease;display:none;white-space:nowrap}
   </style>
 </head>
 <body>
 
-<!-- ════ HOME ════ -->
+<!-- HOME -->
 <div id="s-home" class="screen active">
   <div class="hglow"></div>
   <div class="hscan"></div>
@@ -286,7 +277,7 @@
   <input type="file" id="gpx-file-input" accept=".gpx">
 </div>
 
-<!-- ════ TRACKING ════ -->
+<!-- TRACKING -->
 <div id="s-track" class="screen">
   <div id="map-wrap">
     <div id="map-el"></div>
@@ -296,7 +287,6 @@
       <div class="rec-pill" id="rec-pill"><div class="rdot" id="rdot"></div><span class="rlbl" id="rlbl">REC</span></div>
       <span class="ttimer" id="t-timer">00:00</span>
     </div>
-    <div class="bat-warn" id="bat-warn"><span class="bat-txt">🔋 BATERÍA BAJA</span></div>
     <div class="dest-bar">
       <input class="dest-input" id="dest-input" type="text" placeholder="Buscar destino..." autocomplete="off" autocorrect="off" spellcheck="false">
       <button class="dest-btn" id="dest-go">IR</button>
@@ -328,7 +318,7 @@
     <div class="nav-bar" id="nav-bar">
       <span class="nav-dist-rem" id="nav-dist-rem">-- km</span>
       <span class="nav-dest" id="nav-dest-name"></span>
-      <button class="nav-cancel" id="nav-cancel">✕</button>
+      <button class="nav-cancel" id="nav-cancel">✕ RUTA</button>
     </div>
     <div class="seg-panel" id="seg-panel">
       <div class="seg-panel-title">SEGMENTOS</div>
@@ -336,7 +326,7 @@
     </div>
     <div class="s-row">
       <div class="sbox"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="s-avg">0.0</div><div class="sbox-unit">km/h</div></div>
-      <div class="sbox ac"><div class="sbox-lbl">Vel. mvto</div><div class="sbox-val" id="s-moving">0.0</div><div class="sbox-unit">km/h</div></div>
+      <div class="sbox ac"><div class="sbox-lbl">Vel. movto</div><div class="sbox-val" id="s-moving">0.0</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox"><div class="sbox-lbl">Desnivel</div><div class="sbox-val" id="s-elev">0</div><div class="sbox-unit">m ↑</div></div>
     </div>
     <div class="c-row">
@@ -346,7 +336,7 @@
   </div>
 </div>
 
-<!-- ════ SUMMARY ════ -->
+<!-- SUMMARY -->
 <div id="s-sum" class="screen">
   <div class="sglow"></div>
   <div class="seye">SESIÓN COMPLETADA</div>
@@ -360,7 +350,7 @@
   <div id="sum-map"></div>
   <canvas id="share-canvas" width="800" height="420"></canvas>
   <div class="compare-box" id="compare-box" style="display:none">
-    <div class="compare-title">VS ÚLTIMA RUTA SIMILAR</div>
+    <div class="compare-title">VS RUTA SIMILAR ANTERIOR</div>
     <div class="compare-row" id="compare-row"></div>
   </div>
   <div class="seg-sum" id="seg-sum" style="display:none">
@@ -370,14 +360,14 @@
   <div class="sgrid">
     <div class="srow">
       <div class="sbox ac lg"><div class="sbox-lbl">Distancia</div><div class="sbox-val" id="sum-dist">0.00</div><div class="sbox-unit">km</div></div>
-      <div class="sbox lg"><div class="sbox-lbl">Tiempo</div><div class="sbox-val" id="sum-time">00:00</div></div>
+      <div class="sbox lg"><div class="sbox-lbl">Tiempo total</div><div class="sbox-val" id="sum-time">00:00</div></div>
     </div>
     <div class="srow">
       <div class="sbox"><div class="sbox-lbl">Vel. media</div><div class="sbox-val" id="sum-avg">0.0</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox ac"><div class="sbox-lbl">Vel. máxima</div><div class="sbox-val" id="sum-max">0.0</div><div class="sbox-unit">km/h</div></div>
     </div>
     <div class="srow">
-      <div class="sbox"><div class="sbox-lbl">Vel. mvto</div><div class="sbox-val" id="sum-moving">--</div><div class="sbox-unit">km/h</div></div>
+      <div class="sbox"><div class="sbox-lbl">Vel. movto</div><div class="sbox-val" id="sum-moving">--</div><div class="sbox-unit">km/h</div></div>
       <div class="sbox"><div class="sbox-lbl">Vel. mínima</div><div class="sbox-val" id="sum-spd-min">--</div><div class="sbox-unit">km/h</div></div>
     </div>
     <div class="srow">
@@ -386,7 +376,7 @@
     </div>
   </div>
   <div class="cal-box">
-    <div><div class="cal-lbl">CALORÍAS ESTIMADAS</div><div style="color:var(--gt);font-family:var(--hud);font-size:8px" id="cal-method"></div></div>
+    <div><div class="cal-lbl">CALORÍAS ESTIMADAS</div><div class="cal-sub" id="cal-sub"></div></div>
     <div style="display:flex;align-items:baseline;gap:4px"><span class="cal-val" id="sum-cal">--</span><span class="cal-unit">kcal</span></div>
   </div>
   <button class="btn-share" id="btn-share">📤&nbsp; COMPARTIR RESUMEN</button>
@@ -397,11 +387,11 @@
   </div>
 </div>
 
-<!-- ════ DETAIL ════ -->
+<!-- DETAIL -->
 <div id="s-detail" class="screen">
   <div class="d-head">
     <button class="hback" id="btn-back-detail">←</button>
-    <div style="flex:1"><div class="d-title" id="d-title">RUTA</div><div class="d-sub" id="d-sub"></div></div>
+    <div style="flex:1;min-width:0"><div class="d-title" id="d-title">RUTA</div><div class="d-sub" id="d-sub"></div></div>
   </div>
   <div class="d-body">
     <div id="d-map"></div>
@@ -420,55 +410,53 @@
       </div>
     </div>
     <div class="d-btns">
-      <button class="btn-repeat" id="d-btn-repeat">🔁 REPETIR</button>
+      <button class="btn-repeat" id="d-btn-repeat">🔁 REPETIR RUTA</button>
       <button class="btn-gpx" id="d-btn-gpx" style="flex:1;margin-bottom:0;padding:12px">⬇ GPX</button>
       <button class="btn-del-one" id="d-btn-del">🗑</button>
     </div>
-    <div class="d-segs" id="d-segs" style="display:none">
-      <div class="d-segs-title">SEGMENTOS EN ESTA RUTA</div>
+    <div id="d-segs" style="display:none">
+      <div class="seg-sum-title" style="margin-bottom:8px">SEGMENTOS EN ESTA RUTA</div>
       <div id="d-segs-list"></div>
     </div>
   </div>
 </div>
 
-<!-- ════ HISTORY ════ -->
+<!-- HISTORY -->
 <div id="s-hist" class="screen">
   <div class="h-head">
     <button class="hback" id="btn-back">←</button>
     <div style="flex:1"><div class="h-title">HISTORIAL</div><div class="h-sub" id="h-sub">0 RUTAS</div></div>
-    <div class="h-head-actions">
-      <button class="btn-import-hist" id="btn-import-hist">⬆ GPX</button>
-      <button class="btn-del-all" id="btn-del-all">🗑</button>
+    <div class="h-head-right">
+      <button class="btn-sm-head ac" id="btn-import-hist">⬆ GPX</button>
+      <button class="btn-sm-head red" id="btn-del-all">🗑 TODO</button>
     </div>
   </div>
   <div class="h-list" id="h-list"></div>
   <input type="file" id="gpx-file-input-hist" accept=".gpx">
 </div>
 
-<!-- ════ SETTINGS ════ -->
+<!-- SETTINGS -->
 <div id="s-settings" class="screen">
   <div class="set-head">
     <button class="hback" id="btn-back-settings">←</button>
     <div class="set-title">AJUSTES</div>
   </div>
   <div class="set-body">
-
     <div class="set-section">
       <div class="set-section-title">ESTADO ACTUAL</div>
       <div id="settings-profile-summary" style="display:flex;gap:8px;margin-bottom:4px"></div>
     </div>
-
     <div class="set-section">
+      <div class="set-section-title">PERFIL</div>
       <div class="set-row">
         <div><div class="set-lbl">Peso</div><div class="set-sub">Para calcular calorías</div></div>
         <div style="display:flex;align-items:center"><input class="set-input" id="set-weight" type="number" min="30" max="200" placeholder="70"><span class="set-unit">kg</span></div>
       </div>
     </div>
-
     <div class="set-section">
       <div class="set-section-title">OBJETIVO DE SESIÓN</div>
       <div class="set-row">
-        <div><div class="set-lbl">Distancia mínima</div><div class="set-sub">Avisa si vas a terminar sin cumplirla</div></div>
+        <div><div class="set-lbl">Distancia mínima</div><div class="set-sub">Avisa al finalizar si no se cumple</div></div>
         <div style="display:flex;align-items:center"><input class="set-input" id="set-obj-dist" type="number" min="0" max="500" placeholder="0"><span class="set-unit">km</span></div>
       </div>
       <div class="set-row">
@@ -476,24 +464,24 @@
         <div style="display:flex;align-items:center"><input class="set-input" id="set-obj-spd" type="number" min="0" max="100" placeholder="0"><span class="set-unit">km/h</span></div>
       </div>
     </div>
-
     <div class="set-section">
       <div class="set-section-title">PLAN SEMANAL</div>
       <div id="plan-rows"></div>
     </div>
-
     <div class="set-section">
       <div class="set-section-title">SEGMENTOS PRIVADOS</div>
+      <div style="color:var(--gt);font-family:var(--hud);font-size:9px;margin-bottom:12px;line-height:1.6">
+        Define puntos de inicio y fin de un segmento. La app cronometrará automáticamente cada vez que pases por él durante una ruta.<br>
+        Pulsa el botón con GPS activo para marcar el inicio, luego de nuevo para marcar el final.
+      </div>
       <div id="seg-list-settings"></div>
-      <button class="btn-add-seg" id="btn-add-seg">+ AÑADIR SEGMENTO DESDE POSICIÓN ACTUAL</button>
+      <button class="btn-add-seg" id="btn-add-seg">+ DEFINIR NUEVO SEGMENTO</button>
     </div>
-
     <div class="set-section">
-      <div class="set-section-title">ÍNDICE DE FATIGA SEMANAL</div>
+      <div class="set-section-title">FATIGA SEMANAL</div>
       <div class="fatigue-bar-wrap" id="fatigue-wrap-settings"></div>
     </div>
-
-    <div class="c-row" style="margin-top:16px">
+    <div class="c-row" style="margin-top:8px">
       <button class="cbtn ac" id="btn-save-settings">GUARDAR AJUSTES</button>
     </div>
   </div>
@@ -503,9 +491,12 @@
 <div class="toast" id="toast"></div>
 
 <script>
+/* ═══════════════════════════════════════════════
+   GOOGLE MAPS
+═══════════════════════════════════════════════ */
 const GKEY="AIzaSyDr5_Nl94pu5E7jm3zl3h9Psad3N8DcZN8";
 let gmap=null,poly=null,dotM=null,mReady=false,pendingInit=null;
-let sumMap=null,sumPoly=null,detailMap=null,detailPoly=null;
+let sumMap=null,sumPoly=null,detailMap=null;
 let directionsService=null,directionsRenderer=null,geocoder=null,autocomplete=null;
 let destActive=false;
 let templatePoly=null,templateCoords=null;
@@ -515,21 +506,36 @@ let templatePoly=null,templateCoords=null;
   s.src=`https://maps.googleapis.com/maps/api/js?key=${GKEY}&libraries=places&callback=_mapReady`;
   s.async=true; document.head.appendChild(s);
 })();
+
 window._mapReady=()=>{
   mReady=true;
   directionsService=new google.maps.DirectionsService();
   geocoder=new google.maps.Geocoder();
   if(pendingInit){initMap(pendingInit);pendingInit=null;}
 };
-const MAP_STYLES=[{featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}];
+
+const MAP_STYLES=[
+  {featureType:"poi",stylers:[{visibility:"off"}]},
+  {featureType:"transit",stylers:[{visibility:"off"}]},
+];
 
 function initMap(center){
   if(!mReady){pendingInit=center;return;}
   if(gmap){gmap.panTo(center);return;}
-  gmap=new google.maps.Map(document.getElementById("map-el"),{center,zoom:16,disableDefaultUI:true,styles:MAP_STYLES});
-  poly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:gmap});
-  dotM=new google.maps.Marker({map:gmap,zIndex:10,icon:{path:google.maps.SymbolPath.CIRCLE,scale:10,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
-  directionsRenderer=new google.maps.DirectionsRenderer({map:gmap,suppressMarkers:false,polylineOptions:{strokeColor:"#4a90e2",strokeWeight:4,strokeOpacity:.7}});
+  gmap=new google.maps.Map(document.getElementById("map-el"),{
+    center,zoom:16,disableDefaultUI:true,styles:MAP_STYLES
+  });
+  poly=new google.maps.Polyline({
+    path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:gmap
+  });
+  dotM=new google.maps.Marker({
+    map:gmap,zIndex:10,
+    icon:{path:google.maps.SymbolPath.CIRCLE,scale:10,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}
+  });
+  directionsRenderer=new google.maps.DirectionsRenderer({
+    map:gmap,suppressMarkers:false,
+    polylineOptions:{strokeColor:"#4a90e2",strokeWeight:4,strokeOpacity:.7}
+  });
   const input=document.getElementById("dest-input");
   autocomplete=new google.maps.places.Autocomplete(input,{fields:["geometry","name"]});
   autocomplete.addListener("place_changed",()=>{
@@ -542,8 +548,12 @@ function initMap(center){
 function initSumMap(coords){
   if(!mReady||!coords||!coords.length)return;
   if(!sumMap){
-    sumMap=new google.maps.Map(document.getElementById("sum-map"),{zoom:13,disableDefaultUI:true,styles:MAP_STYLES});
-    sumPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:sumMap});
+    sumMap=new google.maps.Map(document.getElementById("sum-map"),{
+      zoom:13,disableDefaultUI:true,styles:MAP_STYLES
+    });
+    sumPoly=new google.maps.Polyline({
+      path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:sumMap
+    });
   }
   sumPoly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
   const b=new google.maps.LatLngBounds();
@@ -553,36 +563,53 @@ function initSumMap(coords){
 
 function initDetailMap(coords){
   if(!mReady||!coords||!coords.length)return;
-  const el=document.getElementById("d-map");
-  detailMap=new google.maps.Map(el,{zoom:13,disableDefaultUI:true,styles:MAP_STYLES});
-  detailPoly=new google.maps.Polyline({path:[],geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:detailMap});
-  detailPoly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
+  detailMap=new google.maps.Map(document.getElementById("d-map"),{
+    zoom:13,disableDefaultUI:true,styles:MAP_STYLES
+  });
+  const detailPoly=new google.maps.Polyline({
+    path:coords.map(c=>({lat:c.lat,lng:c.lng})),
+    geodesic:true,strokeColor:"#007a70",strokeOpacity:.9,strokeWeight:4,map:detailMap
+  });
   const b=new google.maps.LatLngBounds();
   coords.forEach(c=>b.extend({lat:c.lat,lng:c.lng}));
   detailMap.fitBounds(b,10);
-  if(coords.length>0)new google.maps.Marker({map:detailMap,position:{lat:coords[0].lat,lng:coords[0].lng},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
-  if(coords.length>1)new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
+  new google.maps.Marker({map:detailMap,position:{lat:coords[0].lat,lng:coords[0].lng},
+    icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#007a70",fillOpacity:1,strokeColor:"#fff",strokeWeight:2}});
+  new google.maps.Marker({map:detailMap,position:{lat:coords[coords.length-1].lat,lng:coords[coords.length-1].lng},
+    icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:"#fff",fillOpacity:1,strokeColor:"#007a70",strokeWeight:2}});
 }
 
-/* ── Template ── */
+/* ═══════════════════════════════════════════════
+   TEMPLATE ROUTE
+═══════════════════════════════════════════════ */
 function drawTemplate(){
   if(!gmap||!templateCoords||!templateCoords.length)return;
   if(templatePoly)templatePoly.setMap(null);
-  templatePoly=new google.maps.Polyline({path:templateCoords.map(c=>({lat:c.lat,lng:c.lng})),geodesic:true,strokeColor:"#aaaaaa",strokeOpacity:.5,strokeWeight:3,map:gmap});
+  templatePoly=new google.maps.Polyline({
+    path:templateCoords.map(c=>({lat:c.lat,lng:c.lng})),
+    geodesic:true,strokeColor:"#aaaaaa",strokeOpacity:.5,strokeWeight:3,map:gmap
+  });
   const b=new google.maps.LatLngBounds();
   templateCoords.forEach(c=>b.extend({lat:c.lat,lng:c.lng}));
   gmap.fitBounds(b,20);
 }
+
 function clearTemplate(){
   if(templatePoly){templatePoly.setMap(null);templatePoly=null;}
   templateCoords=null;
   document.getElementById("tmpl-bar").classList.remove("show");
 }
 
-/* ── Destination ── */
+/* ═══════════════════════════════════════════════
+   DESTINATION / NAVIGATION
+═══════════════════════════════════════════════ */
 function routeToPlace(destLatLng,name){
   if(!gmap||!currentPos)return;
-  directionsService.route({origin:{lat:currentPos.lat,lng:currentPos.lng},destination:destLatLng,travelMode:google.maps.TravelMode.BICYCLING},(result,status)=>{
+  directionsService.route({
+    origin:{lat:currentPos.lat,lng:currentPos.lng},
+    destination:destLatLng,
+    travelMode:google.maps.TravelMode.BICYCLING,
+  },(result,status)=>{
     if(status==="OK"){
       directionsRenderer.setDirections(result);
       destActive=true;
@@ -592,9 +619,12 @@ function routeToPlace(destLatLng,name){
       document.getElementById("nav-bar").classList.add("show");
       document.getElementById("dest-clear").style.display="block";
       document.getElementById("dest-input").blur();
-    } else alert("No se pudo trazar la ruta.");
+    } else {
+      showToast("No se pudo trazar la ruta");
+    }
   });
 }
+
 function cancelDest(){
   destActive=false;
   if(directionsRenderer)directionsRenderer.setDirections({routes:[]});
@@ -602,6 +632,7 @@ function cancelDest(){
   document.getElementById("dest-clear").style.display="none";
   document.getElementById("dest-input").value="";
 }
+
 function updateNavDistance(){
   if(!destActive||!currentPos||!directionsRenderer)return;
   const dir=directionsRenderer.getDirections();
@@ -610,29 +641,31 @@ function updateNavDistance(){
   const rem=haversine(currentPos.lat,currentPos.lng,dest.lat(),dest.lng());
   document.getElementById("nav-dist-rem").textContent=rem<50?"¡LLEGASTE!":`${(rem/1000).toFixed(1)} km`;
 }
+
 document.getElementById("dest-go").addEventListener("click",()=>{
   const q=document.getElementById("dest-input").value.trim();
   if(!q||!gmap)return;
   geocoder.geocode({address:q},(results,status)=>{
     if(status==="OK"&&results[0])routeToPlace(results[0].geometry.location,results[0].formatted_address);
-    else alert("Dirección no encontrada.");
+    else showToast("Dirección no encontrada");
   });
 });
 document.getElementById("dest-clear").addEventListener("click",cancelDest);
 document.getElementById("nav-cancel").addEventListener("click",cancelDest);
 document.getElementById("tmpl-cancel").addEventListener("click",clearTemplate);
 
-/* ── Settings ── */
+/* ═══════════════════════════════════════════════
+   SETTINGS & PROFILE
+═══════════════════════════════════════════════ */
 let profile={weight:70,objDist:0,objSpd:0,plan:[0,0,0,0,0,0,0]};
-let segments=[];// [{id,name,startLat,startLng,endLat,endLng,radius,best}]
-let segmentDef=null;// segment being defined
+let segments=[];
+let segmentDef=null;
 
 function loadProfile(){
   try{
     const p=JSON.parse(localStorage.getItem("vt_profile")||"{}");
     profile={...profile,...p};
-    const sg=JSON.parse(localStorage.getItem("vt_segments")||"[]");
-    segments=sg;
+    segments=JSON.parse(localStorage.getItem("vt_segments")||"[]");
   }catch{}
 }
 function saveProfile(){
@@ -642,7 +675,7 @@ function saveProfile(){
 loadProfile();
 
 function renderSettingsScreen(){
-  // Profile summary card
+  // Status summary
   const fi=calcFatigueIndex();
   const goalKm=profile.plan.reduce((a,b)=>a+b,0);
   const fiColor=fi>80?"#f44336":fi>50?"orange":fi>20?"var(--ac)":"var(--gt)";
@@ -665,17 +698,14 @@ function renderSettingsScreen(){
   document.getElementById("set-weight").value=profile.weight||"";
   document.getElementById("set-obj-dist").value=profile.objDist||"";
   document.getElementById("set-obj-spd").value=profile.objSpd||"";
-  // plan rows
   const days=["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
   document.getElementById("plan-rows").innerHTML=days.map((d,i)=>`
     <div class="plan-row">
       <span class="plan-day">${d}</span>
-      <input class="plan-input" id="plan-${i}" type="number" min="0" max="200" value="${profile.plan[i]||0}" placeholder="0">
+      <input class="plan-input" id="plan-${i}" type="number" min="0" max="300" value="${profile.plan[i]||0}">
       <span class="plan-unit">km</span>
     </div>`).join("");
-  // segments
   renderSegmentsSettings();
-  // fatigue
   renderFatigue("fatigue-wrap-settings");
 }
 
@@ -685,11 +715,12 @@ function renderSegmentsSettings(){
     <div class="seg-item">
       <div>
         <div class="seg-name">${s.name}</div>
-        <div class="seg-info">Radio: ${s.radius}m</div>
-        <div class="seg-best">${s.best?`Mejor: ${ft(s.best)}`:"Sin récord"}</div>
+        <div class="seg-info">Radio detección: ${s.radius}m</div>
+        <div class="seg-best">${s.best?`🏆 Récord: ${ft(Math.round(s.best))}`:"Sin récord aún"}</div>
       </div>
       <button class="btn-seg-del" onclick="deleteSeg(${i})">🗑</button>
-    </div>`).join(""):"<div class='empty' style='margin-top:16px;font-size:9px'>SIN SEGMENTOS</div>";
+    </div>`).join("")
+  :"<div style='color:var(--gt);font-family:var(--hud);font-size:9px;letter-spacing:2px;padding:12px 0'>SIN SEGMENTOS DEFINIDOS</div>";
 }
 
 window.deleteSeg=function(i){
@@ -698,20 +729,24 @@ window.deleteSeg=function(i){
 };
 
 document.getElementById("btn-add-seg").addEventListener("click",()=>{
-  if(!currentPos){alert("Necesitas tener GPS activo para definir un segmento desde tu posición.");return;}
-  const name=prompt("Nombre del segmento:");
-  if(!name)return;
-  const radius=parseInt(prompt("Radio de detección en metros (recomendado: 30-50):")||"40");
+  if(!currentPos){showToast("Necesitas GPS activo para definir segmentos");return;}
   if(!segmentDef){
-    // first click = start point
+    const name=prompt("Nombre del segmento (ej: Subida al puerto):");
+    if(!name)return;
+    const radius=parseInt(prompt("Radio de detección en metros (recomendado 30-50):")||"40");
     segmentDef={name,startLat:currentPos.lat,startLng:currentPos.lng,radius};
-    showToast("📍 Inicio marcado. Ve al final del segmento y pulsa de nuevo.");
+    showToast(`📍 Inicio de "${name}" marcado. Ve al final y pulsa de nuevo.`);
   } else {
-    // second click = end point
-    segments.push({id:Date.now(),name:segmentDef.name,startLat:segmentDef.startLat,startLng:segmentDef.startLng,endLat:currentPos.lat,endLng:currentPos.lng,radius:segmentDef.radius,best:null});
+    segments.push({
+      id:Date.now(),name:segmentDef.name,
+      startLat:segmentDef.startLat,startLng:segmentDef.startLng,
+      endLat:currentPos.lat,endLng:currentPos.lng,
+      radius:segmentDef.radius,best:null
+    });
+    const name=segmentDef.name;
     segmentDef=null;
     saveProfile();renderSegmentsSettings();
-    showToast(`✓ Segmento "${name}" guardado.`);
+    showToast(`✓ Segmento "${name}" guardado`);
   }
 });
 
@@ -720,12 +755,15 @@ document.getElementById("btn-save-settings").addEventListener("click",()=>{
   profile.objDist=parseFloat(document.getElementById("set-obj-dist").value)||0;
   profile.objSpd=parseFloat(document.getElementById("set-obj-spd").value)||0;
   profile.plan=[0,1,2,3,4,5,6].map(i=>parseFloat(document.getElementById(`plan-${i}`)?.value)||0);
-  saveProfile();updateHomeProfile();showToast("✓ Ajustes guardados");showScreen("s-home");
+  saveProfile();
+  showToast("✓ Ajustes guardados");
+  showScreen("s-home");
 });
 
-/* ── Fatigue index ── */
+/* ═══════════════════════════════════════════════
+   FATIGUE INDEX
+═══════════════════════════════════════════════ */
 function calcFatigueIndex(){
-  // Sum km last 7 days vs goal
   const goalKm=profile.plan.reduce((a,b)=>a+b,0)||100;
   const now=new Date();
   const weekKm=history.filter(s=>Math.floor((now-new Date(s.id))/86400000)<7).reduce((a,s)=>a+s.distance/1000,0);
@@ -736,40 +774,43 @@ function renderFatigue(containerId){
   const el=document.getElementById(containerId);if(!el)return;
   const fi=calcFatigueIndex();
   const color=fi>80?"#f44336":fi>50?"orange":fi>20?"var(--ac)":"var(--gt)";
-  const label=fi>80?"ALTO":fi>50?"MODERADO":fi>20?"BAJO":"DESCANSO";
+  const label=fi>80?"ALTO — descansa mañana":fi>50?"MODERADO":fi>20?"BAJO":"SIN ACTIVIDAD";
   el.innerHTML=`
     <div class="fatigue-bar-bg"><div class="fatigue-bar-fill" style="width:${fi}%;background:${color}"></div></div>
-    <div class="fatigue-label">${label} · ${fi}% de la carga semanal</div>`;
+    <div class="fatigue-label">${label} · ${fi}% de la meta semanal</div>`;
 }
 
-/* ── Calories ── */
+/* ═══════════════════════════════════════════════
+   CALORIES
+═══════════════════════════════════════════════ */
 function calcCalories(distanceM,elevGainM,weight){
   const w=weight||70;
-  // MET-based: cycling ~8 MET, elevation bonus
   const km=distanceM/1000;
-  const elevBonus=elevGainM*0.003; // ~3 kcal per 10m climb per 70kg
-  const base=km*0.56*w/70; // ~0.56 kcal/kg/km at moderate pace
+  const base=km*0.56*(w/70);
+  const elevBonus=(elevGainM||0)*0.003;
   return Math.round(base+elevBonus);
 }
 
-/* ── Segments detection ── */
-let activeSegments={};// {segId: {startTime, triggered}}
+/* ═══════════════════════════════════════════════
+   SEGMENTS DETECTION
+═══════════════════════════════════════════════ */
+let activeSegments={};
+
 function checkSegments(lat,lng,ts){
   segments.forEach(seg=>{
-    const distStart=haversine(lat,lng,seg.startLat,seg.startLng);
-    const distEnd=haversine(lat,lng,seg.endLat,seg.endLng);
-    if(!activeSegments[seg.id]&&distStart<seg.radius){
+    const dStart=haversine(lat,lng,seg.startLat,seg.startLng);
+    const dEnd=haversine(lat,lng,seg.endLat,seg.endLng);
+    if(!activeSegments[seg.id]&&dStart<seg.radius){
       activeSegments[seg.id]={startTime:ts};
       showToast(`⏱ ${seg.name} — INICIADO`);
       updateSegPanel();
     }
-    if(activeSegments[seg.id]&&!activeSegments[seg.id].finished&&distEnd<seg.radius){
+    if(activeSegments[seg.id]&&!activeSegments[seg.id].finished&&dEnd<seg.radius){
       const elapsed=(ts-activeSegments[seg.id].startTime)/1000;
-      activeSegments[seg.id].finished=true;
-      activeSegments[seg.id].elapsed=elapsed;
+      activeSegments[seg.id]={...activeSegments[seg.id],finished:true,elapsed};
       const isBest=!seg.best||elapsed<seg.best;
       if(isBest){seg.best=elapsed;saveProfile();}
-      showToast(`${isBest?"🏆 RÉCORD":"✓"} ${seg.name}: ${ft(Math.round(elapsed))}`);
+      showToast(`${isBest?"🏆 NUEVO RÉCORD":"✓"} ${seg.name}: ${ft(Math.round(elapsed))}`);
       updateSegPanel();
     }
   });
@@ -779,31 +820,40 @@ function updateSegPanel(){
   if(!segments.length){document.getElementById("seg-panel").classList.remove("show");return;}
   document.getElementById("seg-panel").classList.add("show");
   document.getElementById("seg-list-mini").innerHTML=segments.map(seg=>{
-    const active=activeSegments[seg.id];
-    const isActive=active&&!active.finished;
+    const act=activeSegments[seg.id];
+    const isActive=act&&!act.finished;
     return`<div class="seg-chip${isActive?" active":""}">
       <div class="seg-chip-name">${seg.name}</div>
-      <div class="seg-chip-best">${isActive?"⏱ EN CURSO":active?.finished?ft(Math.round(active.elapsed)):seg.best?`récord ${ft(Math.round(seg.best))}`:"—"}</div>
+      <div class="seg-chip-best">${isActive?"⏱ EN CURSO":act?.finished?ft(Math.round(act.elapsed)):seg.best?`récord ${ft(Math.round(seg.best))}`:"—"}</div>
     </div>`;
   }).join("");
 }
 
-/* ── GPX ── */
+/* ═══════════════════════════════════════════════
+   GPX IMPORT / EXPORT
+═══════════════════════════════════════════════ */
 function parseGPX(text){
   const doc=new DOMParser().parseFromString(text,"text/xml");
   const pts=[...doc.querySelectorAll("trkpt,rtept,wpt")];
   if(!pts.length)return null;
-  return pts.map(p=>({lat:parseFloat(p.getAttribute("lat")),lng:parseFloat(p.getAttribute("lon"))})).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
+  return pts.map(p=>({
+    lat:parseFloat(p.getAttribute("lat")),
+    lng:parseFloat(p.getAttribute("lon"))
+  })).filter(p=>!isNaN(p.lat)&&!isNaN(p.lng));
 }
+
 function calcTotalDistance(coords){
-  let d=0;for(let i=1;i<coords.length;i++)d+=haversine(coords[i-1].lat,coords[i-1].lng,coords[i].lat,coords[i].lng);return d;
+  let d=0;
+  for(let i=1;i<coords.length;i++)d+=haversine(coords[i-1].lat,coords[i-1].lng,coords[i].lat,coords[i].lng);
+  return d;
 }
+
 function handleGPXFile(file,mode){
   if(!file)return;
   const reader=new FileReader();
   reader.onload=e=>{
     const coords=parseGPX(e.target.result);
-    if(!coords||!coords.length){alert("No se pudo leer el GPX.");return;}
+    if(!coords||!coords.length){showToast("No se pudo leer el GPX");return;}
     if(mode==="template"){
       templateCoords=coords;
       document.getElementById("tmpl-lbl").textContent=`📍 ${file.name.replace(".gpx","")}`;
@@ -811,285 +861,374 @@ function handleGPXFile(file,mode){
       if(gmap)drawTemplate();
       startTracking(true);
     } else {
-      const s={id:Date.now(),date:new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}),name:file.name.replace(".gpx",""),distance:calcTotalDistance(coords),elapsed:0,maxSpeed:0,avgSpeed:0,elevGain:0,maxAlt:0,calories:0,coords,speeds:[],alts:[],imported:true,segResults:[]};
+      const s={
+        id:Date.now(),
+        date:new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}),
+        name:file.name.replace(".gpx",""),
+        distance:calcTotalDistance(coords),
+        elapsed:0,maxSpeed:0,avgSpeed:0,movingSpeed:"0",
+        elevGain:0,maxAlt:0,calories:0,
+        coords,speeds:[],alts:[],segResults:[],imported:true
+      };
       history.unshift(s);if(history.length>100)history.pop();
       saveHistory();updateHistBtn();renderHist();
-      showToast(`✓ ${s.name} importada`);
+      showToast(`✓ "${s.name}" importada`);
     }
   };
   reader.readAsText(file);
 }
+
 function exportGPX(session){
-  if(!session.coords||!session.coords.length){alert("Sin puntos.");return;}
+  if(!session.coords||!session.coords.length){showToast("Sin puntos de ruta para exportar");return;}
   const pts=session.coords.map(c=>`    <trkpt lat="${c.lat}" lon="${c.lng}"></trkpt>`).join("\n");
   const gpx=`<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="VeloTracker">\n  <trk><name>${session.name||session.date}</name><trkseg>\n${pts}\n  </trkseg></trk>\n</gpx>`;
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([gpx],{type:"application/gpx+xml"}));
-  a.download=`velotracker_${session.name||session.id}.gpx`;
+  a.download=`velotracker_${(session.name||session.id).replace(/[^a-z0-9]/gi,"_")}.gpx`;
   a.click();
 }
+
 document.getElementById("gpx-file-input").addEventListener("change",e=>{handleGPXFile(e.target.files[0],"template");e.target.value="";});
 document.getElementById("gpx-file-input-hist").addEventListener("change",e=>{handleGPXFile(e.target.files[0],"import");e.target.value="";});
 document.getElementById("btn-import-home").addEventListener("click",()=>document.getElementById("gpx-file-input").click());
 document.getElementById("btn-import-hist").addEventListener("click",()=>document.getElementById("gpx-file-input-hist").click());
 
-/* ── Share as image ── */
+/* ═══════════════════════════════════════════════
+   SHARE AS IMAGE
+═══════════════════════════════════════════════ */
 function generateShareImage(session){
   const canvas=document.getElementById("share-canvas");
   canvas.style.display="block";
   const ctx=canvas.getContext("2d");
   const W=800,H=420;
-  // background
   ctx.fillStyle="#080808";ctx.fillRect(0,0,W,H);
   // grid
-  ctx.strokeStyle="rgba(26,26,26,0.8)";ctx.lineWidth=1;
+  ctx.strokeStyle="rgba(26,26,26,0.9)";ctx.lineWidth=1;
   for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
   for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
   // glow
   const grd=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,200);
-  grd.addColorStop(0,"rgba(0,122,112,.15)");grd.addColorStop(1,"transparent");
+  grd.addColorStop(0,"rgba(0,122,112,.18)");grd.addColorStop(1,"transparent");
   ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
   // border
   ctx.strokeStyle="#007a70";ctx.lineWidth=2;ctx.strokeRect(2,2,W-4,H-4);
-  // title
-  ctx.fillStyle="#007a70";ctx.font="bold 14px monospace";ctx.letterSpacing="6px";
-  ctx.fillText("VELOTRACKER",30,40);
+  // header
+  ctx.fillStyle="#007a70";ctx.font="bold 13px monospace";
+  ctx.fillText("VELOTRACKER",30,38);
   ctx.fillStyle="#555";ctx.font="11px monospace";
-  ctx.fillText(session.date+(session.name?` · ${session.name}`:""),30,60);
-  // big stats
-  const stats=[
+  ctx.fillText(session.date+(session.name?` · ${session.name}`:""),30,57);
+  // main stats
+  [
     {label:"DISTANCIA",value:`${(session.distance/1000).toFixed(2)}`,unit:"km",x:30},
-    {label:"TIEMPO",value:ft(session.elapsed),unit:"",x:220},
-    {label:"VEL. MEDIA",value:`${session.avgSpeed.toFixed(1)}`,unit:"km/h",x:410},
-    {label:"VEL. MÁX",value:`${session.maxSpeed.toFixed(1)}`,unit:"km/h",x:580},
-  ];
-  stats.forEach(s=>{
-    ctx.fillStyle="#555555";ctx.font="10px monospace";ctx.fillText(s.label,s.x,110);
-    ctx.fillStyle="#ffffff";ctx.font="bold 48px 'Rajdhani',sans-serif";ctx.fillText(s.value,s.x,165);
-    ctx.fillStyle="#007a70";ctx.font="14px monospace";ctx.fillText(s.unit,s.x,185);
+    {label:"TIEMPO",value:ft(session.elapsed),unit:"",x:215},
+    {label:"VEL. MEDIA",value:`${session.avgSpeed.toFixed(1)}`,unit:"km/h",x:400},
+    {label:"VEL. MÁX",value:`${session.maxSpeed.toFixed(1)}`,unit:"km/h",x:585},
+  ].forEach(s=>{
+    ctx.fillStyle="#555";ctx.font="10px monospace";ctx.fillText(s.label,s.x,100);
+    ctx.fillStyle="#fff";ctx.font="bold 46px sans-serif";ctx.fillText(s.value,s.x,155);
+    ctx.fillStyle="#007a70";ctx.font="13px monospace";ctx.fillText(s.unit,s.x,174);
   });
   // divider
-  ctx.strokeStyle="#2a2a2a";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(30,200);ctx.lineTo(W-30,200);ctx.stroke();
+  ctx.strokeStyle="#2a2a2a";ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(30,188);ctx.lineTo(W-30,188);ctx.stroke();
   // secondary stats
-  const stats2=[
+  [
     {label:"DESNIVEL",value:`${session.elevGain||0}m ↑`},
     {label:"ALT. MÁX",value:`${session.maxAlt||0}m`},
     {label:"CALORÍAS",value:`${session.calories||0}kcal`},
-    {label:"VEL. MVTO",value:`${session.movingSpeed||"--"}km/h`},
-  ];
-  stats2.forEach((s,i)=>{
+    {label:"VEL. MOVTO",value:`${session.movingSpeed||"--"}km/h`},
+  ].forEach((s,i)=>{
     const x=30+i*190;
-    ctx.fillStyle="#555555";ctx.font="10px monospace";ctx.fillText(s.label,x,230);
-    ctx.fillStyle="#c0c0c0";ctx.font="bold 22px 'Rajdhani',sans-serif";ctx.fillText(s.value,x,258);
+    ctx.fillStyle="#555";ctx.font="10px monospace";ctx.fillText(s.label,x,218);
+    ctx.fillStyle="#c0c0c0";ctx.font="bold 21px sans-serif";ctx.fillText(s.value,x,244);
   });
-  // route preview (draw coords as path)
+  // route preview
   if(session.coords&&session.coords.length>1){
     const c=session.coords;
     const lats=c.map(p=>p.lat),lngs=c.map(p=>p.lng);
     const minLat=Math.min(...lats),maxLat=Math.max(...lats);
     const minLng=Math.min(...lngs),maxLng=Math.max(...lngs);
-    const pw=W-60,ph=120,ox=30,oy=280;
-    const scaleX=(p)=>ox+(p.lng-minLng)/(maxLng-minLng||1)*pw;
-    const scaleY=(p)=>oy+ph-(p.lat-minLat)/(maxLat-minLat||1)*ph;
+    const pw=W-60,ph=120,ox=30,oy=272;
+    const sx=p=>ox+(p.lng-minLng)/(maxLng-minLng||0.0001)*pw;
+    const sy=p=>oy+ph-(p.lat-minLat)/(maxLat-minLat||0.0001)*ph;
     ctx.strokeStyle="#007a70";ctx.lineWidth=2;ctx.beginPath();
-    ctx.moveTo(scaleX(c[0]),scaleY(c[0]));
-    c.slice(1).forEach(p=>ctx.lineTo(scaleX(p),scaleY(p)));
+    ctx.moveTo(sx(c[0]),sy(c[0]));
+    c.slice(1).forEach(p=>ctx.lineTo(sx(p),sy(p)));
     ctx.stroke();
-    // start/end dots
-    ctx.fillStyle="#007a70";ctx.beginPath();ctx.arc(scaleX(c[0]),scaleY(c[0]),5,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle="#ffffff";ctx.beginPath();ctx.arc(scaleX(c[c.length-1]),scaleY(c[c.length-1]),5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#007a70";ctx.beginPath();ctx.arc(sx(c[0]),sy(c[0]),5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(sx(c[c.length-1]),sy(c[c.length-1]),5,0,Math.PI*2);ctx.fill();
   }
   // footer
   ctx.fillStyle="#2a2a2a";ctx.font="10px monospace";
-  ctx.fillText("velotracker · github.io/antgarc1/velotracker",30,H-16);
+  ctx.fillText("antgarc1.github.io/velotracker",30,H-14);
   canvas.style.display="none";
-  // share or download
   canvas.toBlob(blob=>{
-    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[new File([blob],"velotracker.png",{type:"image/png"})]})){
-      navigator.share({title:"Mi ruta en VeloTracker",files:[new File([blob],"velotracker.png",{type:"image/png"})]}).catch(()=>{});
+    const file=new File([blob],"velotracker.png",{type:"image/png"});
+    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({title:"Mi ruta · VeloTracker",files:[file]}).catch(()=>{});
     } else {
-      const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="velotracker.png";a.click();
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(blob);a.download="velotracker.png";a.click();
     }
   },"image/png");
 }
 
-/* ── Battery ── */
-function monitorBattery(){
-  if(!navigator.getBattery)return;
-  navigator.getBattery().then(bat=>{
-    const check=()=>{
-      const warn=document.getElementById("bat-warn");
-      if(bat.level<0.2&&!bat.charging)warn.classList.add("show");
-      else warn.classList.remove("show");
-    };
-    check();
-    bat.addEventListener("levelchange",check);
-    bat.addEventListener("chargingchange",check);
-  });
-}
-
-/* ── Toast ── */
+/* ═══════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════ */
 let toastTimer=null;
 function showToast(msg){
   const t=document.getElementById("toast");
   t.textContent=msg;t.style.display="block";
-  if(toastTimer)clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>{t.style.display="none";},2500);
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.style.display="none",2800);
 }
 
-/* ── State ── */
+/* ═══════════════════════════════════════════════
+   GPS STATE
+═══════════════════════════════════════════════ */
 let tracking=false,paused=false;
 let coords=[],speeds=[],alts=[];
 let speed=0,maxSpeed=0,distance=0,elapsed=0;
-let movingTime=0,movingSpeeds=[];
+let movingSpeeds=[];
 let altitude=null,elevGain=0,lastAlt=null,maxAlt=0;
 let currentPos=null,startPos=null;
 let watchId=null,timer=null,wakeLock=null;
 let lastTimestamp=0,currentSessionId=null;
-let history=(()=>{try{return JSON.parse(localStorage.getItem("vh4")||"[]");}catch{return[];}})();
+let history=(()=>{try{return JSON.parse(localStorage.getItem("vh5")||"[]");}catch{return[];}})();
 
-/* ── Helpers ── */
-const ft=s=>{const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;return h>0?`${h}:${pad(m)}:${pad(ss)}`:`${pad(m)}:${pad(ss)}`;};
-const pad=n=>String(n).padStart(2,"0");
+/* ═══════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════ */
+const ft=s=>{
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),ss=s%60;
+  return h>0?`${h}:${String(m).padStart(2,"0")}:${String(ss).padStart(2,"0")}`:`${String(m).padStart(2,"0")}:${String(ss).padStart(2,"0")}`;
+};
 const fdist=m=>m<1000?`${Math.round(m)} m`:`${(m/1000).toFixed(2)} km`;
+
 function haversine(la1,lo1,la2,lo2){
   const R=6371000,r=x=>x*Math.PI/180;
   const a=Math.sin(r(la2-la1)/2)**2+Math.cos(r(la1))*Math.cos(r(la2))*Math.sin(r(lo2-lo1)/2)**2;
   return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
-function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");}
 
-/* ── GPS ── */
-function startGPS(){
-  if(!navigator.geolocation){alert("GPS no disponible.");return;}
-  document.getElementById("gps-warn").style.display="block";
-  watchId=navigator.geolocation.watchPosition(pos=>{
-    document.getElementById("gps-warn").style.display="none";
-    const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
-    // Only filter truly bad readings
-    if(acc>80)return;
-    // Ignore duplicate timestamps
-    if(ts>0&&ts<=lastTimestamp)return;
-    lastTimestamp=ts;
-    currentPos={lat:la,lng:lo};
-    if(!startPos)startPos={lat:la,lng:lo};
-    if(!paused){
-      if(coords.length){
-        const l=coords[coords.length-1];
-        const d=haversine(l.lat,l.lng,la,lo);
-        // Minimum 2m movement, max 200m to filter GPS jumps
-        if(d>=2&&d<200)distance+=d;
-        else if(d<2){/* stationary, skip */}
-      }
-      coords.push({lat:la,lng:lo});
-      // Use GPS speed if available, otherwise 0
-      const kmh=(sp!=null&&sp>=0)?sp*3.6:0;
-      speed=Math.round(kmh*10)/10;
-      maxSpeed=Math.max(maxSpeed,speed);
-      speeds.push(speed);
-      if(speed>2){movingTime++;movingSpeeds.push(speed);}
-      if(al!=null){
-        altitude=Math.round(al);alts.push(altitude);maxAlt=Math.max(maxAlt,altitude);
-        if(lastAlt!==null){const diff=altitude-lastAlt;if(diff>0.5)elevGain+=diff;}
-        lastAlt=altitude;
-      }
-      // check objective speed
-      if(profile.objSpd>0&&speed>0&&speed<profile.objSpd){
-        document.getElementById("obj-alert").classList.add("show");
-        document.getElementById("obj-alert-txt").textContent=`⚠ VELOCIDAD: ${speed.toFixed(1)} km/h (obj: ${profile.objSpd})`;
-      } else {
-        document.getElementById("obj-alert").classList.remove("show");
-      }
-      // check segments
-      checkSegments(la,lo,ts);
-    }
-    // distance to start
-    if(startPos){
-      const dHome=haversine(la,lo,startPos.lat,startPos.lng);
-      document.getElementById("dh-val").textContent=(dHome/1000).toFixed(2);
-    }
-    if(mReady){
-      const p={lat:la,lng:lo};
-      if(!gmap)initMap(p); else{gmap.panTo(p);dotM&&dotM.setPosition(p);}
-      poly&&poly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
-    }
-    updateNavDistance();
-    renderTrack();
-  },err=>{if(err.code===1)alert("Activa la ubicación en Ajustes.");},{enableHighAccuracy:true,maximumAge:0,timeout:30000});
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
-function stopGPS(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}document.getElementById("gps-warn").style.display="none";}
 
+/* ═══════════════════════════════════════════════
+   GPS — CLEAN AND RELIABLE
+═══════════════════════════════════════════════ */
+function startGPS(){
+  if(!navigator.geolocation){showToast("GPS no disponible en este dispositivo");return;}
+  document.getElementById("gps-warn").style.display="block";
+
+  watchId=navigator.geolocation.watchPosition(
+    pos=>{
+      document.getElementById("gps-warn").style.display="none";
+      const{latitude:la,longitude:lo,speed:sp,altitude:al,accuracy:acc,timestamp:ts}=pos.coords;
+
+      // Skip very inaccurate readings
+      if(acc>80)return;
+      // Skip duplicate timestamps
+      if(ts>0&&ts<=lastTimestamp)return;
+      lastTimestamp=ts;
+
+      currentPos={lat:la,lng:lo};
+      // Save start position on first fix
+      if(!startPos)startPos={lat:la,lng:lo};
+
+      if(!paused){
+        // Distance: only count movement > 2m and < 200m (filter jumps)
+        if(coords.length){
+          const prev=coords[coords.length-1];
+          const d=haversine(prev.lat,prev.lng,la,lo);
+          if(d>=2&&d<200)distance+=d;
+        }
+        coords.push({lat:la,lng:lo});
+
+        // Speed: use GPS speed directly (most accurate on iPhone)
+        const kmh=(sp!=null&&sp>=0)?sp*3.6:0;
+        speed=Math.round(kmh*10)/10;
+        maxSpeed=Math.max(maxSpeed,speed);
+        speeds.push(speed);
+
+        // Moving speed (filter stationary readings < 1 km/h)
+        if(kmh>=1)movingSpeeds.push(kmh);
+
+        // Altitude and elevation gain
+        if(al!=null){
+          altitude=Math.round(al);
+          alts.push(altitude);
+          maxAlt=Math.max(maxAlt,altitude);
+          if(lastAlt!==null&&(altitude-lastAlt)>0.5)elevGain+=(altitude-lastAlt);
+          lastAlt=altitude;
+        }
+
+        // Check speed objective
+        if(profile.objSpd>0&&speed>0&&speed<profile.objSpd){
+          document.getElementById("obj-alert").classList.add("show");
+          document.getElementById("obj-alert-txt").textContent=`⚠ ${speed.toFixed(1)} km/h — objetivo: ${profile.objSpd} km/h`;
+        } else {
+          document.getElementById("obj-alert").classList.remove("show");
+        }
+
+        // Check segments
+        checkSegments(la,lo,ts);
+      }
+
+      // Distance to start (always update, even when paused)
+      if(startPos){
+        const dHome=haversine(la,lo,startPos.lat,startPos.lng);
+        document.getElementById("dh-val").textContent=(dHome/1000).toFixed(2);
+      }
+
+      // Update map
+      if(mReady){
+        const p={lat:la,lng:lo};
+        if(!gmap)initMap(p);
+        else{gmap.panTo(p);dotM&&dotM.setPosition(p);}
+        poly&&poly.setPath(coords.map(c=>({lat:c.lat,lng:c.lng})));
+      }
+
+      updateNavDistance();
+      renderTrack();
+    },
+    err=>{
+      if(err.code===1){
+        document.getElementById("gps-warn").style.display="none";
+        showToast("Activa la ubicación en Ajustes del iPhone");
+      }
+      // code 2 = unavailable, code 3 = timeout — keep trying
+    },
+    {enableHighAccuracy:true, maximumAge:0, timeout:30000}
+  );
+}
+
+function stopGPS(){
+  if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}
+  document.getElementById("gps-warn").style.display="none";
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER TRACKING UI
+═══════════════════════════════════════════════ */
 function renderTrack(){
   document.getElementById("spd-num").textContent=speed.toFixed(1);
   document.getElementById("dist-val").textContent=fdist(distance);
   document.getElementById("t-timer").textContent=ft(elapsed);
   const avg=elapsed>0?(distance/1000)/(elapsed/3600):0;
-  const movingAvg=movingSpeeds.length?(movingSpeeds.reduce((a,b)=>a+b,0)/movingSpeeds.length):0;
+  const movAvg=movingSpeeds.length?(movingSpeeds.reduce((a,b)=>a+b,0)/movingSpeeds.length):0;
   document.getElementById("s-avg").textContent=avg.toFixed(1);
-  document.getElementById("s-moving").textContent=movingAvg.toFixed(1);
+  document.getElementById("s-moving").textContent=movAvg.toFixed(1);
   document.getElementById("s-elev").textContent=Math.round(elevGain);
   document.getElementById("alt-val").textContent=altitude!=null?altitude:"--";
 }
 
-/* ── Start ── */
+/* ═══════════════════════════════════════════════
+   START / PAUSE / STOP
+═══════════════════════════════════════════════ */
 function startTracking(keepTemplate){
-  coords=[];speeds=[];alts=[];distance=0;elapsed=0;speed=0;maxSpeed=0;
-  movingTime=0;movingSpeeds=[];
+  // Reset all state
+  coords=[];speeds=[];alts=[];movingSpeeds=[];
+  distance=0;elapsed=0;speed=0;maxSpeed=0;
   altitude=null;elevGain=0;lastAlt=null;maxAlt=0;
   currentPos=null;startPos=null;lastTimestamp=0;
   activeSegments={};
   tracking=true;paused=false;
   currentSessionId=Date.now();
+
   if(!keepTemplate)clearTemplate();
   cancelDest();
   document.getElementById("obj-alert").classList.remove("show");
+
+  // Reset pause button
   const pb=document.getElementById("btn-pause");
   pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");
   document.getElementById("rdot").classList.remove("paused");
-  document.getElementById("rlbl").textContent="REC";document.getElementById("rlbl").classList.remove("paused");
+  document.getElementById("rlbl").textContent="REC";
+  document.getElementById("rlbl").classList.remove("paused");
   document.getElementById("rec-pill").classList.remove("paused");
-  if(segments.length)updateSegPanel(); else document.getElementById("seg-panel").classList.remove("show");
+  document.getElementById("dh-val").textContent="--";
+
+  // Segments panel
+  if(segments.length)updateSegPanel();
+  else document.getElementById("seg-panel").classList.remove("show");
+
   showScreen("s-track");
-  navigator.geolocation.getCurrentPosition(p=>initMap({lat:p.coords.latitude,lng:p.coords.longitude}),()=>initMap({lat:59.9139,lng:10.7522}),{enableHighAccuracy:true,timeout:5000});
+
+  // Get initial position for map
+  navigator.geolocation.getCurrentPosition(
+    p=>initMap({lat:p.coords.latitude,lng:p.coords.longitude}),
+    ()=>initMap({lat:59.9139,lng:10.7522}),
+    {enableHighAccuracy:true,timeout:8000}
+  );
+
   startGPS();
-  monitorBattery();
+
   timer=setInterval(()=>{if(!paused){elapsed++;renderTrack();}},1000);
-  if(navigator.wakeLock)navigator.wakeLock.request("screen").then(wl=>{wakeLock=wl;}).catch(()=>{});
+
+  // Keep screen on
+  if(navigator.wakeLock){
+    navigator.wakeLock.request("screen").then(wl=>{wakeLock=wl;}).catch(()=>{});
+  }
 }
 
-/* ── Pause ── */
 document.getElementById("btn-pause").addEventListener("click",()=>{
   paused=!paused;
-  const pb=document.getElementById("btn-pause"),rd=document.getElementById("rdot"),rl=document.getElementById("rlbl"),rp=document.getElementById("rec-pill");
-  if(paused){pb.textContent="▶\u00A0 CONTINUAR";pb.classList.add("act");rd.classList.add("paused");rl.classList.add("paused");rl.textContent="PAUSADO";rp.classList.add("paused");speed=0;document.getElementById("spd-num").textContent="0.0";}
-  else{pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");rd.classList.remove("paused");rl.classList.remove("paused");rl.textContent="REC";rp.classList.remove("paused");}
+  const pb=document.getElementById("btn-pause");
+  const rd=document.getElementById("rdot");
+  const rl=document.getElementById("rlbl");
+  const rp=document.getElementById("rec-pill");
+  if(paused){
+    pb.textContent="▶\u00A0 CONTINUAR";pb.classList.add("act");
+    rd.classList.add("paused");rl.classList.add("paused");
+    rl.textContent="PAUSADO";rp.classList.add("paused");
+    speed=0;document.getElementById("spd-num").textContent="0.0";
+  } else {
+    pb.textContent="⏸\u00A0 PAUSAR";pb.classList.remove("act");
+    rd.classList.remove("paused");rl.classList.remove("paused");
+    rl.textContent="REC";rp.classList.remove("paused");
+  }
 });
 
-/* ── Stop ── */
 document.getElementById("btn-stop").addEventListener("click",()=>{
-  stopGPS();clearInterval(timer);wakeLock?.release();
-  tracking=false;paused=false;speed=0;cancelDest();
+  stopGPS();
+  clearInterval(timer);
+  wakeLock?.release();
+  tracking=false;paused=false;speed=0;
+  cancelDest();
   document.getElementById("obj-alert").classList.remove("show");
-  document.getElementById("bat-warn").classList.remove("show");
+
   const avg=elapsed>0?(distance/1000)/(elapsed/3600):0;
-  const movingAvg=movingSpeeds.length?(movingSpeeds.reduce((a,b)=>a+b,0)/movingSpeeds.length):0;
+  const movAvg=movingSpeeds.length?(movingSpeeds.reduce((a,b)=>a+b,0)/movingSpeeds.length):0;
   const calories=calcCalories(distance,elevGain,profile.weight);
-  const segResults=Object.entries(activeSegments).filter(([,v])=>v.finished).map(([id,v])=>{
-    const seg=segments.find(s=>s.id==id);
-    return{name:seg?.name||id,elapsed:v.elapsed,isBest:seg&&v.elapsed===seg.best};
-  });
+  const segResults=Object.entries(activeSegments)
+    .filter(([,v])=>v.finished)
+    .map(([id,v])=>{
+      const seg=segments.find(s=>String(s.id)===String(id));
+      return{name:seg?.name||"Segmento",elapsed:v.elapsed,isBest:seg&&v.elapsed===seg.best};
+    });
+
   const s={
     id:currentSessionId||Date.now(),
     date:new Date().toLocaleDateString("es-ES",{day:"2-digit",month:"short",year:"numeric"}),
-    name:"",distance,elapsed,maxSpeed,avgSpeed:avg,movingSpeed:movingAvg.toFixed(1),
+    name:"",
+    distance,elapsed,maxSpeed,avgSpeed:avg,
+    movingSpeed:movAvg.toFixed(1),
     elevGain:Math.round(elevGain),maxAlt,calories,
-    coords:[...coords],speeds:[...speeds],alts:[...alts],segResults
+    coords:[...coords],speeds:[...speeds],alts:[...alts],
+    segResults
   };
+
   history.unshift(s);if(history.length>100)history.pop();
   saveHistory();
-  // fill summary
+
+  // Fill summary screen
   document.getElementById("sum-date").textContent=s.date;
   document.getElementById("route-name-input").value="";
+  document.getElementById("route-name-save").textContent="OK";
   document.getElementById("sum-dist").textContent=(s.distance/1000).toFixed(2);
   document.getElementById("sum-time").textContent=ft(s.elapsed);
   document.getElementById("sum-avg").textContent=s.avgSpeed.toFixed(1);
@@ -1098,27 +1237,38 @@ document.getElementById("btn-stop").addEventListener("click",()=>{
   document.getElementById("sum-elev").textContent=s.elevGain;
   document.getElementById("sum-altmax").textContent=s.maxAlt;
   document.getElementById("sum-cal").textContent=s.calories;
+  document.getElementById("cal-sub").textContent=`${profile.weight}kg · ${(s.distance/1000).toFixed(1)}km · ${s.elevGain}m↑`;
+
   const speedsF=s.speeds.filter(v=>v>0);
   document.getElementById("sum-spd-min").textContent=speedsF.length?Math.min(...speedsF).toFixed(1):"--";
-  document.getElementById("cal-method").textContent=`Peso: ${profile.weight}kg · ${(s.distance/1000).toFixed(1)}km · ${s.elevGain}m↑`;
-  // check objective distance
+
+  // Check distance objective
   if(profile.objDist>0&&s.distance/1000<profile.objDist){
     showToast(`⚠ Objetivo no alcanzado: ${(s.distance/1000).toFixed(1)}/${profile.objDist}km`);
   }
-  // segments summary
+
+  // Segments summary
   if(segResults.length){
     document.getElementById("seg-sum").style.display="block";
     document.getElementById("seg-sum-list").innerHTML=segResults.map(r=>`
       <div class="seg-sum-item">
         <span class="seg-sum-name">${r.name}</span>
-        <div style="text-align:right"><span class="seg-sum-time">${ft(Math.round(r.elapsed))}</span>${r.isBest?`<br><span class="seg-sum-best">🏆 NUEVO RÉCORD</span>`:""}</div>
+        <div style="text-align:right">
+          <span class="seg-sum-time">${ft(Math.round(r.elapsed))}</span>
+          ${r.isBest?`<br><span class="seg-sum-best">🏆 NUEVO RÉCORD</span>`:""}
+        </div>
       </div>`).join("");
-  } else document.getElementById("seg-sum").style.display="none";
+  } else {
+    document.getElementById("seg-sum").style.display="none";
+  }
+
   showCompare(s);
   setTimeout(()=>initSumMap(s.coords),300);
   document.getElementById("btn-gpx").onclick=()=>exportGPX(s);
   document.getElementById("btn-share").onclick=()=>generateShareImage(s);
-  showScreen("s-sum");updateHistBtn();
+
+  showScreen("s-sum");
+  updateHistBtn();
 });
 
 /* ── Route name ── */
@@ -1139,16 +1289,27 @@ function showCompare(current){
     return ratio<0.2&&s.distance>500;
   });
   if(!similar){document.getElementById("compare-box").style.display="none";return;}
-  const timeDiff=current.elapsed-similar.elapsed;
-  const avgDiff=current.avgSpeed-similar.avgSpeed;
+  const td=current.elapsed-similar.elapsed;
+  const ad=current.avgSpeed-similar.avgSpeed;
   document.getElementById("compare-box").style.display="block";
   document.getElementById("compare-row").innerHTML=`
-    <div class="compare-stat"><div class="compare-lbl">TIEMPO</div><div class="compare-val ${timeDiff<0?"better":timeDiff>0?"worse":"same"}">${timeDiff<0?"▲ ":timeDiff>0?"▼ ":""}${ft(Math.abs(timeDiff))}</div></div>
-    <div class="compare-stat"><div class="compare-lbl">VEL. MEDIA</div><div class="compare-val ${avgDiff>0?"better":avgDiff<0?"worse":"same"}">${avgDiff>0?"+":""}${avgDiff.toFixed(1)} km/h</div></div>
-    <div class="compare-stat"><div class="compare-lbl">VS</div><div class="compare-val same" style="font-size:11px">${similar.name||similar.date}</div></div>`;
+    <div class="compare-stat">
+      <div class="compare-lbl">TIEMPO</div>
+      <div class="compare-val ${td<0?"better":td>0?"worse":"same"}">${td<0?"▲ ":td>0?"▼ ":""}${ft(Math.abs(td))}</div>
+    </div>
+    <div class="compare-stat">
+      <div class="compare-lbl">VEL. MEDIA</div>
+      <div class="compare-val ${ad>0?"better":ad<0?"worse":"same"}">${ad>0?"+":""}${ad.toFixed(1)} km/h</div>
+    </div>
+    <div class="compare-stat">
+      <div class="compare-lbl">VS</div>
+      <div class="compare-val same" style="font-size:11px">${similar.name||similar.date}</div>
+    </div>`;
 }
 
-/* ── Nav ── */
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════ */
 document.getElementById("btn-start").addEventListener("click",()=>startTracking(false));
 document.getElementById("btn-sum-home").addEventListener("click",()=>showScreen("s-home"));
 document.getElementById("btn-sum-new").addEventListener("click",()=>startTracking(false));
@@ -1158,13 +1319,22 @@ document.getElementById("btn-back-detail").addEventListener("click",()=>{showScr
 document.getElementById("btn-settings-home").addEventListener("click",()=>{renderSettingsScreen();showScreen("s-settings");});
 document.getElementById("btn-back-settings").addEventListener("click",()=>showScreen("s-home"));
 
-/* ── Records ── */
+/* ═══════════════════════════════════════════════
+   RECORDS
+═══════════════════════════════════════════════ */
 function getRecords(){
   if(!history.length)return null;
-  return{bestDist:Math.max(...history.map(s=>s.distance)),bestSpeed:Math.max(...history.map(s=>s.maxSpeed)),totalKm:history.reduce((a,s)=>a+s.distance,0),totalCal:history.reduce((a,s)=>a+(s.calories||0),0)};
+  return{
+    bestDist:Math.max(...history.map(s=>s.distance)),
+    bestSpeed:Math.max(...history.map(s=>s.maxSpeed)),
+    totalKm:history.reduce((a,s)=>a+s.distance,0),
+    totalCal:history.reduce((a,s)=>a+(s.calories||0),0),
+  };
 }
 
-/* ── Weekly grid ── */
+/* ═══════════════════════════════════════════════
+   WEEKLY GRID
+═══════════════════════════════════════════════ */
 function buildWeekGrid(id){
   const el=document.getElementById(id);if(!el)return;
   const days=["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
@@ -1175,17 +1345,24 @@ function buildWeekGrid(id){
   });
   el.innerHTML=days.map((d,i)=>{
     const km=week[i],goal=profile.plan[i]||0,has=km>0,met=goal>0&&km>=goal;
-    return`<div class="week-day${met?" goal":has?" has":""}"><div class="week-day-lbl">${d}</div><div class="week-day-val">${has?km.toFixed(1):"—"}</div><div class="week-day-unit">${has?"km":""}</div>${goal?`<div class="week-day-unit">${met?"✓":""} ${goal}km</div>`:""}</div>`;
+    return`<div class="week-day${met?" goal":has?" has":""}">
+      <div class="week-day-lbl">${d}</div>
+      <div class="week-day-val">${has?km.toFixed(1):"—"}</div>
+      <div class="week-day-unit">${has?"km":""}</div>
+      ${goal?`<div class="week-day-unit">${met?"✓":""} /${goal}</div>`:""}
+    </div>`;
   }).join("");
 }
 
-/* ── Detail ── */
+/* ═══════════════════════════════════════════════
+   DETAIL
+═══════════════════════════════════════════════ */
 let currentDetailId=null;
 function openDetail(id){
   const s=history.find(h=>h.id===id);if(!s)return;
   currentDetailId=id;
   document.getElementById("d-title").textContent=s.name||s.date;
-  document.getElementById("d-sub").textContent=s.name?s.date+" · "+ft(s.elapsed):ft(s.elapsed);
+  document.getElementById("d-sub").textContent=s.name?`${s.date} · ${ft(s.elapsed)}`:ft(s.elapsed);
   document.getElementById("d-dist").textContent=(s.distance/1000).toFixed(2);
   document.getElementById("d-time").textContent=ft(s.elapsed);
   document.getElementById("d-avg").textContent=s.avgSpeed.toFixed(1);
@@ -1194,53 +1371,63 @@ function openDetail(id){
   document.getElementById("d-cal").textContent=s.calories||calcCalories(s.distance,s.elevGain||0,profile.weight);
   document.getElementById("d-btn-gpx").onclick=()=>exportGPX(s);
   document.getElementById("d-map").innerHTML="";
-  detailMap=null;detailPoly=null;
-  // segment results
+  detailMap=null;
   if(s.segResults&&s.segResults.length){
     document.getElementById("d-segs").style.display="block";
     document.getElementById("d-segs-list").innerHTML=s.segResults.map(r=>`
       <div class="seg-sum-item">
         <span class="seg-sum-name">${r.name}</span>
-        <div style="text-align:right"><span class="seg-sum-time">${ft(Math.round(r.elapsed))}</span>${r.isBest?`<br><span class="seg-sum-best">🏆 RÉCORD</span>`:""}</div>
+        <div style="text-align:right">
+          <span class="seg-sum-time">${ft(Math.round(r.elapsed))}</span>
+          ${r.isBest?`<br><span class="seg-sum-best">🏆 RÉCORD</span>`:""}
+        </div>
       </div>`).join("");
-  } else document.getElementById("d-segs").style.display="none";
+  } else {
+    document.getElementById("d-segs").style.display="none";
+  }
   showScreen("s-detail");
   setTimeout(()=>initDetailMap(s.coords),300);
 }
 
-/* ── Repeat ── */
 document.getElementById("d-btn-repeat").addEventListener("click",()=>{
   const s=history.find(h=>h.id===currentDetailId);
-  if(!s||!s.coords||!s.coords.length){alert("Sin coordenadas para repetir.");return;}
+  if(!s||!s.coords||!s.coords.length){showToast("Esta ruta no tiene coordenadas para repetir");return;}
   templateCoords=[...s.coords];
   document.getElementById("tmpl-lbl").textContent=`📍 ${s.name||s.date}`;
   document.getElementById("tmpl-bar").classList.add("show");
   startTracking(true);
 });
 
-/* ── Delete ── */
+/* ═══════════════════════════════════════════════
+   DELETE
+═══════════════════════════════════════════════ */
 document.getElementById("d-btn-del").addEventListener("click",()=>{
   if(!currentDetailId)return;
   if(!confirm("¿Borrar esta ruta?"))return;
   history=history.filter(h=>h.id!==currentDetailId);
   saveHistory();updateHistBtn();showScreen("s-hist");renderHist();
 });
+
 document.getElementById("btn-del-all").addEventListener("click",()=>{
   if(!history.length)return;
-  if(!confirm("¿Borrar todas las rutas?"))return;
+  if(!confirm("¿Borrar todas las rutas?\nEsta acción no se puede deshacer."))return;
   history=[];saveHistory();updateHistBtn();renderHist();
 });
+
 function saveHistory(){
   const toSave=history.map(h=>({...h,coords:h.coords?.slice(0,500)||[]}));
-  localStorage.setItem("vh4",JSON.stringify(toSave));
+  localStorage.setItem("vh5",JSON.stringify(toSave));
 }
 
-/* ── History ── */
+/* ═══════════════════════════════════════════════
+   HISTORY
+═══════════════════════════════════════════════ */
 function updateHistBtn(){
   const n=history.length;
   document.getElementById("hist-n").textContent=n;
   document.getElementById("h-sub").textContent=`${n} RUTAS`;
 }
+
 function renderHist(){
   const el=document.getElementById("h-list");
   if(!history.length){el.innerHTML='<div class="empty">SIN RUTAS TODAVÍA</div>';return;}
@@ -1250,16 +1437,19 @@ function renderHist(){
     html+=`<div class="records">
       <div class="rec-card"><div class="rec-card-lbl">MEJOR DIST</div><div class="rec-card-val">${(rec.bestDist/1000).toFixed(1)}</div><div class="rec-card-unit">km</div></div>
       <div class="rec-card"><div class="rec-card-lbl">VEL. MÁX</div><div class="rec-card-val">${rec.bestSpeed.toFixed(0)}</div><div class="rec-card-unit">km/h</div></div>
-      <div class="rec-card"><div class="rec-card-lbl">TOTAL</div><div class="rec-card-val">${(rec.totalKm/1000).toFixed(0)}</div><div class="rec-card-unit">km</div></div>
-      <div class="rec-card"><div class="rec-card-lbl">CALORÍAS</div><div class="rec-card-val">${(rec.totalCal/1000).toFixed(1)}k</div><div class="rec-card-unit">kcal</div></div>
+      <div class="rec-card"><div class="rec-card-lbl">TOTAL KM</div><div class="rec-card-val">${(rec.totalKm/1000).toFixed(0)}</div><div class="rec-card-unit">km</div></div>
+      <div class="rec-card"><div class="rec-card-lbl">CALORÍAS</div><div class="rec-card-val">${rec.totalCal>999?(rec.totalCal/1000).toFixed(1)+"k":rec.totalCal}</div><div class="rec-card-unit">kcal</div></div>
     </div>`;
   }
-  // fatigue
   html+=`<div class="fatigue-row"><div class="fatigue-title">FATIGA SEMANAL</div><div id="fatigue-wrap-hist"></div></div>`;
-  html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA ${profile.plan.some(v=>v>0)?"(verde = objetivo cumplido)":""}</div><div class="week-grid" id="week-grid"></div></div>`;
+  html+=`<div class="week-wrap"><div class="week-title">KM ESTA SEMANA${profile.plan.some(v=>v>0)?" · verde = objetivo":""}
+  </div><div class="week-grid" id="week-grid"></div></div>`;
   html+=history.map((s,i)=>`
     <div class="h-item" onclick="openDetail(${s.id})" style="animation-delay:${i*.04}s">
-      <div class="h-item-top"><span class="h-date">${s.date}</span><span class="h-time">${ft(s.elapsed)}</span></div>
+      <div class="h-item-top">
+        <span class="h-date">${s.date}</span>
+        <span class="h-time">${ft(s.elapsed)}</span>
+      </div>
       ${s.name?`<div class="h-name">${s.name}</div>`:""}
       ${s.imported?`<div style="color:var(--gt);font-family:var(--hud);font-size:8px;margin-bottom:6px">⬆ IMPORTADA</div>`:""}
       <div class="h-stats">
@@ -1275,7 +1465,9 @@ function renderHist(){
   setTimeout(()=>{buildWeekGrid("week-grid");renderFatigue("fatigue-wrap-hist");},100);
 }
 
-/* ── Init ── */
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
 updateHistBtn();
 </script>
 </body>
